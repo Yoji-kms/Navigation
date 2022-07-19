@@ -4,14 +4,16 @@
 //
 //  Created by Yoji on 27.06.2022.
 //
-
+//
 import UIKit
 
 class InfoViewController: UIViewController {
     private lazy var button: UIButton = {
         let windowHeight = self.view.frame.height
         let windowWidth = self.view.frame.width
-        let button = UIButton(frame: CGRect(x: 16, y: windowHeight - 106, width: windowWidth - 32, height: 50))
+
+        let button = UIButton(frame: CGRect(x: 16, y: windowHeight * 0.8, width: windowWidth - 32, height: 50))
+        
         button.backgroundColor = .systemMint
         button.setTitle("Print message", for: .normal)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)

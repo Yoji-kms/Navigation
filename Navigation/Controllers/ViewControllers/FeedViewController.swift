@@ -11,7 +11,7 @@ class FeedViewController: UIViewController {
     private lazy var button: UIButton = {
         let windowHeight = self.view.frame.height
         let windowWidth = self.view.frame.width
-        let button = UIButton(frame: CGRect(x: 16, y: windowHeight - 106, width: windowWidth - 32, height: 50))
+        let button = UIButton(frame: CGRect(x: 16, y: windowHeight * 0.8, width: windowWidth - 32, height: 50))
         button.backgroundColor = .systemCyan
         button.setTitle("Show post", for: .normal)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
