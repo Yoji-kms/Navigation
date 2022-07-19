@@ -10,12 +10,14 @@
 		F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C32869D89A0062067F /* AppDelegate.swift */; };
 		F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C52869D89A0062067F /* SceneDelegate.swift */; };
 		F97CD0C82869D89A0062067F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C72869D89A0062067F /* ViewController.swift */; };
-		F97CD0CB2869D89A0062067F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F97CD0C92869D89A0062067F /* Main.storyboard */; };
 		F97CD0CD2869D89B0062067F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F97CD0CC2869D89B0062067F /* Assets.xcassets */; };
 		F97CD0D02869D89B0062067F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F97CD0CE2869D89B0062067F /* LaunchScreen.storyboard */; };
-		F97CD0DB2869D89B0062067F /* NavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0DA2869D89B0062067F /* NavigationTests.swift */; };
-		F97CD0E52869D89B0062067F /* NavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0E42869D89B0062067F /* NavigationUITests.swift */; };
-		F97CD0E72869D89B0062067F /* NavigationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0E62869D89B0062067F /* NavigationUITestsLaunchTests.swift */; };
+		F97CD0FC2869DDFB0062067F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0FB2869DDFB0062067F /* FeedViewController.swift */; };
+		F97CD0FE2869DE420062067F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0FD2869DE420062067F /* ProfileViewController.swift */; };
+		F97CD1002869DE640062067F /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0FF2869DE640062067F /* PostViewController.swift */; };
+		F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD1012869DEA20062067F /* InfoViewController.swift */; };
+		F97CD104286B30B50062067F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD103286B30B50062067F /* TabBarController.swift */; };
+		F97CD107286FF2200062067F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD106286FF2200062067F /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,15 +42,17 @@
 		F97CD0C32869D89A0062067F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F97CD0C52869D89A0062067F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F97CD0C72869D89A0062067F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F97CD0CA2869D89A0062067F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F97CD0CC2869D89B0062067F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F97CD0CF2869D89B0062067F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F97CD0D12869D89B0062067F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F97CD0D62869D89B0062067F /* NavigationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F97CD0DA2869D89B0062067F /* NavigationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTests.swift; sourceTree = "<group>"; };
 		F97CD0E02869D89B0062067F /* NavigationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F97CD0E42869D89B0062067F /* NavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITests.swift; sourceTree = "<group>"; };
-		F97CD0E62869D89B0062067F /* NavigationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F97CD0FB2869DDFB0062067F /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		F97CD0FD2869DE420062067F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F97CD0FF2869DE640062067F /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		F97CD1012869DEA20062067F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		F97CD103286B30B50062067F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		F97CD106286FF2200062067F /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				F97CD0C22869D89A0062067F /* Navigation */,
-				F97CD0D92869D89B0062067F /* NavigationTests */,
-				F97CD0E32869D89B0062067F /* NavigationUITests */,
 				F97CD0C12869D89A0062067F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,10 +101,11 @@
 		F97CD0C22869D89A0062067F /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F97CD105286FF2100062067F /* Data */,
+				F97CD0F32869D9C10062067F /* Controllers */,
 				F97CD0C32869D89A0062067F /* AppDelegate.swift */,
 				F97CD0C52869D89A0062067F /* SceneDelegate.swift */,
 				F97CD0C72869D89A0062067F /* ViewController.swift */,
-				F97CD0C92869D89A0062067F /* Main.storyboard */,
 				F97CD0CC2869D89B0062067F /* Assets.xcassets */,
 				F97CD0CE2869D89B0062067F /* LaunchScreen.storyboard */,
 				F97CD0D12869D89B0062067F /* Info.plist */,
@@ -110,21 +113,32 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		F97CD0D92869D89B0062067F /* NavigationTests */ = {
+		F97CD0F32869D9C10062067F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F97CD0DA2869D89B0062067F /* NavigationTests.swift */,
+				F97CD0F42869D9F00062067F /* ViewControllers */,
+				F97CD103286B30B50062067F /* TabBarController.swift */,
 			);
-			path = NavigationTests;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		F97CD0E32869D89B0062067F /* NavigationUITests */ = {
+		F97CD0F42869D9F00062067F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F97CD0E42869D89B0062067F /* NavigationUITests.swift */,
-				F97CD0E62869D89B0062067F /* NavigationUITestsLaunchTests.swift */,
+				F97CD0FB2869DDFB0062067F /* FeedViewController.swift */,
+				F97CD0FD2869DE420062067F /* ProfileViewController.swift */,
+				F97CD0FF2869DE640062067F /* PostViewController.swift */,
+				F97CD1012869DEA20062067F /* InfoViewController.swift */,
 			);
-			path = NavigationUITests;
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F97CD105286FF2100062067F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F97CD106286FF2200062067F /* Post.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +247,6 @@
 			files = (
 				F97CD0D02869D89B0062067F /* LaunchScreen.storyboard in Resources */,
 				F97CD0CD2869D89B0062067F /* Assets.xcassets in Resources */,
-				F97CD0CB2869D89A0062067F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +271,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F97CD1002869DE640062067F /* PostViewController.swift in Sources */,
+				F97CD104286B30B50062067F /* TabBarController.swift in Sources */,
 				F97CD0C82869D89A0062067F /* ViewController.swift in Sources */,
+				F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */,
 				F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */,
 				F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */,
+				F97CD107286FF2200062067F /* Post.swift in Sources */,
+				F97CD0FE2869DE420062067F /* ProfileViewController.swift in Sources */,
+				F97CD0FC2869DDFB0062067F /* FeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +287,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F97CD0DB2869D89B0062067F /* NavigationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +294,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F97CD0E72869D89B0062067F /* NavigationUITestsLaunchTests.swift in Sources */,
-				F97CD0E52869D89B0062067F /* NavigationUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +313,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F97CD0C92869D89A0062067F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F97CD0CA2869D89A0062067F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F97CD0CE2869D89B0062067F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -444,7 +452,6 @@
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -456,7 +463,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -472,7 +479,6 @@
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -484,7 +490,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
