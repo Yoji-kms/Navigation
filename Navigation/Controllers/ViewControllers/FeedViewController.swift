@@ -9,14 +9,11 @@ import UIKit
 
 class FeedViewController: UIViewController {
     private lazy var button: UIButton = {
-        let windowHeight = self.view.frame.height
-        let windowWidth = self.view.frame.width
-        let button = UIButton(frame: CGRect(x: 16, y: windowHeight * 0.8, width: windowWidth - 32, height: 50))
+        let button = UIButton()
         button.backgroundColor = .systemCyan
         button.setTitle("Show post", for: .normal)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = button.frame.height/4
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -32,7 +29,23 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Feed"
         self.view.backgroundColor = .white
-        
+
+        setupViews()
+    }
+    
+    private func setupViews() {
         self.view.addSubview(button)
+
+        NSLayoutConstraint.activate([
+            self.button.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            self.button.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            self.button.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            self.button.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.button.layer.cornerRadius = self.button.frame.height/4
     }
 }
