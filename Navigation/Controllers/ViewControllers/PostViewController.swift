@@ -22,9 +22,6 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .systemIndigo
         self.navigationItem.title = post?.title
-        
-        
-        
         self.navigationItem.rightBarButtonItem = barButton
     }
     

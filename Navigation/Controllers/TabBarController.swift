@@ -33,6 +33,6 @@ class TabBarController: UITabBarController {
     private func setupTabBar() {
         self.tabBar.tintColor = .black
         self.tabBar.barTintColor = .gray
-        self.viewControllers = [profileNavController, feedNavController]
+        self.viewControllers = [feedNavController, profileNavController]
     }
 }
