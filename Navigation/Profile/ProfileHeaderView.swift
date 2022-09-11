@@ -10,7 +10,7 @@ import UIKit
 class ProfileHeaderView: UIView {
     private lazy var statusText = ""
     
-    private lazy var avatar: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "avatar")
         image.layer.cornerRadius = 64
@@ -21,7 +21,7 @@ class ProfileHeaderView: UIView {
         return image
     }()
     
-    private lazy var name: UILabel = {
+    private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
         label.text = "Some name"
@@ -30,7 +30,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private lazy var statusSetBtn: UIButton = {
+    private lazy var setStatusButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.textColor = .white
         button.backgroundColor = .systemBlue
@@ -45,7 +45,7 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-    lazy var status: UILabel = {
+    lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .gray
@@ -54,7 +54,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private lazy var newStatusTextField: UITextField = {
+    private lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         textField.leftViewMode = .always
@@ -89,52 +89,45 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func buttonPressed(){
-        status.text = statusText
-        if (newStatusTextField.isFirstResponder) {
-            newStatusTextField.resignFirstResponder()
+        statusLabel.text = statusText
+        if (statusTextField.isFirstResponder) {
+            statusTextField.resignFirstResponder()
         }
     }
     
     
     private func setupViews() {
-        self.addSubview(avatar)
-        NSLayoutConstraint.activate([
-            self.avatar.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            self.avatar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            self.avatar.heightAnchor.constraint(equalToConstant: 128),
-            self.avatar.widthAnchor.constraint(equalToConstant: 128),
-        ])
+        self.addSubview(avatarImageView)
+        self.addSubview(fullNameLabel)
+        self.addSubview(setStatusButton)
+        self.addSubview(statusTextField)
+        self.addSubview(statusLabel)
         
-        self.addSubview(name)
         NSLayoutConstraint.activate([
-            self.name.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            self.name.leadingAnchor.constraint(equalTo: self.avatar.trailingAnchor, constant: 8),
-            self.name.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            self.name.heightAnchor.constraint(equalToConstant: 18)
-        ])
-        
-        self.addSubview(statusSetBtn)
-        NSLayoutConstraint.activate([
-            self.statusSetBtn.heightAnchor.constraint(equalToConstant: 50),
-            self.statusSetBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            self.statusSetBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            self.statusSetBtn.topAnchor.constraint(equalTo: self.avatar.bottomAnchor, constant: 16)
-        ])
-        
-        self.addSubview(newStatusTextField)
-        NSLayoutConstraint.activate([
-            self.newStatusTextField.heightAnchor.constraint(equalToConstant: 40),
-            self.newStatusTextField.leadingAnchor.constraint(equalTo: self.name.leadingAnchor),
-            self.newStatusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            self.newStatusTextField.bottomAnchor.constraint(equalTo: self.statusSetBtn.topAnchor, constant: -16)
-        ])
-        
-        self.addSubview(status)
-        NSLayoutConstraint.activate([
-            self.status.heightAnchor.constraint(equalToConstant: 14),
-            self.status.leadingAnchor.constraint(equalTo: self.name.leadingAnchor),
-            self.status.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            self.status.bottomAnchor.constraint(equalTo: self.newStatusTextField.topAnchor, constant: -16)
+            self.avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            self.avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            self.avatarImageView.heightAnchor.constraint(equalToConstant: 128),
+            self.avatarImageView.widthAnchor.constraint(equalToConstant: 128),
+       
+            self.fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
+            self.fullNameLabel.leadingAnchor.constraint(equalTo: self.avatarImageView.trailingAnchor, constant: 8),
+            self.fullNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.fullNameLabel.heightAnchor.constraint(equalToConstant: 18),
+
+            self.setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            self.setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            self.setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.setStatusButton.topAnchor.constraint(equalTo: self.avatarImageView.bottomAnchor, constant: 16),
+
+            self.statusTextField.heightAnchor.constraint(equalToConstant: 40),
+            self.statusTextField.leadingAnchor.constraint(equalTo: self.fullNameLabel.leadingAnchor),
+            self.statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.statusTextField.bottomAnchor.constraint(equalTo: self.setStatusButton.topAnchor, constant: -16),
+
+            self.statusLabel.heightAnchor.constraint(equalToConstant: 14),
+            self.statusLabel.leadingAnchor.constraint(equalTo: self.fullNameLabel.leadingAnchor),
+            self.statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.statusLabel.bottomAnchor.constraint(equalTo: self.statusTextField.topAnchor, constant: -16),
         ])
     }
 }

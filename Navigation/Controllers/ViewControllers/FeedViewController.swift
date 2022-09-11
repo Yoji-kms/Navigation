@@ -8,7 +8,25 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    private lazy var button: UIButton = {
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private lazy var firstButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .systemCyan
+        button.setTitle("Show post", for: .normal)
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var secondButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemCyan
         button.setTitle("Show post", for: .normal)
@@ -34,18 +52,29 @@ class FeedViewController: UIViewController {
     }
     
     private func setupViews() {
-        self.view.addSubview(button)
-
+        self.view.addSubview(stackView)
+        
+        self.stackView.addArrangedSubview(firstButton)
+        self.stackView.addArrangedSubview(secondButton)
+        
         NSLayoutConstraint.activate([
-            self.button.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            self.button.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-            self.button.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            self.button.heightAnchor.constraint(equalToConstant: 50)
+            self.stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            
+            self.firstButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            self.firstButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            self.firstButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            self.secondButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            self.secondButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            self.secondButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.button.layer.cornerRadius = self.button.frame.height/4
+        self.firstButton.layer.cornerRadius = self.firstButton.frame.height/4
+        self.secondButton.layer.cornerRadius = self.secondButton.frame.height/4
     }
 }
