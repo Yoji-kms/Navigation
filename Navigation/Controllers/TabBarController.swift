@@ -10,17 +10,17 @@ import UIKit
 class TabBarController: UITabBarController {
     
     private lazy var profileNavController: UINavigationController = {
-        let navController = UINavigationController(rootViewController: ProfileViewController())
-        navController.title = "Profile"
-        navController.tabBarItem.title = "Profile"
+        let navController = UINavigationController(rootViewController: LogInViewController())
+        navController.navigationBar.isHidden = true
+        navController.tabBarItem.title = NSLocalizedString("Profile", comment: "Profile")
         navController.tabBarItem.image = UIImage(systemName: "person")
         return navController
     }()
     
     private lazy var feedNavController: UINavigationController = {
         let navController = UINavigationController(rootViewController: FeedViewController())
-        navController.title = "Feed"
-        navController.tabBarItem.title = "Feed"
+        navController.title = NSLocalizedString("Feed", comment: "Feed")
+        navController.tabBarItem.title = NSLocalizedString("Feed", comment: "Feed")
         navController.tabBarItem.image = UIImage(systemName: "lanyardcard")
         return navController
     }()

@@ -5,4 +5,21 @@
 //  Created by Yoji on 28.09.2022.
 //
 
-import Foundation
+"Some name" = "Какое-то имя";
+"Some status" = "Какой-то статус";
+"Set status" = "Установить статус";
+"Unknown" = "Неизвестный";
+"Log in" = "Войти";
+"Email or phone" = "Email или телефон";
+"Password" = "Пароль";
+"Profile" = "Профиль";
+"Some button" = "Какая-то кнопка";
+"Show post" = "Показать пост";
+"Feed" = "Лента";
+"Print message" = "Напечатать сообщение";
+"Print message?" = "Напечатать сообщение?";
+"Print" = "Напечатать";
+"Message" = "Сообщение";
+"Cancel" = "Отмена";
+"Likes" = "Лайков: ";
+"Views" = "Просмотров: ";
