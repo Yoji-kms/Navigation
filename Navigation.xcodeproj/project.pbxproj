@@ -19,6 +19,8 @@
 		F97CD104286B30B50062067F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD103286B30B50062067F /* TabBarController.swift */; };
 		F97CD107286FF2200062067F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD106286FF2200062067F /* Post.swift */; };
 		F9C602BB28E40AEB00DDF334 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9C602BD28E40AEB00DDF334 /* Localizable.strings */; };
+		F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C602C028E40C5200DDF334 /* LogInViewController.swift */; };
+		F9C602C328E40C7800DDF334 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */; };
 		F9CF7A8A289D813000839A1F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CF7A89289D813000839A1F /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		F9C602BC28E40AEB00DDF334 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9C602BE28E40B0400DDF334 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F9C602BF28E40B0400DDF334 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F9C602C028E40C5200DDF334 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		F9CF7A89289D813000839A1F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +157,8 @@
 			children = (
 				F97CD0FD2869DE420062067F /* ProfileViewController.swift */,
 				F9CF7A89289D813000839A1F /* ProfileHeaderView.swift */,
+				F9C602C028E40C5200DDF334 /* LogInViewController.swift */,
+				F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -291,6 +297,7 @@
 			files = (
 				F97CD1002869DE640062067F /* PostViewController.swift in Sources */,
 				F97CD104286B30B50062067F /* TabBarController.swift in Sources */,
+				F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */,
 				F97CD0C82869D89A0062067F /* ViewController.swift in Sources */,
 				F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */,
 				F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */,
@@ -299,6 +306,7 @@
 				F9CF7A8A289D813000839A1F /* ProfileHeaderView.swift in Sources */,
 				F97CD0FE2869DE420062067F /* ProfileViewController.swift in Sources */,
 				F97CD0FC2869DDFB0062067F /* FeedViewController.swift in Sources */,
+				F9C602C328E40C7800DDF334 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
