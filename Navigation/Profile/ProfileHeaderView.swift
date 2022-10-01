@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
     private lazy var statusText = ""
     
     private lazy var avatarImageView: UIImageView = {
@@ -24,7 +24,7 @@ class ProfileHeaderView: UIView {
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
-        label.text = "Some name"
+        label.text = NSLocalizedString("Some name", comment: "Name")
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -32,12 +32,13 @@ class ProfileHeaderView: UIView {
     
     private lazy var setStatusButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.textColor = .white
-        button.backgroundColor = .systemBlue
-        button.setTitle("Set status", for: .normal)
+        button.titleLabel?.textColor = .systemGray
+        button.isEnabled = false
+        button.backgroundColor = .systemBlue.notEnabled()
+        button.setTitle(NSLocalizedString("Set status", comment: "Set status"), for: .normal)
         button.layer.cornerRadius = 4
         button.layer.shadowColor = .init(genericCMYKCyan: 1, magenta: 0, yellow: 0, black: 1, alpha: 1)
-        button.layer.shadowOpacity = 0.7
+        button.layer.shadowOpacity = 0.1
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +50,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .gray
-        label.text = "Some status"
+        label.text = NSLocalizedString("Some status", comment: "Status")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -58,7 +59,6 @@ class ProfileHeaderView: UIView {
         let textField = UITextField()
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         textField.leftViewMode = .always
-        textField.becomeFirstResponder()
         textField.backgroundColor = .white
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 15)
@@ -67,12 +67,11 @@ class ProfileHeaderView: UIView {
         textField.layer.borderWidth = 1
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
-        textField.addTarget(self, action: #selector(showKeybord(_:)), for: .touchUpInside)
         return textField
     }()
     
-    init() {
-        super.init(frame: CGRect())
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         self.setupViews()
     }
     
@@ -80,21 +79,23 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func showKeybord(_ textField: UITextField) {
-        textField.becomeFirstResponder()
-    }
-    
     @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = textField.text ?? "Unknown"
+        statusText = textField.text ?? NSLocalizedString("Unknown", comment: "Unknown")
+        if (textField.text == "") {
+            setStatusButton.isEnabled = false
+            setStatusButton.backgroundColor = .systemBlue.notEnabled()
+            setStatusButton.layer.shadowOpacity = 0.1
+        } else {
+            setStatusButton.isEnabled = true
+            setStatusButton.backgroundColor = .systemBlue
+            setStatusButton.layer.shadowOpacity = 0.7
+        }
     }
     
     @objc func buttonPressed(){
         statusLabel.text = statusText
-        if (statusTextField.isFirstResponder) {
-            statusTextField.resignFirstResponder()
-        }
+        self.endEditing(true)
     }
-    
     
     private func setupViews() {
         self.addSubview(avatarImageView)
@@ -102,7 +103,7 @@ class ProfileHeaderView: UIView {
         self.addSubview(setStatusButton)
         self.addSubview(statusTextField)
         self.addSubview(statusLabel)
-        
+
         NSLayoutConstraint.activate([
             self.avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             self.avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
@@ -129,5 +130,22 @@ class ProfileHeaderView: UIView {
             self.statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             self.statusLabel.bottomAnchor.constraint(equalTo: self.statusTextField.topAnchor, constant: -16),
         ])
+    }
+}
+
+extension UIColor {
+    func notEnabled() -> UIColor? {
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+            return UIColor (
+                hue: hue, saturation: min(saturation - 0.6, 1.0), brightness: brightness, alpha: alpha
+            )
+        } else {
+            return nil
+        }
     }
 }

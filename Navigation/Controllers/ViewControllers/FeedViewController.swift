@@ -20,7 +20,7 @@ class FeedViewController: UIViewController {
     private lazy var firstButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemCyan
-        button.setTitle("Show post", for: .normal)
+        button.setTitle(NSLocalizedString("Show post", comment: "Show post"), for: .normal)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -29,7 +29,7 @@ class FeedViewController: UIViewController {
     private lazy var secondButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemCyan
-        button.setTitle("Show post", for: .normal)
+        button.setTitle(NSLocalizedString("Show post", comment: "Show post"), for: .normal)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -41,11 +41,11 @@ class FeedViewController: UIViewController {
         self.navigationController?.pushViewController(postVC, animated: true)
     }
     
-    private lazy var post: Post = Post(title: "Post title")
+    private lazy var post: Post = Post(title: "Post title", description: "", image: "", likes: 0, views: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Feed"
+        self.navigationItem.title = NSLocalizedString("Feed", comment: "Feed")
         self.view.backgroundColor = .white
 
         setupViews()

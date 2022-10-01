@@ -11,7 +11,7 @@ class InfoViewController: UIViewController {
     private lazy var button: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemMint
-        button.setTitle("Print message", for: .normal)
+        button.setTitle(NSLocalizedString("Print message", comment: "Print message"), for: .normal)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -42,9 +42,11 @@ class InfoViewController: UIViewController {
     }
     
     @objc private func didTapButton(){
-        let alertController = UIAlertController(title: "Print message?", message: nil, preferredStyle: .alert)
-        let printMessage = UIAlertAction(title: "Print", style: .default, handler: { _ in print("Message") })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let alertController = UIAlertController(title: NSLocalizedString("Print message?", comment: "Print message?"), message: nil, preferredStyle: .alert)
+        let printMessage = UIAlertAction(title: NSLocalizedString("Print", comment: "Print"), style: .default, handler: { _ in
+            print(NSLocalizedString("Message", comment: "Message"))
+        })
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil)
         
         alertController.addAction(printMessage)
         alertController.addAction(cancel)
