@@ -69,7 +69,6 @@ class FeedViewController: UIViewController {
             self.secondButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
             self.secondButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
     }
     
     override func viewDidLayoutSubviews() {

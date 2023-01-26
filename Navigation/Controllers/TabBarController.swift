@@ -13,7 +13,7 @@ class TabBarController: UITabBarController {
         let navController = UINavigationController(rootViewController: LogInViewController())
         navController.navigationBar.isHidden = true
         navController.tabBarItem.title = NSLocalizedString("Profile", comment: "Profile")
-        navController.tabBarItem.image = UIImage(systemName: "person")
+        navController.tabBarItem.image = UIImage(systemName: "person.fill")
         return navController
     }()
     
@@ -21,7 +21,7 @@ class TabBarController: UITabBarController {
         let navController = UINavigationController(rootViewController: FeedViewController())
         navController.title = NSLocalizedString("Feed", comment: "Feed")
         navController.tabBarItem.title = NSLocalizedString("Feed", comment: "Feed")
-        navController.tabBarItem.image = UIImage(systemName: "lanyardcard")
+        navController.tabBarItem.image = UIImage(systemName: "lanyardcard.fill")
         return navController
     }()
     
@@ -31,8 +31,9 @@ class TabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
-        self.tabBar.tintColor = .black
-        self.tabBar.barTintColor = .gray
+        self.tabBar.tintColor = .init(named: "VkColor")
+        self.tabBar.barTintColor = .systemGray6
+        self.tabBar.backgroundColor = .systemGray6
         self.viewControllers = [feedNavController, profileNavController]
     }
 }
