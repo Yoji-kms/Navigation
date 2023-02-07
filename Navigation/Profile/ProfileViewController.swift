@@ -247,7 +247,7 @@ extension ProfileViewController: UITableViewDataSource {
     @objc private func tap(){
         print("Tapped")
     }
-    
+
 }
 
 extension ProfileViewController: UITableViewDelegate {
