@@ -103,7 +103,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         self.addSubview(setStatusButton)
         self.addSubview(statusTextField)
         self.addSubview(statusLabel)
-        
+
         NSLayoutConstraint.activate([
             self.avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             self.avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
