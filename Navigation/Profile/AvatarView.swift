@@ -28,20 +28,6 @@ class AvatarView: UIView {
         return view
     }()
     
-//    lazy var closeAvatarBtn: UIButton = {
-//        let btn = UIButton()
-//        btn.alpha = 0
-//        btn.tintColor = .systemRed
-//        btn.setImage(UIImage(systemName: "xmark"), for: .normal)
-//        btn.isEnabled = false
-//        btn.addTarget(self, action: #selector(removeAnimations), for: .touchUpInside)
-//        btn.translatesAutoresizingMaskIntoConstraints = false
-//        btn.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
-//
-//        return btn
-//    }()
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupViews()
@@ -53,7 +39,6 @@ class AvatarView: UIView {
     
     @objc private func removeAnimations(){
         print("AAAAAA")
-//        self.closeAvatarBtn.layer.removeAllAnimations()
         self.fadingView.layer.removeAllAnimations()
         self.avatarImageView.layer.removeAllAnimations()
         print("AAAAAA")
@@ -63,9 +48,7 @@ class AvatarView: UIView {
     private func setupViews() {
         self.addSubview(self.avatarImageView)
         self.addSubview(self.fadingView)
-//        self.addSubview(self.closeAvatarBtn)
         self.sendSubviewToBack(self.fadingView)
-//        self.bringSubviewToFront(self.closeAvatarBtn)
         
         NSLayoutConstraint.activate([
             self.avatarImageView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -77,9 +60,6 @@ class AvatarView: UIView {
             self.fadingView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.fadingView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.fadingView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-
-//            self.closeAvatarBtn.topAnchor.constraint(equalTo: self.fadingView.topAnchor, constant: 12),
-//            self.closeAvatarBtn.trailingAnchor.constraint(equalTo: self.fadingView.trailingAnchor, constant: -12),
         ])
     }
 }

@@ -94,6 +94,7 @@ class ProfileViewController: UIViewController {
         return table
     }()
     
+//    MARK: variables for animation
     private var avatarStartPoint: CGPoint?
     private var avatarScaleCoefficient: CGFloat?
     private var avatarView: AvatarView?

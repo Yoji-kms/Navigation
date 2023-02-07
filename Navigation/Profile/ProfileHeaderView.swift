@@ -100,11 +100,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     @objc func avatarTap(tapGestureRecogniser: UITapGestureRecognizer) {
         guard let tapped = tapGestureRecogniser.view as? AvatarView else { return }
-    
-//        UIImageView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
-//            tapped.avatarImageView.layer.cornerRadius = 0
-//        }
-        
+
         delegate?.avatarTap(avatar: tapped)
     }
     
