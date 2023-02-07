@@ -67,6 +67,19 @@ class ProfileViewController: UIViewController {
         return strings
     }()
     
+    lazy var closeAvatarBtn: UIButton = {
+        let btn = UIButton()
+        btn.alpha = 0
+        btn.tintColor = .systemRed
+        btn.setImage(UIImage(systemName: "xmark"), for: .normal)
+        btn.isEnabled = false
+        btn.addTarget(self, action: #selector(closeAvatarBtnTap), for: .touchUpInside)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+        
+        return btn
+    }()
+    
     private lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -81,10 +94,13 @@ class ProfileViewController: UIViewController {
         return table
     }()
     
+    private var avatarStartPoint: CGPoint?
+    private var avatarScaleCoefficient: CGFloat?
+    private var avatarView: AvatarView?
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationItem.title = NSLocalizedString("Profile", comment: "Profile")
         self.view.backgroundColor = .systemGray6
         self.setupViews()
         self.setupGestures()
@@ -114,13 +130,17 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupViews() {
-        self.view.addSubview(tableView)
-        
+        self.view.addSubview(self.tableView)
+        self.view.addSubview(self.closeAvatarBtn)
+       
         NSLayoutConstraint.activate([
             self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             self.tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            
+            self.closeAvatarBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            self.closeAvatarBtn.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
         ])
     }
     
@@ -144,6 +164,30 @@ class ProfileViewController: UIViewController {
         self.tableView.contentInset = insets
         self.tableView.scrollIndicatorInsets = insets
         self.tableView.endEditing(true)
+    }
+    
+    @objc func closeAvatarBtnTap() {
+        guard let avatar = avatarView else { return }
+        guard let avatarStartPoint = avatarStartPoint else { return }
+        guard let avatarScaleCoefficient = avatarScaleCoefficient else { return }
+        let coefficient = 3 * (1/avatarScaleCoefficient)
+        
+        self.closeAvatarBtn.isEnabled = false
+                
+        UIView.animateKeyframes(withDuration: 0.8, delay: 0.0, options: .calculationModePaced){
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.3) {
+                self.closeAvatarBtn.alpha = 0.0
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5) {
+                avatar.fadingView.alpha = 0.0
+                avatar.avatarImageView.center = avatarStartPoint
+                avatar.avatarImageView.transform = CGAffineTransform(scaleX: coefficient, y: coefficient)
+                avatar.avatarImageView.layer.cornerRadius = avatar.avatarImageView.bounds.height/2
+            }
+        } completion: { _ in
+            self.tableView.isUserInteractionEnabled = true
+        }
     }
     
     private lazy var tapRecognizer: UIGestureRecognizer = {
@@ -199,6 +243,11 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    @objc private func tap(){
+        print("Tapped")
+    }
+    
 }
 
 extension ProfileViewController: UITableViewDelegate {
@@ -207,6 +256,7 @@ extension ProfileViewController: UITableViewDelegate {
             guard let headerView = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? ProfileHeaderView else {
                 return nil
             }
+            headerView.delegate = self
             return headerView
         }
         return nil
@@ -228,5 +278,40 @@ extension ProfileViewController: UIGestureRecognizerDelegate {
             return true
         }
         return false
+    }
+}
+
+extension ProfileViewController: AvatarTapDelegat {
+    func avatarTap(avatar: AvatarView) {
+        let screeenWidth = self.view.bounds.width
+        let screenHeight = self.view.bounds.height
+        let screenCenter = CGPoint(x: self.view.bounds.midX - 16, y: self.view.bounds.midY - 16)
+        
+        self.avatarView = avatar
+        self.avatarStartPoint = avatar.avatarImageView.center
+        self.avatarScaleCoefficient = screeenWidth / ((avatar.avatarImageView.image?.size.width ?? 1)/2)
+        
+        let coefficient = self.avatarScaleCoefficient ?? 1
+        let fadingWidthCoefficient = screeenWidth / ((avatar.fadingView.bounds.width)/2)
+        let fadingHeightCoefficient = screenHeight / ((avatar.fadingView.bounds.height)/2)
+        avatar.fadingView.center = screenCenter
+        avatar.fadingView.transform = CGAffineTransform(scaleX: fadingWidthCoefficient, y: fadingHeightCoefficient)
+    
+        self.tableView.isUserInteractionEnabled = false
+        
+        UIView.animateKeyframes(withDuration: 0.8, delay: 0.0, options: .calculationModePaced){
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5) {
+                avatar.fadingView.alpha = 0.5
+                avatar.avatarImageView.center = screenCenter
+                avatar.avatarImageView.layer.cornerRadius = 0
+                avatar.avatarImageView.transform = CGAffineTransform(scaleX: coefficient, y: coefficient)
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.3) {
+                self.closeAvatarBtn.alpha = 1.0
+            }
+        } completion: { _ in
+            self.closeAvatarBtn.isEnabled = true
+        }
     }
 }
