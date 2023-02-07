@@ -243,11 +243,6 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    @objc private func tap(){
-        print("Tapped")
-    }
-
 }
 
 extension ProfileViewController: UITableViewDelegate {
