@@ -26,6 +26,8 @@
 		F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C602C028E40C5200DDF334 /* LogInViewController.swift */; };
 		F9C602C328E40C7800DDF334 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */; };
 		F9CF7A8A289D813000839A1F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CF7A89289D813000839A1F /* ProfileHeaderView.swift */; };
+		F9DB1301298A9F850067578D /* AvatarTapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB1300298A9F850067578D /* AvatarTapDelegate.swift */; };
+		F9DB1303298E8C8D0067578D /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB1302298E8C8D0067578D /* AvatarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		F9C602C028E40C5200DDF334 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		F9CF7A89289D813000839A1F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		F9DB1300298A9F850067578D /* AvatarTapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarTapDelegate.swift; sourceTree = "<group>"; };
+		F9DB1302298E8C8D0067578D /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,8 @@
 				F9CF7A89289D813000839A1F /* ProfileHeaderView.swift */,
 				F9C602C028E40C5200DDF334 /* LogInViewController.swift */,
 				F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */,
+				F9DB1300298A9F850067578D /* AvatarTapDelegate.swift */,
+				F9DB1302298E8C8D0067578D /* AvatarView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 				F9A8197B2927BEB90033060A /* PhotosCollectionViewHeader.swift in Sources */,
 				F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */,
 				F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */,
+				F9DB1303298E8C8D0067578D /* AvatarView.swift in Sources */,
 				F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */,
 				F97CD107286FF2200062067F /* Post.swift in Sources */,
 				F9CF7A8A289D813000839A1F /* ProfileHeaderView.swift in Sources */,
@@ -330,6 +337,7 @@
 				F9A819772927A0FF0033060A /* PhotosCollectionViewCell.swift in Sources */,
 				F9A81974292786E80033060A /* PhotosViewController.swift in Sources */,
 				F97CD0FC2869DDFB0062067F /* FeedViewController.swift in Sources */,
+				F9DB1301298A9F850067578D /* AvatarTapDelegate.swift in Sources */,
 				F9C602C328E40C7800DDF334 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
