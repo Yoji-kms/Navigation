@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotosTableViewCell: UITableViewCell {
+final class PhotosTableViewCell: UITableViewCell {
     private lazy var data: [String] = {[""]}()
     
     private lazy var photosCollectionViewLayout: UICollectionViewFlowLayout = {

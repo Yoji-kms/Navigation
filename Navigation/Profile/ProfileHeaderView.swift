@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileHeaderView: UITableViewHeaderFooterView {
+final class ProfileHeaderView: UITableViewHeaderFooterView {
     private lazy var statusText = ""
     
     weak var delegate: AvatarTapDelegat?

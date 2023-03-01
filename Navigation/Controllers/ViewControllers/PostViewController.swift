@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import StorageService
 
-
-class PostViewController: UIViewController {
+final class PostViewController: UIViewController {
     var post: Post?
     private lazy var barButton = UIBarButtonItem(
         image: UIImage(systemName: "info.circle"),

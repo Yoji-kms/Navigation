@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotosCollectionViewCell: UICollectionViewCell {
+final class PhotosCollectionViewCell: UICollectionViewCell {
     private lazy var photo: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit

@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class InfoViewController: UIViewController {
+final class InfoViewController: UIViewController {
     private lazy var button: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemMint

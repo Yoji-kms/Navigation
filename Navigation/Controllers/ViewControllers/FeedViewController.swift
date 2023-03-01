@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import StorageService
 
-class FeedViewController: UIViewController {
+final class FeedViewController: UIViewController {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical

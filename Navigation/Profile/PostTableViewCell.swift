@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import StorageService
 
-class PostTableViewCell: UITableViewCell {
+final class PostTableViewCell: UITableViewCell {
     //MARK: Variables
     private lazy var title: UILabel = {
         let label = UILabel()
