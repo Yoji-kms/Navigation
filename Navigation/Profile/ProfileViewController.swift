@@ -218,27 +218,31 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DeafaultCell", for: indexPath)
                 return cell
             }
-            cell.clipsToBounds = true
+//            cell.clipsToBounds = true
             cell.addGestureRecognizer(tapRecognizer)
             cell.setup(with: photos)
             
             return cell
-        }
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DefaltCell", for: indexPath)
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DefaltCell", for: indexPath)
+                return cell
+            }
+            let post = self.data[indexPath.row]
+            cell.clipsToBounds = true
+            cell.setup(with: post)
+            
             return cell
+        default:
+            assertionFailure("No registered section")
+            return UITableViewCell()
         }
-        let post = self.data[indexPath.row]
-        cell.clipsToBounds = true
-        cell.setup(with: post)
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -259,10 +263,7 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 220
-        }
-        return 0
+        return section == 0 ? 220 : 0
     }
 }
 

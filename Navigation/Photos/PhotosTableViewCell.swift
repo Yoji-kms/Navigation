@@ -38,7 +38,6 @@ class PhotosTableViewCell: UITableViewCell {
         return colView
     }()
     
-
     //MARK: Overriding functions
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -59,17 +58,16 @@ class PhotosTableViewCell: UITableViewCell {
     }
 
     private func setupView() {
-        self.addSubview(photosCollectionView)
+        self.contentView.addSubview(photosCollectionView)
+        
+        let cellHeight = photosCollectionViewLayout.headerReferenceSize.height + photosCollectionViewLayout.itemSize.height + 64
         
         NSLayoutConstraint.activate([
-            self.photosCollectionView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.photosCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.photosCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.photosCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
-            self.photosCollectionView.heightAnchor.constraint(
-                equalToConstant: photosCollectionViewLayout.headerReferenceSize.height +
-                photosCollectionViewLayout.itemSize.height + 36
-            )
+            self.photosCollectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            self.photosCollectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            self.photosCollectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            self.photosCollectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12),
+            self.photosCollectionView.heightAnchor.constraint(equalToConstant: cellHeight)
         ])
     }
 }
@@ -77,8 +75,9 @@ class PhotosTableViewCell: UITableViewCell {
 extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = self.bounds.width
+        let numOfItems: CGFloat = 4
         let offsets: CGFloat = 2 * 12 + 3 * 8
-        let cellWidth = (screenWidth - offsets) / 4
+        let cellWidth = (screenWidth - offsets) / numOfItems
         return CGSize(width: cellWidth, height: cellWidth)
     }
     
