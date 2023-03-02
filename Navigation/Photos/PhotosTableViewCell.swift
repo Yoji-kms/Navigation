@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotosTableViewCell: UITableViewCell {
+final class PhotosTableViewCell: UITableViewCell {
     private lazy var data: [String] = {[""]}()
     
     private lazy var photosCollectionViewLayout: UICollectionViewFlowLayout = {
@@ -61,6 +61,11 @@ class PhotosTableViewCell: UITableViewCell {
         self.contentView.addSubview(photosCollectionView)
         
         let cellHeight = photosCollectionViewLayout.headerReferenceSize.height + photosCollectionViewLayout.itemSize.height + 64
+        let height = self.contentView.bounds.height
+        
+        print("🔵 \(photosCollectionViewLayout.headerReferenceSize.height)")
+        print("🔵 \(photosCollectionViewLayout.itemSize.height)")
+        print("🔵 \(height)")
         
         NSLayoutConstraint.activate([
             self.photosCollectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
@@ -119,5 +124,6 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
         default:
             assert(false, "Invalid element type")
         }
+        return UICollectionReusableView()
     }
 }

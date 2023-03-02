@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AvatarView: UIView {
+final class AvatarView: UIView {
     lazy var avatarImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "avatar")

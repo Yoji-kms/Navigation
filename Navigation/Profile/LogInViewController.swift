@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogInViewController: UIViewController{
+final class LogInViewController: UIViewController{
     private lazy var vkLogo: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "logo")

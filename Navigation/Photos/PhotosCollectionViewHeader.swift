@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotosCollectionViewHeader: UICollectionReusableView {
+final class PhotosCollectionViewHeader: UICollectionReusableView {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("Photos", comment: "Photos")

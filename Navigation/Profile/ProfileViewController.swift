@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import StorageService
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     //MARK: Variables
     private lazy var data: [Post] = {
         let data = [
@@ -102,7 +103,7 @@ class ProfileViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemGray6
+        self.view.backgroundColor = Configuration.viewControllerBackgroundColor
         self.setupViews()
         self.setupGestures()
     }
@@ -224,7 +225,6 @@ extension ProfileViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DeafaultCell", for: indexPath)
                 return cell
             }
-//            cell.clipsToBounds = true
             cell.addGestureRecognizer(tapRecognizer)
             cell.setup(with: photos)
             

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     
     private lazy var profileNavController: UINavigationController = {
         let navController = UINavigationController(rootViewController: LogInViewController())
