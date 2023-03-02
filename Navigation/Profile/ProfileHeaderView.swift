@@ -6,13 +6,13 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ProfileHeaderView: UITableViewHeaderFooterView {
     private lazy var statusText = ""
     
     weak var delegate: AvatarTapDelegat?
 
-    
     private lazy var avatarView: AvatarView = {
         let view = AvatarView()
         let tapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(avatarTap(tapGestureRecogniser:)))
@@ -112,32 +112,38 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         self.addSubview(statusLabel)
         self.bringSubviewToFront(avatarView)
         
-        NSLayoutConstraint.activate([
-            self.avatarView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            self.avatarView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            self.avatarView.heightAnchor.constraint(equalToConstant: 128),
-            self.avatarView.widthAnchor.constraint(equalToConstant: 128),
-       
-            self.fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            self.fullNameLabel.leadingAnchor.constraint(equalTo: self.avatarView.trailingAnchor, constant: 8),
-            self.fullNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            self.fullNameLabel.heightAnchor.constraint(equalToConstant: 18),
-
-            self.setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            self.setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            self.setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            self.setStatusButton.topAnchor.constraint(equalTo: self.avatarView.bottomAnchor, constant: 16),
-
-            self.statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            self.statusTextField.leadingAnchor.constraint(equalTo: self.fullNameLabel.leadingAnchor),
-            self.statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            self.statusTextField.bottomAnchor.constraint(equalTo: self.setStatusButton.topAnchor, constant: -16),
-
-            self.statusLabel.heightAnchor.constraint(equalToConstant: 14),
-            self.statusLabel.leadingAnchor.constraint(equalTo: self.fullNameLabel.leadingAnchor),
-            self.statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            self.statusLabel.bottomAnchor.constraint(equalTo: self.statusTextField.topAnchor, constant: -16),
-        ])
+        self.avatarView.snp.makeConstraints {(make) -> Void in
+            make.height.width.equalTo(128)
+            make.top.leading.equalToSuperview().offset(16)
+        }
+        
+        self.fullNameLabel.snp.makeConstraints {(make) -> Void in
+            make.height.equalTo(18)
+            make.top.equalToSuperview().offset(27)
+            make.trailing.equalToSuperview().offset(-16)
+            make.leading.equalTo(self.avatarView.snp.trailing).offset(8)
+        }
+        
+        self.setStatusButton.snp.makeConstraints {(make) -> Void in
+            make.height.equalTo(50)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalTo(self.avatarView.snp.bottom).offset(16)
+        }
+        
+        self.statusTextField.snp.makeConstraints {(make) -> Void in
+            make.height.equalTo(40)
+            make.trailing.equalToSuperview().offset(-16)
+            make.leading.equalTo(self.fullNameLabel.snp.leading)
+            make.bottom.equalTo(self.setStatusButton.snp.top).offset(-16)
+        }
+        
+        self.statusLabel.snp.makeConstraints {(make) -> Void in
+            make.height.equalTo(14)
+            make.trailing.equalToSuperview().offset(-16)
+            make.leading.equalTo(self.fullNameLabel.snp.leading)
+            make.bottom.equalTo(self.statusTextField.snp.top).offset(-16)
+        }
     }
 }
 
