@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 final class PostTableViewCell: UITableViewCell {
     //MARK: Variables
@@ -23,7 +24,10 @@ final class PostTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
-        
+//        let imageProcessor = ImageProcessor()
+//        imageProcessor.processImage(sourceImage: image.image ?? UIImage(), filter: .chrome) {
+//            return_ in
+//        }
         image.backgroundColor = .black
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -75,7 +79,10 @@ final class PostTableViewCell: UITableViewCell {
   
     //MARK: Setups
     func setup(with viewModel: Post) {
-        self.image.image = UIImage(named: viewModel.image)
+        let imageProcessor = ImageProcessor()
+        imageProcessor.processImage(sourceImage: UIImage(named: viewModel.image) ?? UIImage(), filter: .posterize) { filteredImage in
+            self.image.image = filteredImage
+        }
         self.title.text = viewModel.title
         self.postDescription.text = viewModel.description
         self.likes.text = NSLocalizedString("Likes", comment: "Likes") + String(viewModel.likes)
