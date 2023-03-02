@@ -103,11 +103,7 @@ final class ProfileViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        #if DEBUG
-        self.view.backgroundColor = .systemGray6
-        #else
-        self.view.backgroundColor = .systemBlue
-        #endif
+        self.view.backgroundColor = Configuration.viewControllerBackgroundColor
         self.setupViews()
         self.setupGestures()
     }
