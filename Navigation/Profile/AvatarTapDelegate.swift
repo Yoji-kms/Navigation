@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-protocol AvatarTapDelegat: AnyObject {
+protocol AvatarTapDelegate: AnyObject {
     func avatarTap(avatar: AvatarView)
 }

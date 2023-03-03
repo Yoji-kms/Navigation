@@ -7,8 +7,11 @@
 
 
 import UIKit
+import StorageService
 
 final class LogInViewController: UIViewController{
+    
+// MARK: Views
     private lazy var vkLogo: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "logo")
@@ -26,6 +29,7 @@ final class LogInViewController: UIViewController{
         textField.autocapitalizationType = .none
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
+        textField.addTarget(self, action: #selector(loginTextChanged(_:)), for: .editingChanged)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -79,22 +83,19 @@ final class LogInViewController: UIViewController{
         btn.layer.cornerRadius = 10
         btn.addTarget(self, action: #selector(didTapBtn), for: .touchUpInside)
         btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        btn.isEnabled = false
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
     
+// MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
         setupGestures()
     }
-    
-    private func setupGestures() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
-        self.view.addGestureRecognizer(tapGesture)
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(
@@ -109,6 +110,12 @@ final class LogInViewController: UIViewController{
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
+    }
+    
+// MARK: Setups
+    private func setupGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     private func setupViews() {
@@ -148,6 +155,7 @@ final class LogInViewController: UIViewController{
         ])
     }
     
+// MARK: Actions
     @objc private func didShowKeyboard(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRect = keyboardFrame.cgRectValue
@@ -174,17 +182,21 @@ final class LogInViewController: UIViewController{
     }
     
     @objc private func didTapBtn() {
+        let login = self.emailOrPhoneTextField.text ?? ""
+        let currentUserService = CurrentUserService()
+        guard let user = currentUserService.getUser(login: login) else {
+            let alert = UIAlertController(title: nil, message: "No such user", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil) })
+            return
+        }
+        
         let profileVC = ProfileViewController()
+        profileVC.user = user
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
-}
-
-extension UIImage {
-func alpha(_ value:CGFloat) -> UIImage {
-    UIGraphicsBeginImageContextWithOptions(size, false, scale)
-    draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
-    let newImage = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    return newImage!
+    
+    @objc private func loginTextChanged(_ textField: UITextField){
+        self.logInBtn.isEnabled = (self.emailOrPhoneTextField.text != "")
     }
 }
