@@ -61,12 +61,7 @@ final class PhotosTableViewCell: UITableViewCell {
         self.contentView.addSubview(photosCollectionView)
         
         let cellHeight = photosCollectionViewLayout.headerReferenceSize.height + photosCollectionViewLayout.itemSize.height + 64
-        let height = self.contentView.bounds.height
-        
-        print("🔵 \(photosCollectionViewLayout.headerReferenceSize.height)")
-        print("🔵 \(photosCollectionViewLayout.itemSize.height)")
-        print("🔵 \(height)")
-        
+
         NSLayoutConstraint.activate([
             self.photosCollectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             self.photosCollectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
