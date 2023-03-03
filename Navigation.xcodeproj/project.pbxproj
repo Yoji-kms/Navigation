@@ -38,6 +38,7 @@
 		F9DB132C29B27FAE0067578D /* UIImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132B29B27FAE0067578D /* UIImageUtils.swift */; };
 		F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132529B26E630067578D /* CurrentUserService.swift */; };
 		F9DB132E29B284E40067578D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132329B26BFA0067578D /* UserService.swift */; };
+		F9DB133029B2871A0067578D /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132F29B2871A0067578D /* TestUserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		F9DB132529B26E630067578D /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		F9DB132929B27DE10067578D /* UIColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorUtils.swift; sourceTree = "<group>"; };
 		F9DB132B29B27FAE0067578D /* UIImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageUtils.swift; sourceTree = "<group>"; };
+		F9DB132F29B2871A0067578D /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 			children = (
 				F9DB132329B26BFA0067578D /* UserService.swift */,
 				F9DB132529B26E630067578D /* CurrentUserService.swift */,
+				F9DB132F29B2871A0067578D /* TestUserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				F9A8197229277EFE0033060A /* PhotosTableViewCell.swift in Sources */,
 				F9DB132C29B27FAE0067578D /* UIImageUtils.swift in Sources */,
 				F9DB132A29B27DE10067578D /* UIColorUtils.swift in Sources */,
+				F9DB133029B2871A0067578D /* TestUserService.swift in Sources */,
 				F97CD0FE2869DE420062067F /* ProfileViewController.swift in Sources */,
 				F9DB131D29B0B0F20067578D /* Configuration.swift in Sources */,
 				F9A819772927A0FF0033060A /* PhotosCollectionViewCell.swift in Sources */,

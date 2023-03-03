@@ -183,7 +183,7 @@ final class LogInViewController: UIViewController{
     
     @objc private func didTapBtn() {
         let login = self.emailOrPhoneTextField.text ?? ""
-        let currentUserService = CurrentUserService()
+        let currentUserService = Configuration.userService
         guard let user = currentUserService.getUser(login: login) else {
             let alert = UIAlertController(title: nil, message: "No such user", preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
