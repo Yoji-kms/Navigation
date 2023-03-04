@@ -40,6 +40,11 @@
 		F9DB132E29B284E40067578D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132329B26BFA0067578D /* UserService.swift */; };
 		F9DB133029B2871A0067578D /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132F29B2871A0067578D /* TestUserService.swift */; };
 		F9DB133229B33A170067578D /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB133129B33A170067578D /* StorageService.swift */; };
+		F9DB133429B34D390067578D /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB133329B34D390067578D /* Checker.swift */; };
+		F9DB133729B34EFF0067578D /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB133629B34EFF0067578D /* LoginViewControllerDelegate.swift */; };
+		F9DB133929B35C6E0067578D /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB133829B35C6E0067578D /* LoginInspector.swift */; };
+		F9DB133C29B3640E0067578D /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB133B29B3640D0067578D /* LoginFactory.swift */; };
+		F9DB133E29B3649A0067578D /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB133D29B3649A0067578D /* MyLoginFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +108,11 @@
 		F9DB132B29B27FAE0067578D /* UIImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageUtils.swift; sourceTree = "<group>"; };
 		F9DB132F29B2871A0067578D /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		F9DB133129B33A170067578D /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		F9DB133329B34D390067578D /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		F9DB133629B34EFF0067578D /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
+		F9DB133829B35C6E0067578D /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
+		F9DB133B29B3640D0067578D /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
+		F9DB133D29B3649A0067578D /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +155,8 @@
 		F97CD0C22869D89A0062067F /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F9DB133A29B363F50067578D /* Factories */,
+				F9DB133529B34ED20067578D /* Delegates */,
 				F9DB132829B27DCB0067578D /* Utils */,
 				F9DB132729B275720067578D /* Services */,
 				F9A8197029277EC40033060A /* Photos */,
@@ -209,8 +221,8 @@
 				F9CF7A89289D813000839A1F /* ProfileHeaderView.swift */,
 				F9C602C028E40C5200DDF334 /* LogInViewController.swift */,
 				F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */,
-				F9DB1300298A9F850067578D /* AvatarTapDelegate.swift */,
 				F9DB1302298E8C8D0067578D /* AvatarView.swift */,
+				F9DB133829B35C6E0067578D /* LoginInspector.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -231,6 +243,7 @@
 				F9DB132329B26BFA0067578D /* UserService.swift */,
 				F9DB132529B26E630067578D /* CurrentUserService.swift */,
 				F9DB132F29B2871A0067578D /* TestUserService.swift */,
+				F9DB133329B34D390067578D /* Checker.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -242,6 +255,24 @@
 				F9DB132B29B27FAE0067578D /* UIImageUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		F9DB133529B34ED20067578D /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				F9DB1300298A9F850067578D /* AvatarTapDelegate.swift */,
+				F9DB133629B34EFF0067578D /* LoginViewControllerDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		F9DB133A29B363F50067578D /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				F9DB133B29B3640D0067578D /* LoginFactory.swift */,
+				F9DB133D29B3649A0067578D /* MyLoginFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,10 +400,14 @@
 				F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */,
 				F9DB1303298E8C8D0067578D /* AvatarView.swift in Sources */,
 				F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */,
+				F9DB133729B34EFF0067578D /* LoginViewControllerDelegate.swift in Sources */,
 				F9CF7A8A289D813000839A1F /* ProfileHeaderView.swift in Sources */,
 				F9A8197229277EFE0033060A /* PhotosTableViewCell.swift in Sources */,
+				F9DB133C29B3640E0067578D /* LoginFactory.swift in Sources */,
+				F9DB133429B34D390067578D /* Checker.swift in Sources */,
 				F9DB132C29B27FAE0067578D /* UIImageUtils.swift in Sources */,
 				F9DB132A29B27DE10067578D /* UIColorUtils.swift in Sources */,
+				F9DB133E29B3649A0067578D /* MyLoginFactory.swift in Sources */,
 				F9DB133029B2871A0067578D /* TestUserService.swift in Sources */,
 				F97CD0FE2869DE420062067F /* ProfileViewController.swift in Sources */,
 				F9DB131D29B0B0F20067578D /* Configuration.swift in Sources */,
@@ -381,6 +416,7 @@
 				F97CD0FC2869DDFB0062067F /* FeedViewController.swift in Sources */,
 				F9DB1301298A9F850067578D /* AvatarTapDelegate.swift in Sources */,
 				F9C602C328E40C7800DDF334 /* PostTableViewCell.swift in Sources */,
+				F9DB133929B35C6E0067578D /* LoginInspector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
