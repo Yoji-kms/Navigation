@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LoginInspector {}
+struct LoginInspector {}
 
 extension LoginInspector: LoginViewControllerDelegate {
     func check(login: String, password: String) -> Bool {

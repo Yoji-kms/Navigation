@@ -10,7 +10,7 @@ import UIKit
 import StorageService
 
 final class LogInViewController: UIViewController{
-    weak var loginDelegate: LoginViewControllerDelegate?
+    var loginDelegate: LoginViewControllerDelegate?
 // MARK: Views
     private lazy var vkLogo: UIImageView = {
         let logo = UIImageView()
