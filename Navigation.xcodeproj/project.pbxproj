@@ -39,6 +39,7 @@
 		F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132529B26E630067578D /* CurrentUserService.swift */; };
 		F9DB132E29B284E40067578D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132329B26BFA0067578D /* UserService.swift */; };
 		F9DB133029B2871A0067578D /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132F29B2871A0067578D /* TestUserService.swift */; };
+		F9DB133229B33A170067578D /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB133129B33A170067578D /* StorageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		F9DB132929B27DE10067578D /* UIColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorUtils.swift; sourceTree = "<group>"; };
 		F9DB132B29B27FAE0067578D /* UIImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageUtils.swift; sourceTree = "<group>"; };
 		F9DB132F29B2871A0067578D /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
+		F9DB133129B33A170067578D /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			children = (
 				F97CD106286FF2200062067F /* Post.swift */,
 				F9DB132129B26AFE0067578D /* User.swift */,
+				F9DB133129B33A170067578D /* StorageService.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9DB131B29AFCE340067578D /* Post.swift in Sources */,
+				F9DB133229B33A170067578D /* StorageService.swift in Sources */,
 				F9DB131129AFCC1B0067578D /* StorageService.docc in Sources */,
 				F9DB132229B26AFE0067578D /* User.swift in Sources */,
 			);
