@@ -9,6 +9,10 @@ import UIKit
 import StorageService
 
 final class FeedViewController: UIViewController {
+    
+    private lazy var post: Post = Post(title: "Post title", description: "", image: "", likes: 0, views: 0)
+    
+// MARK: Views
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -36,14 +40,14 @@ final class FeedViewController: UIViewController {
         return button
     }()
     
+// MARK: Actions
     @objc private func didTapButton(){
         let postVC = PostViewController()
         postVC.post = self.post
         self.navigationController?.pushViewController(postVC, animated: true)
     }
-    
-    private lazy var post: Post = Post(title: "Post title", description: "", image: "", likes: 0, views: 0)
-    
+ 
+// MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("Feed", comment: "Feed")
@@ -52,6 +56,7 @@ final class FeedViewController: UIViewController {
         setupViews()
     }
     
+// MARK: Setups
     private func setupViews() {
         self.view.addSubview(stackView)
         

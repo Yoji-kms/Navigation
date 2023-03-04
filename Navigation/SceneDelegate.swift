@@ -16,7 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        let tabBarController = TabBarController()
+        let loginFactory = MyLoginFactory()
+        let loginInspector = loginFactory.makeLoginInspector()
+        let tabBarController = TabBarController(loginInspector: loginInspector)
         
         self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
@@ -49,7 +51,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 

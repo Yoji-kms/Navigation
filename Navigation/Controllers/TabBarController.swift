@@ -8,9 +8,20 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
+    private let loginInspector: LoginInspector
+    
+    init(loginInspector: LoginInspector){
+        self.loginInspector = loginInspector
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private lazy var profileNavController: UINavigationController = {
-        let navController = UINavigationController(rootViewController: LogInViewController())
+        let navController = UINavigationController(rootViewController: LogInViewController(loginInspector: loginInspector))
         navController.navigationBar.isHidden = true
         navController.tabBarItem.title = NSLocalizedString("Profile", comment: "Profile")
         navController.tabBarItem.image = UIImage(systemName: "person.fill")

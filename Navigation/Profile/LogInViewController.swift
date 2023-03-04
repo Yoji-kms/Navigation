@@ -10,7 +10,7 @@ import UIKit
 import StorageService
 
 final class LogInViewController: UIViewController{
-    
+    weak var loginDelegate: LoginViewControllerDelegate?
 // MARK: Views
     private lazy var vkLogo: UIImageView = {
         let logo = UIImageView()
@@ -87,6 +87,17 @@ final class LogInViewController: UIViewController{
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
+    
+// MARK: Init
+    init(loginInspector: LoginInspector) {
+        loginDelegate = loginInspector
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
 // MARK: Lifecycle
     override func viewDidLoad() {
@@ -183,20 +194,28 @@ final class LogInViewController: UIViewController{
     
     @objc private func didTapBtn() {
         let login = self.emailOrPhoneTextField.text ?? ""
+        let password = self.passwordTextField.text ?? ""
         let currentUserService = Configuration.userService
         guard let user = currentUserService.getUser(login: login) else {
-            let alert = UIAlertController(title: nil, message: "No such user", preferredStyle: .alert)
-            self.present(alert, animated: true, completion: nil)
-            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil) })
+            showUserMessage(NSLocalizedString("User does not exist", comment: "User does not exist"))
             return
         }
-        
-        let profileVC = ProfileViewController()
-        profileVC.user = user
-        self.navigationController?.pushViewController(profileVC, animated: true)
+        if loginDelegate?.check(login: login, password: password) ?? false {
+            let profileVC = ProfileViewController()
+            profileVC.user = user
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+            showUserMessage(NSLocalizedString("Incorrect password", comment: "Incorrect password"))
+        }
     }
     
     @objc private func loginTextChanged(_ textField: UITextField){
         self.logInBtn.isEnabled = (self.emailOrPhoneTextField.text != "")
+    }
+    
+    private func showUserMessage(_ message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil) })
     }
 }
