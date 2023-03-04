@@ -68,15 +68,7 @@ final class ProfileViewController: UIViewController {
         return strings
     }()
     
-    lazy var user: User = {
-        let user = User(
-            login: "defaultUser",
-            fullName: "defaultFullName",
-            avatar: UIImage(named: "avatar") ?? UIImage(),
-            status: "defaultStatus"
-        )
-        return user
-    }()
+    var user: User?
     
     lazy var closeAvatarBtn: UIButton = {
         let btn = UIButton()
@@ -267,7 +259,8 @@ extension ProfileViewController: UITableViewDelegate {
             guard let headerView = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? ProfileHeaderView else {
                 return nil
             }
-            headerView.setup(with: self.user)
+            guard let user = self.user else { return nil }
+            headerView.setup(with: user)
             headerView.delegate = self
             return headerView
         }
