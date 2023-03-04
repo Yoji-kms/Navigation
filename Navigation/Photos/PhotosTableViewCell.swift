@@ -8,7 +8,7 @@
 import UIKit
 
 final class PhotosTableViewCell: UITableViewCell {
-    private lazy var data: [String] = {[""]}()
+    private lazy var data: [UIImage] = []
     
     private lazy var photosCollectionViewLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -53,7 +53,7 @@ final class PhotosTableViewCell: UITableViewCell {
     }
     
     //MARK: Setups
-    func setup(with viewModel: [String]) {
+    func setup(with viewModel: [UIImage]) {
        data = viewModel
     }
 
@@ -101,8 +101,8 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
             cell.clipsToBounds = true
             return cell
         }
-        let photoName = data[indexPath.row]
-        cell.setup(with: photoName)
+        let photo = data[indexPath.row]
+        cell.setup(with: photo)
         cell.layer.cornerRadius = 6
         
         return cell

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final public class StorageService {
     private init() {}
@@ -39,27 +40,35 @@ final public class StorageService {
              views: 15)
     ]
     
-    public let photos:[String] = [
-        "Photos/Dai Dark",
-        "Photos/Dorohedoro",
-        "Photos/Fables",
-        "Photos/Lock and Key",
-        "Photos/LockeAndKey",
-        "Photos/ManyDeathsLailaStarr",
-        "Photos/ManyDeathsLailaStarr 2",
-        "Photos/Maus",
-        "Photos/Miracleman_Vol_1_1",
-        "Photos/Parasyte",
-        "Photos/Sandman drem hunters",
-        "Photos/Sandman Overture",
-        "Photos/sandman",
-        "Photos/Scott Pilgrim",
-        "Photos/Seconds",
-        "Photos/The Walking Dead 1",
-        "Photos/The Walking Dead 2",
-        "Photos/The Walking Dead 3",
-        "Photos/The-Boys",
-        "Photos/UmbrellaAcademy",
-        "Photos/Watchmen"
-    ]
+    public let photos: [UIImage] = {
+        let photosStrings: [String] = [
+            "Photos/Dai Dark",
+            "Photos/Dorohedoro",
+            "Photos/Fables",
+            "Photos/Lock and Key",
+            "Photos/LockeAndKey",
+            "Photos/ManyDeathsLailaStarr",
+            "Photos/ManyDeathsLailaStarr 2",
+            "Photos/Maus",
+            "Photos/Miracleman_Vol_1_1",
+            "Photos/Parasyte",
+            "Photos/Sandman drem hunters",
+            "Photos/Sandman Overture",
+            "Photos/sandman",
+            "Photos/Scott Pilgrim",
+            "Photos/Seconds",
+            "Photos/The Walking Dead 1",
+            "Photos/The Walking Dead 2",
+            "Photos/The Walking Dead 3",
+            "Photos/The-Boys",
+            "Photos/UmbrellaAcademy",
+            "Photos/Watchmen"
+        ]
+        var photos: [UIImage] = []
+        photosStrings.forEach {
+            guard let image = UIImage(named: $0) else { return }
+            photos.append(image)
+        }
+        return photos
+    }()
 }
