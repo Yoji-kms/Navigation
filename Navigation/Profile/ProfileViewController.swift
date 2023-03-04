@@ -68,6 +68,16 @@ final class ProfileViewController: UIViewController {
         return strings
     }()
     
+    lazy var user: User = {
+        let user = User(
+            login: "defaultUser",
+            fullName: "defaultFullName",
+            avatar: UIImage(named: "avatar") ?? UIImage(),
+            status: "defaultStatus"
+        )
+        return user
+    }()
+    
     lazy var closeAvatarBtn: UIButton = {
         let btn = UIButton()
         btn.alpha = 0
@@ -95,7 +105,7 @@ final class ProfileViewController: UIViewController {
         return table
     }()
     
-//    MARK: variables for animation
+//    MARK: Variables for animation
     private var avatarStartPoint: CGPoint?
     private var avatarScaleCoefficient: CGFloat?
     private var avatarView: AvatarView?
@@ -206,6 +216,7 @@ final class ProfileViewController: UIViewController {
     }
 }
 
+// MARK: Extensions
 extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         2
@@ -256,6 +267,7 @@ extension ProfileViewController: UITableViewDelegate {
             guard let headerView = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? ProfileHeaderView else {
                 return nil
             }
+            headerView.setup(with: self.user)
             headerView.delegate = self
             return headerView
         }
@@ -278,7 +290,7 @@ extension ProfileViewController: UIGestureRecognizerDelegate {
     }
 }
 
-extension ProfileViewController: AvatarTapDelegat {
+extension ProfileViewController: AvatarTapDelegate {
     func avatarTap(avatar: AvatarView) {
         let screeenWidth = self.view.bounds.width
         let screenHeight = self.view.bounds.height

@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import StorageService
 
 final class ProfileHeaderView: UITableViewHeaderFooterView {
+// MARK: Variables
     private lazy var statusText = ""
     
-    weak var delegate: AvatarTapDelegat?
-
+    weak var delegate: AvatarTapDelegate?
     
+// MARK: Views
     private lazy var avatarView: AvatarView = {
         let view = AvatarView()
         let tapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(avatarTap(tapGestureRecogniser:)))
@@ -47,7 +49,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         return button
     }()
     
-    lazy var statusLabel: UILabel = {
+    private lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .gray
@@ -71,37 +73,22 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         return textField
     }()
     
+// MARK: Init
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         self.setupViews()
     }
-    
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = textField.text ?? NSLocalizedString("Unknown", comment: "Unknown")
-        if (textField.text == "") {
-            setStatusButton.isEnabled = false
-            setStatusButton.backgroundColor = .systemBlue.notEnabled()
-            setStatusButton.layer.shadowOpacity = 0.1
-        } else {
-            setStatusButton.isEnabled = true
-            setStatusButton.backgroundColor = .systemBlue
-            setStatusButton.layer.shadowOpacity = 0.7
-        }
-    }
-    
-    @objc func buttonPressed(){
-        statusLabel.text = statusText
-        self.endEditing(true)
-    }
-    
-    @objc func avatarTap(tapGestureRecogniser: UITapGestureRecognizer) {
-        guard let tapped = tapGestureRecogniser.view as? AvatarView else { return }
-
-        delegate?.avatarTap(avatar: tapped)
+// MARK: Setups
+    func setup(with user: User) {
+        self.fullNameLabel.text = user.fullName
+        self.avatarView.avatarImageView.image = user.avatar
+        self.statusLabel.text = user.status
     }
     
     private func setupViews() {
@@ -139,21 +126,29 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
             self.statusLabel.bottomAnchor.constraint(equalTo: self.statusTextField.topAnchor, constant: -16),
         ])
     }
-}
-
-extension UIColor {
-    func notEnabled() -> UIColor? {
-        var hue: CGFloat = 0
-        var saturation: CGFloat = 0
-        var brightness: CGFloat = 0
-        var alpha: CGFloat = 0
-        
-        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
-            return UIColor (
-                hue: hue, saturation: min(saturation - 0.6, 1.0), brightness: brightness, alpha: alpha
-            )
+    
+// MARK: Actions
+    @objc func statusTextChanged(_ textField: UITextField) {
+        statusText = textField.text ?? NSLocalizedString("Unknown", comment: "Unknown")
+        if (textField.text == "") {
+            setStatusButton.isEnabled = false
+            setStatusButton.backgroundColor = .systemBlue.notEnabled()
+            setStatusButton.layer.shadowOpacity = 0.1
         } else {
-            return nil
+            setStatusButton.isEnabled = true
+            setStatusButton.backgroundColor = .systemBlue
+            setStatusButton.layer.shadowOpacity = 0.7
         }
+    }
+    
+    @objc func buttonPressed(){
+        statusLabel.text = statusText
+        self.endEditing(true)
+    }
+    
+    @objc func avatarTap(tapGestureRecogniser: UITapGestureRecognizer) {
+        guard let tapped = tapGestureRecogniser.view as? AvatarView else { return }
+
+        delegate?.avatarTap(avatar: tapped)
     }
 }

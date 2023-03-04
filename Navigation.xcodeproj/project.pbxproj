@@ -33,6 +33,12 @@
 		F9DB131629AFCC1B0067578D /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9DB130D29AFCC1B0067578D /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9DB131B29AFCE340067578D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD106286FF2200062067F /* Post.swift */; };
 		F9DB131D29B0B0F20067578D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB131C29B0B0F10067578D /* Configuration.swift */; };
+		F9DB132229B26AFE0067578D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132129B26AFE0067578D /* User.swift */; };
+		F9DB132A29B27DE10067578D /* UIColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132929B27DE10067578D /* UIColorUtils.swift */; };
+		F9DB132C29B27FAE0067578D /* UIImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132B29B27FAE0067578D /* UIImageUtils.swift */; };
+		F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132529B26E630067578D /* CurrentUserService.swift */; };
+		F9DB132E29B284E40067578D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132329B26BFA0067578D /* UserService.swift */; };
+		F9DB133029B2871A0067578D /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132F29B2871A0067578D /* TestUserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +95,12 @@
 		F9DB130F29AFCC1B0067578D /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		F9DB131029AFCC1B0067578D /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		F9DB131C29B0B0F10067578D /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		F9DB132129B26AFE0067578D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F9DB132329B26BFA0067578D /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		F9DB132529B26E630067578D /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		F9DB132929B27DE10067578D /* UIColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorUtils.swift; sourceTree = "<group>"; };
+		F9DB132B29B27FAE0067578D /* UIImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageUtils.swift; sourceTree = "<group>"; };
+		F9DB132F29B2871A0067578D /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +143,8 @@
 		F97CD0C22869D89A0062067F /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F9DB132829B27DCB0067578D /* Utils */,
+				F9DB132729B275720067578D /* Services */,
 				F9A8197029277EC40033060A /* Photos */,
 				F9CF7A88289D80F700839A1F /* Profile */,
 				F97CD0F32869D9C10062067F /* Controllers */,
@@ -169,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				F97CD106286FF2200062067F /* Post.swift */,
+				F9DB132129B26AFE0067578D /* User.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -205,6 +220,25 @@
 				F9DB131029AFCC1B0067578D /* StorageService.docc */,
 			);
 			path = StorageService;
+			sourceTree = "<group>";
+		};
+		F9DB132729B275720067578D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F9DB132329B26BFA0067578D /* UserService.swift */,
+				F9DB132529B26E630067578D /* CurrentUserService.swift */,
+				F9DB132F29B2871A0067578D /* TestUserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F9DB132829B27DCB0067578D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F9DB132929B27DE10067578D /* UIColorUtils.swift */,
+				F9DB132B29B27FAE0067578D /* UIImageUtils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,16 +356,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97CD1002869DE640062067F /* PostViewController.swift in Sources */,
+				F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */,
 				F97CD104286B30B50062067F /* TabBarController.swift in Sources */,
 				F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */,
 				F97CD0C82869D89A0062067F /* ViewController.swift in Sources */,
 				F9A8197B2927BEB90033060A /* PhotosCollectionViewHeader.swift in Sources */,
+				F9DB132E29B284E40067578D /* UserService.swift in Sources */,
 				F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */,
 				F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */,
 				F9DB1303298E8C8D0067578D /* AvatarView.swift in Sources */,
 				F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */,
 				F9CF7A8A289D813000839A1F /* ProfileHeaderView.swift in Sources */,
 				F9A8197229277EFE0033060A /* PhotosTableViewCell.swift in Sources */,
+				F9DB132C29B27FAE0067578D /* UIImageUtils.swift in Sources */,
+				F9DB132A29B27DE10067578D /* UIColorUtils.swift in Sources */,
+				F9DB133029B2871A0067578D /* TestUserService.swift in Sources */,
 				F97CD0FE2869DE420062067F /* ProfileViewController.swift in Sources */,
 				F9DB131D29B0B0F20067578D /* Configuration.swift in Sources */,
 				F9A819772927A0FF0033060A /* PhotosCollectionViewCell.swift in Sources */,
@@ -348,6 +387,7 @@
 			files = (
 				F9DB131B29AFCE340067578D /* Post.swift in Sources */,
 				F9DB131129AFCC1B0067578D /* StorageService.docc in Sources */,
+				F9DB132229B26AFE0067578D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

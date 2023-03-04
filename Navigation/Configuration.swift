@@ -15,4 +15,12 @@ enum Configuration {
         return .systemBlue
 #endif
     }()
+    
+    static let userService: UserService = {
+#if DEBUG
+        return TestUserService()
+#else
+        return CurrentUserService()
+#endif
+    }()
 }
