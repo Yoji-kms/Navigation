@@ -23,4 +23,12 @@ enum Configuration {
         return CurrentUserService()
 #endif
     }()
+    
+    static let login: String = {
+#if DEBUG
+        return "testUser"
+#else
+        return "someUser"
+#endif
+    }()
 }

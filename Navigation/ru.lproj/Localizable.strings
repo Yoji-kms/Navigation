@@ -26,3 +26,5 @@
 "Back" = "Назад";
 "Photo Galery" = "Галерея";
 "Photos" = "Фотографии";
+"User does not exist" = "Пользователь не существует";
+"Incorrect password" = "Неверный пароль";
