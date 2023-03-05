@@ -31,8 +31,8 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
         self.photo.image = nil
     }
     
-    func setup(with viewModel: String) {
-        self.photo.image = UIImage(named: viewModel)
+    func setup(with viewModel: UIImage) {
+        self.photo.image = viewModel
     }
     
     private func setupView() {

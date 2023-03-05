@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 final class PhotosViewController: UIViewController {
 //    MARK: Variables
-    lazy var data: [String] = {[""]}()
+    var data: [UIImage] = []
+    private var images: [UIImage] = []
+    private let imagePublisherFacade = ImagePublisherFacade()
     
+// MARK: Views
     private lazy var photosCollectionViewLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 8
@@ -29,11 +33,13 @@ final class PhotosViewController: UIViewController {
         colView.translatesAutoresizingMaskIntoConstraints = false
         return colView
     }()
+    
 //    MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemGray6
         self.setupView()
+        self.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +47,11 @@ final class PhotosViewController: UIViewController {
         self.setupNavigation()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        imagePublisherFacade.removeSubscription(for: self)
+    }
+    
+// MARK: Setups
     private func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = NSLocalizedString("Photo Galery", comment: "Photo Galery")
@@ -57,6 +68,11 @@ final class PhotosViewController: UIViewController {
             self.photosCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    private func setupData() {
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: data.count, userImages: data)
+    }
 }
 
 //MARK: Extensions
@@ -71,7 +87,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.data.count
+        self.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,8 +95,18 @@ extension PhotosViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
             return cell
         }
-        cell.setup(with: data[indexPath.row])
+        cell.setup(with: images[indexPath.row])
         
         return cell
+    }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        self.images = images
+        self.photosCollectionView.performBatchUpdates {
+            let index = IndexPath(row: images.count - 1, section: 0)
+            self.photosCollectionView.insertItems(at: [index])
+        }
     }
 }
