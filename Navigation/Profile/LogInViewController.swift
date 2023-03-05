@@ -198,7 +198,7 @@ final class LogInViewController: UIViewController{
         let password = self.passwordTextField.text ?? ""
         let currentUserService = Configuration.userService
         guard let user = currentUserService.getUser(login: login) else {
-            showUserMessage(NSLocalizedString("User does not exist", comment: "User does not exist"))
+            AlertUtils.showUserMessage(NSLocalizedString("User does not exist", comment: "User does not exist"), context: self)
             return
         }
         if loginDelegate?.check(login: login, password: password) ?? false {
@@ -206,17 +206,11 @@ final class LogInViewController: UIViewController{
             profileVC.user = user
             self.navigationController?.pushViewController(profileVC, animated: true)
         } else {
-            showUserMessage(NSLocalizedString("Incorrect password", comment: "Incorrect password"))
+            AlertUtils.showUserMessage(NSLocalizedString("Incorrect password", comment: "Incorrect password"), context: self)
         }
     }
     
     @objc private func loginTextChanged(_ textField: UITextField){
         self.logInBtn.isEnabled = (self.emailOrPhoneTextField.text != "")
-    }
-    
-    private func showUserMessage(_ message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        self.present(alert, animated: true, completion: nil)
-        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil) })
     }
 }

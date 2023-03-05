@@ -9,7 +9,6 @@ import UIKit
 import StorageService
 
 final class FeedViewController: UIViewController {
-    
     private lazy var post: Post = Post(title: "Post title", description: "", image: "", likes: 0, views: 0)
     
 // MARK: Views

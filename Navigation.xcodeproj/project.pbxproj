@@ -46,6 +46,8 @@
 		F9DB133E29B3649A0067578D /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB133D29B3649A0067578D /* MyLoginFactory.swift */; };
 		F9DB134129B3D3730067578D /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = F9DB134029B3D3730067578D /* iOSIntPackage */; };
 		F9DB134429B4FD870067578D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB134329B4FD870067578D /* CustomButton.swift */; };
+		F9DB134729B51AC00067578D /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB134629B51AC00067578D /* FeedModel.swift */; };
+		F9DB134929B51C0B0067578D /* AlertUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB134829B51C0B0067578D /* AlertUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,8 @@
 		F9DB133B29B3640D0067578D /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		F9DB133D29B3649A0067578D /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		F9DB134329B4FD870067578D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		F9DB134629B51AC00067578D /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		F9DB134829B51C0B0067578D /* AlertUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,7 @@
 		F97CD0C22869D89A0062067F /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F9DB134529B51AAE0067578D /* Models */,
 				F9DB134229B4FD1E0067578D /* Views */,
 				F9DB133A29B363F50067578D /* Factories */,
 				F9DB133529B34ED20067578D /* Delegates */,
@@ -254,6 +259,7 @@
 			children = (
 				F9DB132929B27DE10067578D /* UIColorUtils.swift */,
 				F9DB132B29B27FAE0067578D /* UIImageUtils.swift */,
+				F9DB134829B51C0B0067578D /* AlertUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -283,6 +289,14 @@
 				F9DB134329B4FD870067578D /* CustomButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F9DB134529B51AAE0067578D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F9DB134629B51AC00067578D /* FeedModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97CD1002869DE640062067F /* PostViewController.swift in Sources */,
+				F9DB134729B51AC00067578D /* FeedModel.swift in Sources */,
 				F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */,
 				F97CD104286B30B50062067F /* TabBarController.swift in Sources */,
 				F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */,
@@ -424,6 +439,7 @@
 				F9DB132C29B27FAE0067578D /* UIImageUtils.swift in Sources */,
 				F9DB132A29B27DE10067578D /* UIColorUtils.swift in Sources */,
 				F9DB133E29B3649A0067578D /* MyLoginFactory.swift in Sources */,
+				F9DB134929B51C0B0067578D /* AlertUtils.swift in Sources */,
 				F9DB133029B2871A0067578D /* TestUserService.swift in Sources */,
 				F97CD0FE2869DE420062067F /* ProfileViewController.swift in Sources */,
 				F9DB131D29B0B0F20067578D /* Configuration.swift in Sources */,
