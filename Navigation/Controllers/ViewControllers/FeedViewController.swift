@@ -22,26 +22,30 @@ final class FeedViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var firstButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemCyan
-        button.setTitle(NSLocalizedString("Show post", comment: "Show post"), for: .normal)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var firstButton: CustomButton = {
+        let title = NSLocalizedString("Show post", comment: "Show post")
+        let button = CustomButton(
+            title: title,
+            titleColor: nil,
+            backgroundColor: .systemCyan,
+            onBtnTap: didTapButton
+        )
         return button
     }()
     
-    private lazy var secondButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemCyan
-        button.setTitle(NSLocalizedString("Show post", comment: "Show post"), for: .normal)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var secondButton: CustomButton = {
+        let title = NSLocalizedString("Show post", comment: "Show post")
+        let button = CustomButton(
+            title: title,
+            titleColor: nil,
+            backgroundColor: .systemCyan,
+            onBtnTap: didTapButton
+        )
         return button
     }()
     
 // MARK: Actions
-    @objc private func didTapButton(){
+    private func didTapButton(){
         let postVC = PostViewController()
         postVC.post = self.post
         self.navigationController?.pushViewController(postVC, animated: true)

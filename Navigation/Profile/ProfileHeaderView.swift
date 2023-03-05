@@ -17,7 +17,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
 // MARK: Views
     private lazy var avatarView: AvatarView = {
         let view = AvatarView()
-        let tapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(avatarTap(tapGestureRecogniser:)))
+        let tapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(avatarDidTap(tapGestureRecogniser:)))
         
         view.addGestureRecognizer(tapGestureRecogniser)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -33,19 +33,20 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    private lazy var setStatusButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.textColor = .systemGray
+    private lazy var setStatusButton: CustomButton = {
+        let title = NSLocalizedString("Set status", comment: "Set status")
+        let button = CustomButton(
+            title: title,
+            titleColor: nil,
+            backgroundColor: .systemBlue.notEnabled(),
+            onBtnTap: buttonDidTap
+        )
         button.isEnabled = false
-        button.backgroundColor = .systemBlue.notEnabled()
-        button.setTitle(NSLocalizedString("Set status", comment: "Set status"), for: .normal)
         button.layer.cornerRadius = 4
         button.layer.shadowColor = .init(genericCMYKCyan: 1, magenta: 0, yellow: 0, black: 1, alpha: 1)
         button.layer.shadowOpacity = 0.1
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -73,7 +74,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         return textField
     }()
     
-// MARK: Init
+// MARK: Inits
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         self.setupViews()
@@ -141,12 +142,13 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         }
     }
     
-    @objc func buttonPressed(){
+    func buttonDidTap(){
         statusLabel.text = statusText
+        self.statusTextField.text = ""
         self.endEditing(true)
     }
     
-    @objc func avatarTap(tapGestureRecogniser: UITapGestureRecognizer) {
+    @objc func avatarDidTap(tapGestureRecogniser: UITapGestureRecognizer) {
         guard let tapped = tapGestureRecogniser.view as? AvatarView else { return }
 
         delegate?.avatarTap(avatar: tapped)

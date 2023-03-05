@@ -8,12 +8,15 @@
 import UIKit
 
 final class InfoViewController: UIViewController {
+// MARK: Views
     private lazy var button: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemMint
-        button.setTitle(NSLocalizedString("Print message", comment: "Print message"), for: .normal)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let title = NSLocalizedString("Print message", comment: "Print message")
+        let button = CustomButton(
+            title: title,
+            titleColor: nil,
+            backgroundColor: .systemMint,
+            onBtnTap: didTapButton
+        )
         return button
     }()
     
@@ -41,7 +44,7 @@ final class InfoViewController: UIViewController {
         ])
     }
     
-    @objc private func didTapButton(){
+    private func didTapButton(){
         let alertController = UIAlertController(title: NSLocalizedString("Print message?", comment: "Print message?"), message: nil, preferredStyle: .alert)
         let printMessage = UIAlertAction(title: NSLocalizedString("Print", comment: "Print"), style: .default, handler: { _ in
             print(NSLocalizedString("Message", comment: "Message"))

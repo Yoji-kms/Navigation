@@ -45,6 +45,7 @@
 		F9DB133C29B3640E0067578D /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB133B29B3640D0067578D /* LoginFactory.swift */; };
 		F9DB133E29B3649A0067578D /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB133D29B3649A0067578D /* MyLoginFactory.swift */; };
 		F9DB134129B3D3730067578D /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = F9DB134029B3D3730067578D /* iOSIntPackage */; };
+		F9DB134429B4FD870067578D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB134329B4FD870067578D /* CustomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		F9DB133829B35C6E0067578D /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		F9DB133B29B3640D0067578D /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		F9DB133D29B3649A0067578D /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
+		F9DB134329B4FD870067578D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				F9DB1302298E8C8D0067578D /* AvatarView.swift */,
+				F9DB134329B4FD870067578D /* CustomButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */,
 				F97CD104286B30B50062067F /* TabBarController.swift in Sources */,
 				F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */,
+				F9DB134429B4FD870067578D /* CustomButton.swift in Sources */,
 				F9A8197B2927BEB90033060A /* PhotosCollectionViewHeader.swift in Sources */,
 				F9DB132E29B284E40067578D /* UserService.swift in Sources */,
 				F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */,

@@ -9,7 +9,7 @@ import UIKit
 import StorageService
 
 final class PostTableViewCell: UITableViewCell {
-    //MARK: Variables
+// MARK: Views
     private lazy var title: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
@@ -54,7 +54,7 @@ final class PostTableViewCell: UITableViewCell {
         return label
     }()
   
-    //MARK: Overriding functions
+// MARK: Overriding functions
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -73,7 +73,7 @@ final class PostTableViewCell: UITableViewCell {
         self.likes.text = nil
     }
   
-    //MARK: Setups
+// MARK: Setups
     func setup(with viewModel: Post) {
         self.image.image = UIImage(named: viewModel.image)
         self.title.text = viewModel.title

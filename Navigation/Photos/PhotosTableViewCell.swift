@@ -10,6 +10,7 @@ import UIKit
 final class PhotosTableViewCell: UITableViewCell {
     private lazy var data: [UIImage] = []
     
+// MARK: Views
     private lazy var photosCollectionViewLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.headerReferenceSize = CGSize(width: 100, height: 48)
@@ -38,7 +39,8 @@ final class PhotosTableViewCell: UITableViewCell {
         return colView
     }()
     
-    //MARK: Overriding functions
+// MARK: Lifecycle
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -52,7 +54,7 @@ final class PhotosTableViewCell: UITableViewCell {
         self.setupView()
     }
     
-    //MARK: Setups
+// MARK: Setups
     func setup(with viewModel: [UIImage]) {
        data = viewModel
     }
@@ -72,6 +74,7 @@ final class PhotosTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: Extensions
 extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = self.bounds.width

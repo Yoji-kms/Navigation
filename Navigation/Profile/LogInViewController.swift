@@ -71,20 +71,21 @@ final class LogInViewController: UIViewController{
         return scrollView
     }()
     
-    private lazy var logInBtn: UIButton = {
-        let btn = UIButton()
-        btn.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(1), for: .normal)
+    private lazy var logInBtn: CustomButton = {
+        let title = NSLocalizedString("Log in", comment: "Log in")
+        let btn = CustomButton(
+            title: title,
+            titleColor: nil,
+            backgroundImage: UIImage(named: "blue_pixel")?.alpha(1),
+            onBtnTap: didTapBtn
+        )
         btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .disabled)
         btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .highlighted)
         btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .selected)
         btn.clipsToBounds = true
-        btn.setTitle(NSLocalizedString("Log in", comment: "Log in"), for: .normal)
         btn.layer.cornerRadius = 10
-        btn.addTarget(self, action: #selector(didTapBtn), for: .touchUpInside)
         btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         btn.isEnabled = false
-        btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
     
@@ -192,7 +193,7 @@ final class LogInViewController: UIViewController{
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
-    @objc private func didTapBtn() {
+    private func didTapBtn() {
         let login = self.emailOrPhoneTextField.text ?? ""
         let password = self.passwordTextField.text ?? ""
         let currentUserService = Configuration.userService
