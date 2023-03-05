@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C32869D89A0062067F /* AppDelegate.swift */; };
 		F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C52869D89A0062067F /* SceneDelegate.swift */; };
-		F97CD0C82869D89A0062067F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C72869D89A0062067F /* ViewController.swift */; };
 		F97CD0CD2869D89B0062067F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F97CD0CC2869D89B0062067F /* Assets.xcassets */; };
 		F97CD0D02869D89B0062067F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F97CD0CE2869D89B0062067F /* LaunchScreen.storyboard */; };
 		F97CD0FC2869DDFB0062067F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0FB2869DDFB0062067F /* FeedViewController.swift */; };
@@ -76,7 +75,6 @@
 		F97CD0C02869D89A0062067F /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F97CD0C32869D89A0062067F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F97CD0C52869D89A0062067F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F97CD0C72869D89A0062067F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F97CD0CC2869D89B0062067F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F97CD0CF2869D89B0062067F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F97CD0D12869D89B0062067F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,6 +155,7 @@
 		F97CD0C22869D89A0062067F /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F9DB134229B4FD1E0067578D /* Views */,
 				F9DB133A29B363F50067578D /* Factories */,
 				F9DB133529B34ED20067578D /* Delegates */,
 				F9DB132829B27DCB0067578D /* Utils */,
@@ -166,7 +165,6 @@
 				F97CD0F32869D9C10062067F /* Controllers */,
 				F97CD0C32869D89A0062067F /* AppDelegate.swift */,
 				F97CD0C52869D89A0062067F /* SceneDelegate.swift */,
-				F97CD0C72869D89A0062067F /* ViewController.swift */,
 				F97CD0CC2869D89B0062067F /* Assets.xcassets */,
 				F97CD0CE2869D89B0062067F /* LaunchScreen.storyboard */,
 				F97CD0D12869D89B0062067F /* Info.plist */,
@@ -223,7 +221,6 @@
 				F9CF7A89289D813000839A1F /* ProfileHeaderView.swift */,
 				F9C602C028E40C5200DDF334 /* LogInViewController.swift */,
 				F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */,
-				F9DB1302298E8C8D0067578D /* AvatarView.swift */,
 				F9DB133829B35C6E0067578D /* LoginInspector.swift */,
 			);
 			path = Profile;
@@ -275,6 +272,14 @@
 				F9DB133D29B3649A0067578D /* MyLoginFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		F9DB134229B4FD1E0067578D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F9DB1302298E8C8D0067578D /* AvatarView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,7 +406,6 @@
 				F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */,
 				F97CD104286B30B50062067F /* TabBarController.swift in Sources */,
 				F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */,
-				F97CD0C82869D89A0062067F /* ViewController.swift in Sources */,
 				F9A8197B2927BEB90033060A /* PhotosCollectionViewHeader.swift in Sources */,
 				F9DB132E29B284E40067578D /* UserService.swift in Sources */,
 				F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */,
