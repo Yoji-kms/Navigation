@@ -11,6 +11,9 @@ import StorageService
 
 final class LogInViewController: UIViewController{
     var loginDelegate: LoginViewControllerDelegate?
+    
+    private let login = Configuration.login
+    private let password = "pswrd"
 // MARK: Views
     private lazy var vkLogo: UIImageView = {
         let logo = UIImageView()
@@ -21,14 +24,13 @@ final class LogInViewController: UIViewController{
 
     private lazy var emailOrPhoneTextField: UITextField = {
         let textField = UITextField()
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
-        textField.leftViewMode = .always
+        textField.text = login
+        textField.leadingPadding(8)
         textField.placeholder = NSLocalizedString("Email or phone", comment: "Email or phone")
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = .black
         textField.autocapitalizationType = .none
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.layer.borderWidth = 0.5
+        textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.addTarget(self, action: #selector(loginTextChanged(_:)), for: .editingChanged)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -36,15 +38,14 @@ final class LogInViewController: UIViewController{
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
-        textField.leftViewMode = .always
+        textField.text = password
+        textField.leadingPadding(8)
         textField.placeholder = NSLocalizedString("Password", comment: "Password")
         textField.isSecureTextEntry = true
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = .black
         textField.autocapitalizationType = .none
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.layer.borderWidth = 0.5
+        textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -85,7 +86,7 @@ final class LogInViewController: UIViewController{
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 10
         btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
-        btn.isEnabled = false
+        btn.isEnabled = !(emailOrPhoneTextField.text?.isEmpty ?? true)
         return btn
     }()
     

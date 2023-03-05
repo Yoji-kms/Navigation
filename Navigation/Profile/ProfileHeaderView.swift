@@ -61,14 +61,11 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private lazy var statusTextField: UITextField = {
         let textField = UITextField()
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
-        textField.leftViewMode = .always
+        textField.leadingPadding(8)
         textField.backgroundColor = .white
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 15)
-        textField.layer.cornerRadius = 12
-        textField.layer.borderColor = .init(genericCMYKCyan: 1, magenta: 0, yellow: 0, black: 1, alpha: 1)
-        textField.layer.borderWidth = 1
+        textField.setBorder(color: UIColor.black.cgColor, width: 1, cornerRadius: 12)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
         return textField

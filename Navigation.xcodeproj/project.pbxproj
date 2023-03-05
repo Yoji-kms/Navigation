@@ -48,6 +48,8 @@
 		F9DB134429B4FD870067578D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB134329B4FD870067578D /* CustomButton.swift */; };
 		F9DB134729B51AC00067578D /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB134629B51AC00067578D /* FeedModel.swift */; };
 		F9DB134929B51C0B0067578D /* AlertUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB134829B51C0B0067578D /* AlertUtils.swift */; };
+		F9DB134B29B529070067578D /* UIButtonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB134A29B529070067578D /* UIButtonUtils.swift */; };
+		F9DB134D29B52C640067578D /* UITextFieldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB134C29B52C640067578D /* UITextFieldUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,8 @@
 		F9DB134329B4FD870067578D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F9DB134629B51AC00067578D /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		F9DB134829B51C0B0067578D /* AlertUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtils.swift; sourceTree = "<group>"; };
+		F9DB134A29B529070067578D /* UIButtonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonUtils.swift; sourceTree = "<group>"; };
+		F9DB134C29B52C640067578D /* UITextFieldUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +264,8 @@
 				F9DB132929B27DE10067578D /* UIColorUtils.swift */,
 				F9DB132B29B27FAE0067578D /* UIImageUtils.swift */,
 				F9DB134829B51C0B0067578D /* AlertUtils.swift */,
+				F9DB134A29B529070067578D /* UIButtonUtils.swift */,
+				F9DB134C29B52C640067578D /* UITextFieldUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -428,8 +434,10 @@
 				F9A8197B2927BEB90033060A /* PhotosCollectionViewHeader.swift in Sources */,
 				F9DB132E29B284E40067578D /* UserService.swift in Sources */,
 				F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */,
+				F9DB134D29B52C640067578D /* UITextFieldUtils.swift in Sources */,
 				F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */,
 				F9DB1303298E8C8D0067578D /* AvatarView.swift in Sources */,
+				F9DB134B29B529070067578D /* UIButtonUtils.swift in Sources */,
 				F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */,
 				F9DB133729B34EFF0067578D /* LoginViewControllerDelegate.swift in Sources */,
 				F9CF7A8A289D813000839A1F /* ProfileHeaderView.swift in Sources */,
