@@ -8,6 +8,7 @@
 import UIKit
 
 final class PhotosCollectionViewHeader: UICollectionReusableView {
+// MARK: Views
     private lazy var label: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("Photos", comment: "Photos")
@@ -25,15 +26,18 @@ final class PhotosCollectionViewHeader: UICollectionReusableView {
         return image
     }()
     
+// MARK: Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupViews()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+// MARK: Setups
     private func setupViews() {
         self.addSubview(label)
         self.addSubview(forward)

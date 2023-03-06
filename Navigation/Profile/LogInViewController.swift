@@ -11,6 +11,9 @@ import StorageService
 
 final class LogInViewController: UIViewController{
     var loginDelegate: LoginViewControllerDelegate?
+    
+    private let login = Configuration.login
+    private let password = "pswrd"
 // MARK: Views
     private lazy var vkLogo: UIImageView = {
         let logo = UIImageView()
@@ -21,14 +24,13 @@ final class LogInViewController: UIViewController{
 
     private lazy var emailOrPhoneTextField: UITextField = {
         let textField = UITextField()
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
-        textField.leftViewMode = .always
+        textField.text = login
+        textField.leadingPadding(8)
         textField.placeholder = NSLocalizedString("Email or phone", comment: "Email or phone")
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = .black
         textField.autocapitalizationType = .none
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.layer.borderWidth = 0.5
+        textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.addTarget(self, action: #selector(loginTextChanged(_:)), for: .editingChanged)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -36,15 +38,14 @@ final class LogInViewController: UIViewController{
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
-        textField.leftViewMode = .always
+        textField.text = password
+        textField.leadingPadding(8)
         textField.placeholder = NSLocalizedString("Password", comment: "Password")
         textField.isSecureTextEntry = true
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = .black
         textField.autocapitalizationType = .none
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.layer.borderWidth = 0.5
+        textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -71,20 +72,21 @@ final class LogInViewController: UIViewController{
         return scrollView
     }()
     
-    private lazy var logInBtn: UIButton = {
-        let btn = UIButton()
-        btn.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(1), for: .normal)
+    private lazy var logInBtn: CustomButton = {
+        let title = NSLocalizedString("Log in", comment: "Log in")
+        let btn = CustomButton(
+            title: title,
+            titleColor: nil,
+            backgroundImage: UIImage(named: "blue_pixel")?.alpha(1),
+            onBtnTap: didTapBtn
+        )
         btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .disabled)
         btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .highlighted)
         btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .selected)
         btn.clipsToBounds = true
-        btn.setTitle(NSLocalizedString("Log in", comment: "Log in"), for: .normal)
         btn.layer.cornerRadius = 10
-        btn.addTarget(self, action: #selector(didTapBtn), for: .touchUpInside)
         btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
-        btn.isEnabled = false
-        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.isEnabled = !(emailOrPhoneTextField.text?.isEmpty ?? true)
         return btn
     }()
     
@@ -192,12 +194,12 @@ final class LogInViewController: UIViewController{
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
-    @objc private func didTapBtn() {
+    private func didTapBtn() {
         let login = self.emailOrPhoneTextField.text ?? ""
         let password = self.passwordTextField.text ?? ""
         let currentUserService = Configuration.userService
         guard let user = currentUserService.getUser(login: login) else {
-            showUserMessage(NSLocalizedString("User does not exist", comment: "User does not exist"))
+            AlertUtils.showUserMessage(NSLocalizedString("User does not exist", comment: "User does not exist"), context: self)
             return
         }
         if loginDelegate?.check(login: login, password: password) ?? false {
@@ -205,17 +207,11 @@ final class LogInViewController: UIViewController{
             profileVC.user = user
             self.navigationController?.pushViewController(profileVC, animated: true)
         } else {
-            showUserMessage(NSLocalizedString("Incorrect password", comment: "Incorrect password"))
+            AlertUtils.showUserMessage(NSLocalizedString("Incorrect password", comment: "Incorrect password"), context: self)
         }
     }
     
     @objc private func loginTextChanged(_ textField: UITextField){
         self.logInBtn.isEnabled = (self.emailOrPhoneTextField.text != "")
-    }
-    
-    private func showUserMessage(_ message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        self.present(alert, animated: true, completion: nil)
-        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil) })
     }
 }

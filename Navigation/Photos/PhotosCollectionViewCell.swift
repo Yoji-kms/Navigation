@@ -8,6 +8,7 @@
 import UIKit
 
 final class PhotosCollectionViewCell: UICollectionViewCell {
+// MARK: Views
     private lazy var photo: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -18,11 +19,13 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
+// MARK: Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -31,6 +34,7 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
         self.photo.image = nil
     }
     
+// MARK: Setups
     func setup(with viewModel: UIImage) {
         self.photo.image = viewModel
     }
