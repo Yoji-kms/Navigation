@@ -8,6 +8,7 @@
 import UIKit
 
 final class AvatarView: UIView {
+// MARK: Views
     lazy var avatarImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "avatar")
@@ -28,23 +29,18 @@ final class AvatarView: UIView {
         return view
     }()
     
+// MARK: Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupViews()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func removeAnimations(){
-        print("AAAAAA")
-        self.fadingView.layer.removeAllAnimations()
-        self.avatarImageView.layer.removeAllAnimations()
-        print("AAAAAA")
-
-    }
-    
+// MARK: Setups
     private func setupViews() {
         self.addSubview(self.avatarImageView)
         self.addSubview(self.fadingView)

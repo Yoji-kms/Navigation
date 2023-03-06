@@ -13,14 +13,12 @@ final class ProfileViewController: UIViewController {
     var user: User?
     
 // MARK: Views
-    lazy var closeAvatarBtn: UIButton = {
-        let btn = UIButton()
+    private lazy var closeAvatarBtn: CustomButton = {
+        let btn = CustomButton(title: nil, titleColor: nil, backgroundColor: nil, onBtnTap: closeAvatarBtnDidTap)
         btn.alpha = 0
         btn.tintColor = .systemRed
         btn.setImage(UIImage(systemName: "xmark"), for: .normal)
         btn.isEnabled = false
-        btn.addTarget(self, action: #selector(closeAvatarBtnTap), for: .touchUpInside)
-        btn.translatesAutoresizingMaskIntoConstraints = false
         btn.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
         
         return btn
@@ -113,7 +111,7 @@ final class ProfileViewController: UIViewController {
         self.tableView.endEditing(true)
     }
     
-    @objc func closeAvatarBtnTap() {
+    private func closeAvatarBtnDidTap() {
         guard let avatar = avatarView else { return }
         guard let avatarStartPoint = avatarStartPoint else { return }
         guard let avatarScaleCoefficient = avatarScaleCoefficient else { return }

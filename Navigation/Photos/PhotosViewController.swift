@@ -9,7 +9,7 @@ import UIKit
 import iOSIntPackage
 
 final class PhotosViewController: UIViewController {
-//    MARK: Variables
+// MARK: Variables
     var data: [UIImage] = []
     private var images: [UIImage] = []
     private let imagePublisherFacade = ImagePublisherFacade()
@@ -34,7 +34,7 @@ final class PhotosViewController: UIViewController {
         return colView
     }()
     
-//    MARK: Lifecycle
+// MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemGray6
@@ -75,7 +75,7 @@ final class PhotosViewController: UIViewController {
     }
 }
 
-//MARK: Extensions
+// MARK: Extensions
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = UIScreen.main.bounds.width

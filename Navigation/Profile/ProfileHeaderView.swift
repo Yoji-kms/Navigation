@@ -17,7 +17,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
 // MARK: Views
     private lazy var avatarView: AvatarView = {
         let view = AvatarView()
-        let tapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(avatarTap(tapGestureRecogniser:)))
+        let tapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(avatarDidTap(tapGestureRecogniser:)))
         
         view.addGestureRecognizer(tapGestureRecogniser)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -33,19 +33,20 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    private lazy var setStatusButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.textColor = .systemGray
+    private lazy var setStatusButton: CustomButton = {
+        let title = NSLocalizedString("Set status", comment: "Set status")
+        let button = CustomButton(
+            title: title,
+            titleColor: nil,
+            backgroundColor: .systemBlue.notEnabled(),
+            onBtnTap: buttonDidTap
+        )
         button.isEnabled = false
-        button.backgroundColor = .systemBlue.notEnabled()
-        button.setTitle(NSLocalizedString("Set status", comment: "Set status"), for: .normal)
         button.layer.cornerRadius = 4
         button.layer.shadowColor = .init(genericCMYKCyan: 1, magenta: 0, yellow: 0, black: 1, alpha: 1)
         button.layer.shadowOpacity = 0.1
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -60,20 +61,17 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private lazy var statusTextField: UITextField = {
         let textField = UITextField()
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
-        textField.leftViewMode = .always
+        textField.leadingPadding(8)
         textField.backgroundColor = .white
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 15)
-        textField.layer.cornerRadius = 12
-        textField.layer.borderColor = .init(genericCMYKCyan: 1, magenta: 0, yellow: 0, black: 1, alpha: 1)
-        textField.layer.borderWidth = 1
+        textField.setBorder(color: UIColor.black.cgColor, width: 1, cornerRadius: 12)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
         return textField
     }()
     
-// MARK: Init
+// MARK: Inits
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         self.setupViews()
@@ -141,12 +139,13 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         }
     }
     
-    @objc func buttonPressed(){
+    func buttonDidTap(){
         statusLabel.text = statusText
+        self.statusTextField.text = ""
         self.endEditing(true)
     }
     
-    @objc func avatarTap(tapGestureRecogniser: UITapGestureRecognizer) {
+    @objc func avatarDidTap(tapGestureRecogniser: UITapGestureRecognizer) {
         guard let tapped = tapGestureRecogniser.view as? AvatarView else { return }
 
         delegate?.avatarTap(avatar: tapped)
