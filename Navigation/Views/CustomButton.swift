@@ -12,17 +12,11 @@ final  class CustomButton: UIButton {
     private var onBtnTap: () -> Void
     
 // MARK: Lifecycle
-    init(title: String?, titleColor: UIColor?, backgroundColor: UIColor?, onBtnTap: @escaping () -> Void) {
+    init(title: String?, titleColor: UIColor?, backgroundColor: UIColor? = nil, backgroundImage: UIImage? = nil, onBtnTap: @escaping () -> Void) {
         self.onBtnTap = onBtnTap
         super.init(frame: .zero)
         self.basicSetup(title: title, titleColor: titleColor)
         self.backgroundColor = backgroundColor
-    }
-    
-    init(title: String?, titleColor: UIColor?, backgroundImage: UIImage?, onBtnTap: @escaping () -> Void) {
-        self.onBtnTap = onBtnTap
-        super.init(frame: .zero)
-        self.basicSetup(title: title, titleColor: titleColor)
         self.setBackgroundImage(backgroundImage, for: .normal)
     }
 
