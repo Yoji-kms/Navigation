@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import StorageService
 
 final class ProfileViewController: UIViewController {
 // MARK: Variables
-    var user: User?
+    private let viewModel: ProfileViewModelProtocol
     
 // MARK: Views
     private lazy var closeAvatarBtn: CustomButton = {
@@ -44,6 +43,16 @@ final class ProfileViewController: UIViewController {
     private var avatarView: AvatarView?
     
 // MARK: Lifecycle
+    init(viewModel: ProfileViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Configuration.viewControllerBackgroundColor
@@ -142,10 +151,7 @@ final class ProfileViewController: UIViewController {
     }()
     
     private func pushToPhotosVC() {
-        let photosVC = PhotosViewController()
-        photosVC.data = StorageService.shared.photos
-        
-        self.navigationController?.pushViewController(photosVC, animated: true)
+        self.viewModel.updateState(viewInput: .photosDidTap(viewModel.photos))
     }
 }
 
@@ -159,7 +165,7 @@ extension ProfileViewController: UITableViewDataSource {
         if section == 0 {
             return 1
         }
-        return StorageService.shared.posts.count
+        return viewModel.posts.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -170,7 +176,7 @@ extension ProfileViewController: UITableViewDataSource {
                 return cell
             }
             cell.addGestureRecognizer(tapRecognizer)
-            cell.setup(with: StorageService.shared.photos)
+            cell.setup(with: viewModel.photos)
             
             return cell
         case 1:
@@ -178,7 +184,7 @@ extension ProfileViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DefaltCell", for: indexPath)
                 return cell
             }
-            let post = StorageService.shared.posts[indexPath.row]
+            let post = viewModel.posts[indexPath.row]
             cell.clipsToBounds = true
             cell.setup(with: post)
             
@@ -200,7 +206,7 @@ extension ProfileViewController: UITableViewDelegate {
             guard let headerView = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? ProfileHeaderView else {
                 return nil
             }
-            guard let user = self.user else { return nil }
+            let user = self.viewModel.user
             headerView.setup(with: user)
             headerView.delegate = self
             return headerView

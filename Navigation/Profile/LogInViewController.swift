@@ -7,13 +7,10 @@
 
 
 import UIKit
-import StorageService
 
 final class LogInViewController: UIViewController{
-    var loginDelegate: LoginViewControllerDelegate?
+    private let viewModel: LoginViewModelProtocol
     
-    private let login = Configuration.login
-    private let password = "pswrd"
 // MARK: Views
     private lazy var vkLogo: UIImageView = {
         let logo = UIImageView()
@@ -24,7 +21,7 @@ final class LogInViewController: UIViewController{
 
     private lazy var emailOrPhoneTextField: UITextField = {
         let textField = UITextField()
-        textField.text = login
+        textField.text = viewModel.defaultLogin
         textField.leadingPadding(8)
         textField.placeholder = NSLocalizedString("Email or phone", comment: "Email or phone")
         textField.font = .systemFont(ofSize: 16)
@@ -38,7 +35,7 @@ final class LogInViewController: UIViewController{
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.text = password
+        textField.text = viewModel.defaultPassword
         textField.leadingPadding(8)
         textField.placeholder = NSLocalizedString("Password", comment: "Password")
         textField.isSecureTextEntry = true
@@ -91,8 +88,8 @@ final class LogInViewController: UIViewController{
     }()
     
 // MARK: Init
-    init(loginInspector: LoginInspector) {
-        loginDelegate = loginInspector
+    init(loginViewModel: LoginViewModel) {
+        self.viewModel = loginViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -197,18 +194,8 @@ final class LogInViewController: UIViewController{
     private func didTapBtn() {
         let login = self.emailOrPhoneTextField.text ?? ""
         let password = self.passwordTextField.text ?? ""
-        let currentUserService = Configuration.userService
-        guard let user = currentUserService.getUser(login: login) else {
-            AlertUtils.showUserMessage(NSLocalizedString("User does not exist", comment: "User does not exist"), context: self)
-            return
-        }
-        if loginDelegate?.check(login: login, password: password) ?? false {
-            let profileVC = ProfileViewController()
-            profileVC.user = user
-            self.navigationController?.pushViewController(profileVC, animated: true)
-        } else {
-            AlertUtils.showUserMessage(NSLocalizedString("Incorrect password", comment: "Incorrect password"), context: self)
-        }
+        
+        self.viewModel.updateState(viewInput: .loginBtnDidTap(login, password))
     }
     
     @objc private func loginTextChanged(_ textField: UITextField){
