@@ -10,8 +10,7 @@ import iOSIntPackage
 
 final class PhotosViewController: UIViewController {
 // MARK: Variables
-    private var images: [UIImage] = []
-    private let imagePublisherFacade = ImagePublisherFacade()
+    private var photos:[UIImage] = []
     private let viewModel: PhotosViewModelProtocol
     
 // MARK: Views
@@ -47,10 +46,6 @@ final class PhotosViewController: UIViewController {
         self.setupNavigation()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        imagePublisherFacade.removeSubscription(for: self)
-    }
-    
     init(viewModel: PhotosViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -80,8 +75,20 @@ final class PhotosViewController: UIViewController {
     }
     
     private func setupData() {
-        imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: viewModel.data.count, userImages: viewModel.data)
+        self.photos = self.viewModel.data
+        let imageProcessor = ImageProcessor()
+        let startTime = Date.now
+        imageProcessor.processImagesOnThread(sourceImages: self.viewModel.data, filter: .noir, qos: .background) { images in
+            let threadTimeInterval = Date().timeIntervalSince(startTime)
+            print("🟢\(threadTimeInterval)")
+            self.photos = images.compactMap { image -> UIImage in
+                guard let image = image else { fatalError("Error filtering image") }
+                return UIImage(cgImage: image)
+            }
+            DispatchQueue.main.async {
+                self.photosCollectionView.reloadData()
+            }
+        }
     }
 }
 
@@ -97,7 +104,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.images.count
+        self.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -105,18 +112,8 @@ extension PhotosViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
             return cell
         }
-        cell.setup(with: images[indexPath.row])
+        cell.setup(with: self.photos[indexPath.row])
         
         return cell
-    }
-}
-
-extension PhotosViewController: ImageLibrarySubscriber {
-    func receive(images: [UIImage]) {
-        self.images = images
-        self.photosCollectionView.performBatchUpdates {
-            let index = IndexPath(row: images.count - 1, section: 0)
-            self.photosCollectionView.insertItems(at: [index])
-        }
     }
 }
