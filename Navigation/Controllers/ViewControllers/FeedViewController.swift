@@ -6,12 +6,10 @@
 //
 
 import UIKit
-import StorageService
 
 final class FeedViewController: UIViewController {
 // MARK: Variables
-    private lazy var post: Post = Post(title: "Post title", description: "", image: "", likes: 0, views: 0)
-    private let feedModel = FeedModel()
+    private let viewModel: FeedViewModelProtocol
     
 // MARK: Views
     private lazy var scrollView: UIScrollView = {
@@ -74,14 +72,13 @@ final class FeedViewController: UIViewController {
     
 // MARK: Actions
     private func didTapShowPostBtn(){
-        let postVC = PostViewController()
-        postVC.post = self.post
-        self.navigationController?.pushViewController(postVC, animated: true)
+        let post = self.viewModel.post
+        self.viewModel.updateState(viewInput: .showPostBtnDidTap(post))
     }
     
     private func didTapGuessBtn() {
         guard let guessText = guessTxtField.text else { return }
-        let guessed = feedModel.check(word: guessText)
+        let guessed = viewModel.checkGuess(word: guessText)
         let correct = NSLocalizedString("Correct", comment: "Correct")
         let incorrect = NSLocalizedString("Incorrect", comment: "Incorrect")
         self.checkGuessLabel.text = guessed ? correct : incorrect
@@ -114,6 +111,16 @@ final class FeedViewController: UIViewController {
     @objc private func forcedHidingKeyboard() {
         self.view.endEditing(true)
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    init(viewModel: FeedViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
  
 // MARK: Lifecycle
@@ -189,5 +196,11 @@ final class FeedViewController: UIViewController {
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
         self.view.addGestureRecognizer(tapGesture)
+    }
+}
+
+extension FeedViewController: RemoveChildCoordinatorDelegate {
+    func remove(childCoordinator: Coordinatable) {
+        self.viewModel.updateState(viewInput: .didReturnFromPostViewController(childCoordinator))
     }
 }

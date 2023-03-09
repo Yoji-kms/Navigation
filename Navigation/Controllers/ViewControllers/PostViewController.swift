@@ -6,10 +6,11 @@
 //
 
 import UIKit
-import StorageService
 
 final class PostViewController: UIViewController {
-    var post: Post?
+    private let viewModel: PostViewModelProtocol
+    weak var delegate: RemoveChildCoordinatorDelegate?
+    
     private lazy var barButton = UIBarButtonItem(
         image: UIImage(systemName: "info.circle"),
         style: .plain,
@@ -17,19 +18,38 @@ final class PostViewController: UIViewController {
         action: #selector(didTapButton)
     )
         
+    init(viewModel: PostViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemIndigo
-        self.navigationItem.title = post?.title
+        self.navigationItem.title = viewModel.post?.title
         self.navigationItem.rightBarButtonItem = barButton
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        guard let coordinator = (self.viewModel as? PostViewModel)?.coordinator else {
+            return
+        }
+        delegate?.remove(childCoordinator: coordinator)
+    }
+    
     @objc private func didTapButton(){
-        let infoVC = InfoViewController()
-        infoVC.modalPresentationStyle = .popover
-        infoVC.modalTransitionStyle = .crossDissolve
-        
-        self.present(infoVC, animated: true, completion: nil)
+        viewModel.updateState(viewInput: .infoBtnDidTap)
+    }
+}
+
+extension PostViewController: RemoveChildCoordinatorDelegate {
+    func remove(childCoordinator: Coordinatable) {
+        self.viewModel.updateState(viewInput: .didReturnFromInfoViewController(childCoordinator))
     }
 }

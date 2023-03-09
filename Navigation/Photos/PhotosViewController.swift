@@ -10,9 +10,9 @@ import iOSIntPackage
 
 final class PhotosViewController: UIViewController {
 // MARK: Variables
-    var data: [UIImage] = []
     private var images: [UIImage] = []
     private let imagePublisherFacade = ImagePublisherFacade()
+    private let viewModel: PhotosViewModelProtocol
     
 // MARK: Views
     private lazy var photosCollectionViewLayout: UICollectionViewFlowLayout = {
@@ -51,6 +51,16 @@ final class PhotosViewController: UIViewController {
         imagePublisherFacade.removeSubscription(for: self)
     }
     
+    init(viewModel: PhotosViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 // MARK: Setups
     private func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
@@ -71,7 +81,7 @@ final class PhotosViewController: UIViewController {
     
     private func setupData() {
         imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: data.count, userImages: data)
+        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: viewModel.data.count, userImages: viewModel.data)
     }
 }
 

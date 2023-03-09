@@ -8,6 +8,8 @@
 import UIKit
 
 final class InfoViewController: UIViewController {
+    private let viewModel: InfoViewModelProtocol
+    weak var delegate: RemoveChildCoordinatorDelegate?
 // MARK: Views
     private lazy var button: UIButton = {
         let title = NSLocalizedString("Print message", comment: "Print message")
@@ -20,6 +22,7 @@ final class InfoViewController: UIViewController {
         return button
     }()
     
+// MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Info"
@@ -33,6 +36,25 @@ final class InfoViewController: UIViewController {
         self.button.layer.cornerRadius = self.button.frame.height/4
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        guard let coordinator = (self.viewModel as? InfoViewModel)?.coordinator else {
+            return
+        }
+        delegate?.remove(childCoordinator: coordinator)
+    }
+    
+    init(viewModel: InfoViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+// MARK: Setups
     private func setupViews() {
         self.view.addSubview(button)
         
@@ -44,16 +66,8 @@ final class InfoViewController: UIViewController {
         ])
     }
     
+// MARK: Actions
     private func didTapButton(){
-        let alertController = UIAlertController(title: NSLocalizedString("Print message?", comment: "Print message?"), message: nil, preferredStyle: .alert)
-        let printMessage = UIAlertAction(title: NSLocalizedString("Print", comment: "Print"), style: .default, handler: { _ in
-            print(NSLocalizedString("Message", comment: "Message"))
-        })
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil)
-        
-        alertController.addAction(printMessage)
-        alertController.addAction(cancel)
-        
-        self.present(alertController, animated: true, completion: nil)
+        self.viewModel.updateState(viewInput: .printMessageBtnDidTap)
     }
 }
