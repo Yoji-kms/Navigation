@@ -77,10 +77,7 @@ final class PhotosViewController: UIViewController {
     private func setupData() {
         self.photos = self.viewModel.data
         let imageProcessor = ImageProcessor()
-        let startTime = Date.now
-        imageProcessor.processImagesOnThread(sourceImages: self.viewModel.data, filter: .noir, qos: .background) { images in
-            let threadTimeInterval = Date().timeIntervalSince(startTime)
-            print("🟢\(threadTimeInterval)")
+        imageProcessor.processImagesOnThread(sourceImages: self.viewModel.data, filter: .chrome, qos: .userInteractive) { images in
             self.photos = images.compactMap { image -> UIImage in
                 guard let image = image else { fatalError("Error filtering image") }
                 return UIImage(cgImage: image)
