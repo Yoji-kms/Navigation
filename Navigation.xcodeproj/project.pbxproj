@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F92C30B729BC7D5800515FA4 /* PasswordUnlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30B629BC7D5800515FA4 /* PasswordUnlocker.swift */; };
+		F92C30B929BC826800515FA4 /* PasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30B829BC826800515FA4 /* PasswordGenerator.swift */; };
+		F92C30BC29BCA37100515FA4 /* UnlockPasswordOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30BB29BCA37100515FA4 /* UnlockPasswordOperation.swift */; };
 		F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C32869D89A0062067F /* AppDelegate.swift */; };
 		F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C52869D89A0062067F /* SceneDelegate.swift */; };
 		F97CD0CD2869D89B0062067F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F97CD0CC2869D89B0062067F /* Assets.xcassets */; };
@@ -102,6 +105,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F92C30B629BC7D5800515FA4 /* PasswordUnlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUnlocker.swift; sourceTree = "<group>"; };
+		F92C30B829BC826800515FA4 /* PasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerator.swift; sourceTree = "<group>"; };
+		F92C30BB29BCA37100515FA4 /* UnlockPasswordOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockPasswordOperation.swift; sourceTree = "<group>"; };
 		F97CD0C02869D89A0062067F /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F97CD0C32869D89A0062067F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F97CD0C52869D89A0062067F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +200,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F92C30BA29BCA32C00515FA4 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				F92C30BB29BCA37100515FA4 /* UnlockPasswordOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		F97CD0B72869D89A0062067F = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +229,7 @@
 		F97CD0C22869D89A0062067F /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F92C30BA29BCA32C00515FA4 /* Operations */,
 				F9CEB58529B733E400EF2CFF /* App */,
 				F9CEB58429B733CB00EF2CFF /* Modules */,
 				F9CEB57F29B731E400EF2CFF /* Coordinators */,
@@ -444,6 +459,8 @@
 				F9DB134829B51C0B0067578D /* AlertUtils.swift */,
 				F9DB134A29B529070067578D /* UIButtonUtils.swift */,
 				F9DB134C29B52C640067578D /* UITextFieldUtils.swift */,
+				F92C30B629BC7D5800515FA4 /* PasswordUnlocker.swift */,
+				F92C30B829BC826800515FA4 /* PasswordGenerator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -606,6 +623,7 @@
 			files = (
 				F9CEB59F29B74D3600EF2CFF /* LoginViewModel.swift in Sources */,
 				F9CEB58F29B7426000EF2CFF /* FeedViewModel.swift in Sources */,
+				F92C30B729BC7D5800515FA4 /* PasswordUnlocker.swift in Sources */,
 				F97CD1002869DE640062067F /* PostViewController.swift in Sources */,
 				F9DB134729B51AC00067578D /* FeedModel.swift in Sources */,
 				F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */,
@@ -622,6 +640,7 @@
 				F9CEB59329B7431500EF2CFF /* AppCoordinator.swift in Sources */,
 				F9CEB5B029B7594900EF2CFF /* PostViewModelProtocol.swift in Sources */,
 				F9CEB59929B7470500EF2CFF /* ProfileViewModelProtocol.swift in Sources */,
+				F92C30B929BC826800515FA4 /* PasswordGenerator.swift in Sources */,
 				F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */,
 				F9CEB58729B734EF00EF2CFF /* ViewModelProtocol.swift in Sources */,
 				F9CEB5BB29B7950900EF2CFF /* PhotosViewModelProtocol.swift in Sources */,
@@ -634,6 +653,7 @@
 				F9CEB5AC29B7592500EF2CFF /* InfoViewModelProtocol.swift in Sources */,
 				F9CEB5B629B75A4F00EF2CFF /* FeedTabCoordinator.swift in Sources */,
 				F9CEB5B229B7595600EF2CFF /* PostViewModel.swift in Sources */,
+				F92C30BC29BCA37100515FA4 /* UnlockPasswordOperation.swift in Sources */,
 				F9CEB59529B7432900EF2CFF /* FeedCoordinator.swift in Sources */,
 				F9A8197229277EFE0033060A /* PhotosTableViewCell.swift in Sources */,
 				F9CEB59729B7433900EF2CFF /* ProfileCoordinator.swift in Sources */,

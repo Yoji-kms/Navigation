@@ -9,7 +9,8 @@ import Foundation
 
 protocol LoginViewModelProtocol: ViewModelProtocol {
     var defaultLogin: String { get }
-    var defaultPassword: String { get }
+    var operation: UnlockPasswordOperation? { get }
+    var password: String { get }
 
     func updateState(viewInput: LoginViewModel.ViewInput)
 }
