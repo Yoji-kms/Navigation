@@ -8,9 +8,10 @@
 import Foundation
 
 final class LoginViewModel: LoginViewModelProtocol {
-    
+    var operation: UnlockPasswordOperation?
+
     let defaultLogin = Configuration.login
-    let defaultPassword = "pswrd"
+    var password = ""
     
     enum State {
         case initial
@@ -18,6 +19,7 @@ final class LoginViewModel: LoginViewModelProtocol {
     
     enum ViewInput {
         case loginBtnDidTap(String, String)
+        case unlockPasswordBtnDidTap
     }
     
     weak var coordinator: LoginCoordinator?
@@ -43,6 +45,15 @@ final class LoginViewModel: LoginViewModelProtocol {
                 self.coordinator?.pushProfileViewController(forUser: user)
             } else {
                 AlertUtils.showUserMessage(NSLocalizedString("Incorrect password", comment: "Incorrect password"), context: context)
+            }
+        case .unlockPasswordBtnDidTap:
+            let passwordToUnlock = PasswordGenerator.shared.generatePassword(length: 3)
+            self.operation = UnlockPasswordOperation(password: passwordToUnlock)
+            self.operation?.completionBlock = {
+                guard let unlockedPassword = self.operation?.unlockedPassword else {
+                    return
+                }
+                self.password = unlockedPassword
             }
         }
     }

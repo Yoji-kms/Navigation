@@ -10,7 +10,7 @@ import Foundation
 final class Checker {
 // MARK: Variables
     private let login = Configuration.login
-    private let password = "pswrd"
+    var password = "pswrd"
     
 // MARK: Singleton init
     private init() {}
