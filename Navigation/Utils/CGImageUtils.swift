@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension Array<CGImage?> {
+extension [CGImage?] {
     func convertToUIImage() -> [UIImage] {
         return self.compactMap { image -> UIImage in
             guard let image = image else { fatalError("Error filtering image") }
