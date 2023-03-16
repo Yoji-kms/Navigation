@@ -9,4 +9,5 @@ import UIKit
 
 protocol PhotosViewModelProtocol: ViewModelProtocol {
     var data: [UIImage] { get }
+    var isAllImagesFiltered: Bool { get }
 }

@@ -6,12 +6,13 @@
 //
 
 import UIKit
-import iOSIntPackage
+//import iOSIntPackage
 
 final class PhotosViewController: UIViewController {
 // MARK: Variables
     private var photos:[UIImage] = []
     private let viewModel: PhotosViewModelProtocol
+    private var timer: Timer?
     
 // MARK: Views
     private lazy var photosCollectionViewLayout: UICollectionViewFlowLayout = {
@@ -56,6 +57,11 @@ final class PhotosViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.timer?.invalidate()
+    }
+    
 // MARK: Setups
     private func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
@@ -75,16 +81,23 @@ final class PhotosViewController: UIViewController {
     }
     
     private func setupData() {
+        self.timer = Timer.scheduledTimer(
+            timeInterval: 0.5,
+            target: self,
+            selector: #selector(getFilteredImages),
+            userInfo: nil,
+            repeats: true)
+        self.timer?.fire()
+        
+        
         self.photos = self.viewModel.data
-        let imageProcessor = ImageProcessor()
-        imageProcessor.processImagesOnThread(sourceImages: self.viewModel.data, filter: .chrome, qos: .userInteractive) { images in
-            self.photos = images.compactMap { image -> UIImage in
-                guard let image = image else { fatalError("Error filtering image") }
-                return UIImage(cgImage: image)
-            }
-            DispatchQueue.main.async {
-                self.photosCollectionView.reloadData()
-            }
+    }
+    
+    @objc private func getFilteredImages() {
+        self.photos = self.viewModel.data
+        self.photosCollectionView.reloadData()
+        if self.viewModel.isAllImagesFiltered {
+            self.timer?.invalidate()
         }
     }
 }
