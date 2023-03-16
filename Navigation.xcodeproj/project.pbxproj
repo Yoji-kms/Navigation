@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F92C30BE29C3457A00515FA4 /* CGImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30BD29C3457A00515FA4 /* CGImageUtils.swift */; };
 		F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C32869D89A0062067F /* AppDelegate.swift */; };
 		F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C52869D89A0062067F /* SceneDelegate.swift */; };
 		F97CD0CD2869D89B0062067F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F97CD0CC2869D89B0062067F /* Assets.xcassets */; };
@@ -102,6 +103,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F92C30BD29C3457A00515FA4 /* CGImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImageUtils.swift; sourceTree = "<group>"; };
 		F97CD0C02869D89A0062067F /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F97CD0C32869D89A0062067F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F97CD0C52869D89A0062067F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				F9DB134829B51C0B0067578D /* AlertUtils.swift */,
 				F9DB134A29B529070067578D /* UIButtonUtils.swift */,
 				F9DB134C29B52C640067578D /* UITextFieldUtils.swift */,
+				F92C30BD29C3457A00515FA4 /* CGImageUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				F9CF7A8A289D813000839A1F /* ProfileHeaderView.swift in Sources */,
 				F9CEB5AC29B7592500EF2CFF /* InfoViewModelProtocol.swift in Sources */,
 				F9CEB5B629B75A4F00EF2CFF /* FeedTabCoordinator.swift in Sources */,
+				F92C30BE29C3457A00515FA4 /* CGImageUtils.swift in Sources */,
 				F9CEB5B229B7595600EF2CFF /* PostViewModel.swift in Sources */,
 				F9CEB59529B7432900EF2CFF /* FeedCoordinator.swift in Sources */,
 				F9A8197229277EFE0033060A /* PhotosTableViewCell.swift in Sources */,
