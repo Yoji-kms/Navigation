@@ -87,17 +87,20 @@ final class PhotosViewController: UIViewController {
             selector: #selector(getFilteredImages),
             userInfo: nil,
             repeats: true)
-        self.timer?.fire()
-        
+        DispatchQueue.global(qos: .utility).async {
+            self.timer?.fire()
+        }
         
         self.photos = self.viewModel.data
     }
     
     @objc private func getFilteredImages() {
         self.photos = self.viewModel.data
-        self.photosCollectionView.reloadData()
         if self.viewModel.isAllImagesFiltered {
             self.timer?.invalidate()
+        }
+        DispatchQueue.main.async {
+            self.photosCollectionView.reloadData()
         }
     }
 }
