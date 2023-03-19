@@ -33,4 +33,10 @@ final class ProfileCoordinator: ModuleCoordinatable {
         let viewControllerToPush = PhotosViewController(viewModel: viewModel)
         self.module?.viewController.navigationController?.pushViewController(viewControllerToPush, animated: true)
     }
+    
+    func presentAudioViewController(audio: String, playlist: [String]) {
+        let viewModel = AudioViewModel(audio: audio, playlist: playlist)
+        let viewControllerToPresent = AudioViewController(viewModel: viewModel)
+        self.module?.viewController.present(viewControllerToPresent, animated: true)
+    }
 }

@@ -15,6 +15,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     enum ViewInput {
         case photosDidTap([UIImage])
+        case audioDidTap(String, [String])
     }
     
     let user: User
@@ -33,6 +34,8 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         switch viewInput {
         case .photosDidTap(let data):
             self.coordinator?.pushPhotosViewController(data: data)
+        case .audioDidTap(let audio, let playlist):
+            self.coordinator?.presentAudioViewController(audio: audio, playlist: playlist)
         }
     }
 }

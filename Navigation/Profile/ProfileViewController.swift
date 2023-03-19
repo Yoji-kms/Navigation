@@ -187,6 +187,7 @@ extension ProfileViewController: UITableViewDataSource {
             let post = viewModel.posts[indexPath.row]
             cell.clipsToBounds = true
             cell.setup(with: post)
+            cell.delegate = self
             
             return cell
         default:
@@ -262,5 +263,11 @@ extension ProfileViewController: AvatarTapDelegate {
         } completion: { _ in
             self.closeAvatarBtn.isEnabled = true
         }
+    }
+}
+
+extension ProfileViewController: StartPlayerDelegate {
+    func start(audio: String, playlist: [String]) {
+        self.viewModel.updateState(viewInput: .audioDidTap(audio, playlist))
     }
 }
