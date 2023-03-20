@@ -17,6 +17,10 @@ final public class StorageService {
                 "04. My Enemy (Feat. Matt Berninger)",
                 "06. Never Say Die",
                 "08. Graves"
+             ], video: [
+                ("CHVRCHES - Over", "https://www.youtube.com/embed/8ecVwQIUTHA"),
+                ("CHVRCHES - The Mother We Share", "https://www.youtube.com/embed/_mTRvJ9fugM"),
+                ("CHVRCHES - Good Girls", "https://www.youtube.com/embed/du4kNAyjVCg")
              ],
              likes: 20215,
              views: 125214),
@@ -25,6 +29,10 @@ final public class StorageService {
                 "02. Castle On The Hill",
                 "06. Galway Girl",
                 "13. Barcelona"
+             ],video: [
+                ("Ed Sheeran - Shivers", "https://www.youtube.com/embed/Il0S8BoucSA"),
+                ("Ed Sheeran - Bad Habits", "https://www.youtube.com/embed/orJSJGHjBLI"),
+                ("Ed Sheeran, Pokémon - Celestial", "https://www.youtube.com/embed/23g5HBOg3Ic")
              ],
              likes: 144221,
              views: 215420),

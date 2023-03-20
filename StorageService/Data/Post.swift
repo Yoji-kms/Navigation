@@ -13,7 +13,7 @@ public struct Post {
         description: String? = nil,
         image: String? = nil,
         audio: [String] = [],
-        video: [String] = [],
+        video: [(String, String)] = [],
         likes: Int,
         views: Int
     ) {
@@ -30,7 +30,7 @@ public struct Post {
     public let description: String?
     public let image: String?
     public let audio: [String]
-    public let video: [String]
+    public let video: [(String, String)]
     public let likes: Int
     public let views: Int
 }

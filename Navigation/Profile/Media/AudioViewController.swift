@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 final class AudioViewController: UIViewController {
 // MARK: Variables
@@ -93,7 +92,6 @@ final class AudioViewController: UIViewController {
     init(viewModel: AudioViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-//        self.audioNameLbl.text = self.viewModel.audio
     }
     
     @available(*, unavailable)

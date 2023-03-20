@@ -14,8 +14,8 @@
             filePath = "StorageService/Data/StorageService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "photos"
             landmarkType = "24">
          </BreakpointContent>
@@ -49,6 +49,22 @@
             startingLineNumber = "35"
             endingLineNumber = "35"
             landmarkName = "init(style:reuseIdentifier:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D90BAAD1-0BCB-4E6F-87E3-7A3D122E2883"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Navigation/Profile/PostTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "setupVideo(data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -24,6 +24,10 @@
 		F92C30DD29C77B4300515FA4 /* AudioViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30DC29C77B4200515FA4 /* AudioViewModelProtocol.swift */; };
 		F92C30DF29C77B6B00515FA4 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30DE29C77B6B00515FA4 /* AudioViewModel.swift */; };
 		F92C30E129C7856600515FA4 /* StrartPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30E029C7856600515FA4 /* StrartPlayerDelegate.swift */; };
+		F92C30E329C79AF600515FA4 /* VideoTapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30E229C79AF600515FA4 /* VideoTapDelegate.swift */; };
+		F92C30E829C7A6EA00515FA4 /* VideoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30E729C7A6EA00515FA4 /* VideoViewModelProtocol.swift */; };
+		F92C30EA29C7A72000515FA4 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30E929C7A72000515FA4 /* VideoViewModel.swift */; };
+		F92C30EC29C7A7DE00515FA4 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30EB29C7A7DE00515FA4 /* VideoViewController.swift */; };
 		F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C32869D89A0062067F /* AppDelegate.swift */; };
 		F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C52869D89A0062067F /* SceneDelegate.swift */; };
 		F97CD0CD2869D89B0062067F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F97CD0CC2869D89B0062067F /* Assets.xcassets */; };
@@ -37,6 +41,7 @@
 		F9A81974292786E80033060A /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A81973292786E80033060A /* PhotosViewController.swift */; };
 		F9A819772927A0FF0033060A /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A819762927A0FF0033060A /* PhotosCollectionViewCell.swift */; };
 		F9A8197B2927BEB90033060A /* PhotosCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8197A2927BEB90033060A /* PhotosCollectionViewHeader.swift */; };
+		F9B5B89C29C834B600B7CFA6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B5B89B29C834B600B7CFA6 /* WebKit.framework */; };
 		F9C602BB28E40AEB00DDF334 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9C602BD28E40AEB00DDF334 /* Localizable.strings */; };
 		F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C602C028E40C5200DDF334 /* LogInViewController.swift */; };
 		F9C602C328E40C7800DDF334 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */; };
@@ -136,6 +141,10 @@
 		F92C30DC29C77B4200515FA4 /* AudioViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModelProtocol.swift; sourceTree = "<group>"; };
 		F92C30DE29C77B6B00515FA4 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
 		F92C30E029C7856600515FA4 /* StrartPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrartPlayerDelegate.swift; sourceTree = "<group>"; };
+		F92C30E229C79AF600515FA4 /* VideoTapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTapDelegate.swift; sourceTree = "<group>"; };
+		F92C30E729C7A6EA00515FA4 /* VideoViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModelProtocol.swift; sourceTree = "<group>"; };
+		F92C30E929C7A72000515FA4 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		F92C30EB29C7A7DE00515FA4 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		F97CD0C02869D89A0062067F /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F97CD0C32869D89A0062067F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F97CD0C52869D89A0062067F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +161,7 @@
 		F9A81973292786E80033060A /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		F9A819762927A0FF0033060A /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9A8197A2927BEB90033060A /* PhotosCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewHeader.swift; sourceTree = "<group>"; };
+		F9B5B89B29C834B600B7CFA6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F9C602BC28E40AEB00DDF334 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9C602BE28E40B0400DDF334 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F9C602BF28E40B0400DDF334 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -213,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9B5B89C29C834B600B7CFA6 /* WebKit.framework in Frameworks */,
 				F9DB131529AFCC1B0067578D /* StorageService.framework in Frameworks */,
 				F9DB134129B3D3730067578D /* iOSIntPackage in Frameworks */,
 			);
@@ -249,6 +260,7 @@
 				F92C30D229C7176200515FA4 /* AudioTableView.swift */,
 				F92C30D429C7179A00515FA4 /* VideoTableView.swift */,
 				F92C30D929C75DD200515FA4 /* AudioViewController.swift */,
+				F92C30EB29C7A7DE00515FA4 /* VideoViewController.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -262,12 +274,22 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		F92C30E629C7A6D400515FA4 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				F92C30E729C7A6EA00515FA4 /* VideoViewModelProtocol.swift */,
+				F92C30E929C7A72000515FA4 /* VideoViewModel.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
 		F97CD0B72869D89A0062067F = {
 			isa = PBXGroup;
 			children = (
 				F97CD0C22869D89A0062067F /* Navigation */,
 				F9DB130E29AFCC1B0067578D /* StorageService */,
 				F97CD0C12869D89A0062067F /* Products */,
+				F9B5B89A29C834B600B7CFA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -344,6 +366,14 @@
 			path = Photos;
 			sourceTree = "<group>";
 		};
+		F9B5B89A29C834B600B7CFA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9B5B89B29C834B600B7CFA6 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F9CEB57F29B731E400EF2CFF /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +389,7 @@
 		F9CEB58429B733CB00EF2CFF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F92C30E629C7A6D400515FA4 /* Video */,
 				F92C30DB29C77B2D00515FA4 /* Audio */,
 				F9CEB5B929B794EF00EF2CFF /* Photos */,
 				F9CEB5AA29B7590A00EF2CFF /* Info */,
@@ -528,6 +559,7 @@
 				F9CEB5BE29B79D2C00EF2CFF /* RemoveChildCoordinatorDelegate.swift */,
 				F92C30D729C756F400515FA4 /* AudioTapDelegate.swift */,
 				F92C30E029C7856600515FA4 /* StrartPlayerDelegate.swift */,
+				F92C30E229C79AF600515FA4 /* VideoTapDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -687,6 +719,7 @@
 			files = (
 				F9CEB59F29B74D3600EF2CFF /* LoginViewModel.swift in Sources */,
 				F9CEB58F29B7426000EF2CFF /* FeedViewModel.swift in Sources */,
+				F92C30EC29C7A7DE00515FA4 /* VideoViewController.swift in Sources */,
 				F97CD1002869DE640062067F /* PostViewController.swift in Sources */,
 				F9DB134729B51AC00067578D /* FeedModel.swift in Sources */,
 				F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */,
@@ -700,6 +733,7 @@
 				F9DB132E29B284E40067578D /* UserService.swift in Sources */,
 				F9CEB59129B7429700EF2CFF /* FeedViewModelProtocol.swift in Sources */,
 				F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */,
+				F92C30E329C79AF600515FA4 /* VideoTapDelegate.swift in Sources */,
 				F9DB134D29B52C640067578D /* UITextFieldUtils.swift in Sources */,
 				F9CEB59329B7431500EF2CFF /* AppCoordinator.swift in Sources */,
 				F9CEB5B029B7594900EF2CFF /* PostViewModelProtocol.swift in Sources */,
@@ -730,11 +764,13 @@
 				F9CEB58329B7322000EF2CFF /* ModuleCoordinatable.swift in Sources */,
 				F9CEB58129B7320100EF2CFF /* Coordinatable.swift in Sources */,
 				F9DB133C29B3640E0067578D /* LoginFactory.swift in Sources */,
+				F92C30E829C7A6EA00515FA4 /* VideoViewModelProtocol.swift in Sources */,
 				F9DB133429B34D390067578D /* Checker.swift in Sources */,
 				F9DB132C29B27FAE0067578D /* UIImageUtils.swift in Sources */,
 				F9DB132A29B27DE10067578D /* UIColorUtils.swift in Sources */,
 				F9CEB5AE29B7593400EF2CFF /* InfoViewModel.swift in Sources */,
 				F9DB133E29B3649A0067578D /* MyLoginFactory.swift in Sources */,
+				F92C30EA29C7A72000515FA4 /* VideoViewModel.swift in Sources */,
 				F92C30D329C7176200515FA4 /* AudioTableView.swift in Sources */,
 				F9DB134929B51C0B0067578D /* AlertUtils.swift in Sources */,
 				F9CEB59D29B74D2600EF2CFF /* LoginViewModelProtocol.swift in Sources */,

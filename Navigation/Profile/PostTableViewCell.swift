@@ -9,10 +9,12 @@ import UIKit
 import StorageService
 
 final class PostTableViewCell: UITableViewCell {
-    weak var delegate: StartPlayerDelegate?
+    weak var startPlayerDelegate: StartPlayerDelegate?
+    weak var videoTapDelegate: VideoTapDelegate?
+    
     private lazy var audioData: [String] = []
     private lazy var audioTableHeight: CGFloat = 0
-    private lazy var videoData: [String] = []
+    private lazy var videoData: [(String, String)] = []
     private lazy var videoTableHeight: CGFloat = 0
     
     private enum Media {
@@ -111,6 +113,8 @@ final class PostTableViewCell: UITableViewCell {
         self.image.image = nil
         self.title.text = nil
         self.postDescription.text = nil
+        self.audioData = []
+        self.videoData = []
         self.views.text = nil
         self.likes.text = nil
     }
@@ -189,9 +193,10 @@ final class PostTableViewCell: UITableViewCell {
         }
     }
     
-    private func setupVideo(data: [String]) {
+    private func setupVideo(data: [(String, String)]) {
         if !data.isEmpty {
             self.videoData = data
+            self.videoTableHeight = CGFloat(data.count * 44 - 16)
         } else {
             self.videoTable.remove()
         }
@@ -230,6 +235,7 @@ extension PostTableViewCell: UITableViewDataSource {
                 return cell
             }
             cell.setup(with: self.videoData[indexPath.row])
+            cell.delegate = videoTapDelegate
             return cell
         }
     }
@@ -241,7 +247,7 @@ extension PostTableViewCell: UITableViewDataSource {
 
 extension PostTableViewCell: AudioTapDelegate {
     func audioDidTap(name: String) {
-        self.delegate?.start(audio: name, playlist: self.audioData)
+        self.startPlayerDelegate?.start(audio: name, playlist: self.audioData)
     }
 }
 

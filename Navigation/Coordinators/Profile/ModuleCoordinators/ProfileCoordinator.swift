@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 final class ProfileCoordinator: ModuleCoordinatable {
     let moduleType: Module.ModuleType
@@ -37,6 +39,12 @@ final class ProfileCoordinator: ModuleCoordinatable {
     func presentAudioViewController(audio: String, playlist: [String]) {
         let viewModel = AudioViewModel(audio: audio, playlist: playlist)
         let viewControllerToPresent = AudioViewController(viewModel: viewModel)
+        self.module?.viewController.present(viewControllerToPresent, animated: true)
+    }
+    
+    func presentAVPlayerViewController(urlString: String) {
+        let viewModel = VideoViewModel(data: urlString)
+        let viewControllerToPresent = VideoViewController(viewModel: viewModel)
         self.module?.viewController.present(viewControllerToPresent, animated: true)
     }
 }

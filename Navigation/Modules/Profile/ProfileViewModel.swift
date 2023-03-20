@@ -16,6 +16,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     enum ViewInput {
         case photosDidTap([UIImage])
         case audioDidTap(String, [String])
+        case videoDidTap(String)
     }
     
     let user: User
@@ -36,6 +37,8 @@ final class ProfileViewModel: ProfileViewModelProtocol {
             self.coordinator?.pushPhotosViewController(data: data)
         case .audioDidTap(let audio, let playlist):
             self.coordinator?.presentAudioViewController(audio: audio, playlist: playlist)
+        case .videoDidTap(let url):
+            self.coordinator?.presentAVPlayerViewController(urlString: url)
         }
     }
 }

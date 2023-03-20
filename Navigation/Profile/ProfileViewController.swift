@@ -151,7 +151,7 @@ final class ProfileViewController: UIViewController {
     }()
     
     private func pushToPhotosVC() {
-        self.viewModel.updateState(viewInput: .photosDidTap(viewModel.photos))
+        self.viewModel.updateState(viewInput: .photosDidTap(self.viewModel.photos))
     }
 }
 
@@ -165,7 +165,7 @@ extension ProfileViewController: UITableViewDataSource {
         if section == 0 {
             return 1
         }
-        return viewModel.posts.count
+        return self.viewModel.posts.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -176,7 +176,7 @@ extension ProfileViewController: UITableViewDataSource {
                 return cell
             }
             cell.addGestureRecognizer(tapRecognizer)
-            cell.setup(with: viewModel.photos)
+            cell.setup(with: self.viewModel.photos)
             
             return cell
         case 1:
@@ -184,10 +184,11 @@ extension ProfileViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DefaltCell", for: indexPath)
                 return cell
             }
-            let post = viewModel.posts[indexPath.row]
+            let post = self.viewModel.posts[indexPath.row]
             cell.clipsToBounds = true
             cell.setup(with: post)
-            cell.delegate = self
+            cell.startPlayerDelegate = self
+            cell.videoTapDelegate = self
             
             return cell
         default:
@@ -224,7 +225,7 @@ extension ProfileViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         gestureRecognizer.allowedTouchTypes = [0]
         if (touch.type == .direct) {
-            pushToPhotosVC()
+            self.pushToPhotosVC()
             return true
         }
         return false
@@ -269,5 +270,12 @@ extension ProfileViewController: AvatarTapDelegate {
 extension ProfileViewController: StartPlayerDelegate {
     func start(audio: String, playlist: [String]) {
         self.viewModel.updateState(viewInput: .audioDidTap(audio, playlist))
+    }
+}
+
+extension ProfileViewController: VideoTapDelegate {
+    func videoDidTap(_ video: String) {
+        print("🔴\(video)")
+        self.viewModel.updateState(viewInput: .videoDidTap(video))
     }
 }
