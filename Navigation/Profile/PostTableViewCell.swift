@@ -7,15 +7,18 @@
 
 import UIKit
 import StorageService
+//import AVFoundation
 
 final class PostTableViewCell: UITableViewCell {
     weak var startPlayerDelegate: StartPlayerDelegate?
     weak var videoTapDelegate: VideoTapDelegate?
     
     private lazy var audioData: [String] = []
-    private lazy var audioTableHeight: CGFloat = 0
     private lazy var videoData: [(String, String)] = []
-    private lazy var videoTableHeight: CGFloat = 0
+    
+//    let engine = AVAudioEngine()
+//    var file: AVAudioFile?
+//    var player = AVAudioPlayerNode()
     
     private enum Media {
         case audio
@@ -46,7 +49,6 @@ final class PostTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
-        
         image.backgroundColor = .black
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -57,6 +59,7 @@ final class PostTableViewCell: UITableViewCell {
         table.register(AudioTableViewCell.self, forCellReuseIdentifier: "AudioCell")
         table.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         
+        table.estimatedRowHeight = 44
         table.dataSource = self
         table.isScrollEnabled = false
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +71,7 @@ final class PostTableViewCell: UITableViewCell {
         table.register(VideoTableViewCell.self, forCellReuseIdentifier: "VideoCell")
         table.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         
+        table.estimatedRowHeight = 44
         table.dataSource = self
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
@@ -97,6 +101,28 @@ final class PostTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private lazy var imageStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.backgroundColor = .black
+        
+        return stack
+    }()
+    
+//    private lazy var recordAudioBtn: CustomButton = {
+//        let btn = CustomButton(title: nil,
+//                               titleColor: nil,
+//                               backgroundImage: UIImage(systemName: "mic.circle.fill"),
+//                               onBtnTap: recordAudioBtnDidTap)
+//        btn.addTarget(self, action: #selector(recordAudioBtnHold), for: .touchDown)
+//        btn.scale(by: 2)
+//        btn.tintColor = .systemBlue
+//
+//        return btn
+//    }()
   
 // MARK: Lifecycle
     required init?(coder: NSCoder) {
@@ -105,16 +131,23 @@ final class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        self.setupBasicViews()
+        self.setupBasicViews()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         self.image.image = nil
+        self.imageStack.isHidden = false
+        NSLayoutConstraint.deactivate([
+            self.imageStack.heightAnchor.constraint(equalTo: self.imageStack.widthAnchor, multiplier: 1.0),
+        ])
+        
         self.title.text = nil
         self.postDescription.text = nil
         self.audioData = []
+        self.audioTable.reloadData()
         self.videoData = []
+        self.videoTable.reloadData()
         self.views.text = nil
         self.likes.text = nil
     }
@@ -129,33 +162,34 @@ final class PostTableViewCell: UITableViewCell {
         self.postDescription.text = viewModel.description
         self.likes.text = NSLocalizedString("Likes", comment: "Likes") + String(viewModel.likes)
         self.views.text = NSLocalizedString("Views", comment: "Views") + String(viewModel.views)
-        
-        self.setupBasicViews()
     }
     
     private func setupBasicViews() {
         self.contentView.addSubview(title)
-        self.contentView.addSubview(image)
         self.contentView.addSubview(audioTable)
         self.contentView.addSubview(videoTable)
         self.contentView.addSubview(postDescription)
         self.contentView.addSubview(views)
         self.contentView.addSubview(likes)
+//        self.contentView.addSubview(recordAudioBtn)
+        self.contentView.addSubview(imageStack)
+        
+        self.imageStack.addArrangedSubview(image)
         
         NSLayoutConstraint.activate([
             self.title.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
             self.title.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             self.title.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             
-            self.image.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: 16),
-            self.image.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            self.image.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            self.image.heightAnchor.constraint(equalTo: self.image.widthAnchor, multiplier: 1.0),
+            self.imageStack.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: 16),
+            self.imageStack.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            self.imageStack.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            self.imageStack.heightAnchor.constraint(equalToConstant: 0),
+//            self.imageStack.heightAnchor.constraint(equalTo: self.imageStack.widthAnchor, multiplier: 1.0),
             
-            self.videoTable.topAnchor.constraint(equalTo: self.image.bottomAnchor, constant: 16),
+            self.videoTable.topAnchor.constraint(equalTo: self.imageStack.bottomAnchor, constant: 16),
             self.videoTable.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             self.videoTable.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
-            self.videoTable.heightAnchor.constraint(equalToConstant: self.videoTableHeight),
             
             self.postDescription.topAnchor.constraint(equalTo: self.videoTable.bottomAnchor, constant: 16),
             self.postDescription.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
@@ -164,45 +198,109 @@ final class PostTableViewCell: UITableViewCell {
             self.audioTable.topAnchor.constraint(equalTo: self.postDescription.bottomAnchor, constant: 16),
             self.audioTable.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             self.audioTable.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
-            self.audioTable.heightAnchor.constraint(equalToConstant: self.audioTableHeight),
             
-            self.likes.topAnchor.constraint(equalTo: self.audioTable.bottomAnchor, constant: 16),
+//            self.recordAudioBtn.topAnchor.constraint(equalTo: self.audioTable.bottomAnchor, constant: 24),
+//            self.recordAudioBtn.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -32),
+//            self.recordAudioBtn.widthAnchor.constraint(equalTo: self.recordAudioBtn.heightAnchor),
+            
+            self.likes.topAnchor.constraint(equalTo: self.audioTable.bottomAnchor, constant: 24),
             self.likes.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             self.likes.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -16),
             
-            self.views.topAnchor.constraint(equalTo: self.audioTable.bottomAnchor, constant: 16),
+            self.views.topAnchor.constraint(equalTo: self.audioTable.bottomAnchor, constant: 24),
             self.views.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             self.views.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -16)
         ])
     }
     
     private func setupImage(data: String?) {
-        if let image = data {
-            self.image.image = UIImage(named: image)
+        if let image = UIImage(named: data ?? "") {
+            self.image.image = image
+            NSLayoutConstraint.activate([
+                self.imageStack.heightAnchor.constraint(equalTo: self.imageStack.widthAnchor, multiplier: 1.0),
+            ])
         } else {
-            self.image.remove()
+            self.imageStack.isHidden = true
         }
     }
-    
+
     private func setupAudio(data: [String]) {
         if !data.isEmpty {
             self.audioData = data
-            self.audioTableHeight = CGFloat(data.count * 44 - 16)
-        } else {
-            self.audioTable.remove()
+            self.audioTable.reloadData()
         }
     }
     
     private func setupVideo(data: [(String, String)]) {
         if !data.isEmpty {
             self.videoData = data
-            self.videoTableHeight = CGFloat(data.count * 44 - 16)
-        } else {
-            self.videoTable.remove()
+            self.videoTable.reloadData()
         }
     }
+    
+    // MARK: Action
+//    private func recordAudioBtnDidTap() {
+//        print("🔲 Button released")
+//
+//        self.recordAudioBtn.scale(by: 2)
+//        self.stopRecording()
+//        let date = Date.now
+//        let audioName = "Audio_\(date).m4a"
+//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        let url = paths[0].appendingPathComponent(audioName, conformingTo: .audio)
+//        self.prepareAudioFile(for: url)
+//    }
+    
+//    @objc private func recordAudioBtnHold() {
+//        print("🔳 Button hold")
+//        self.recordAudioBtn.scale(by: 4)
+//        let date = Date.now
+//        let audioName = "Audio_\(date).m4a"
+//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        let url = paths[0].appendingPathComponent(audioName, conformingTo: .audio)
+//        self.prepareAudioFile(for: url)
+//        self.startRecording()
+//    }
+    
+//    private func prepareAudioFile(for outputURL: URL) {
+//        do {
+//            self.file = try AVAudioFile(
+//                forWriting: outputURL,
+//                settings: self.engine.inputNode.inputFormat(forBus: 0).settings
+//            )
+//            self.engine.attach(player)
+//            self.engine.connect(
+//                player,
+//                to: engine.mainMixerNode,
+//                format: engine.mainMixerNode.outputFormat(forBus: 0)
+//            )
+//            try self.engine.start()
+//        } catch {
+//            print(error)
+//        }
+//    }
+//
+//    private func startRecording() {
+//        engine.inputNode.installTap(
+//            onBus: 0,
+//            bufferSize: 1024,
+//            format: engine.mainMixerNode.outputFormat(forBus: 0)) { (buffer, time) -> Void in
+//                do {
+//                    try self.file?.write(from: buffer)
+//                } catch {
+//                    print(error)
+//                }
+//                return
+//            }
+//    }
+//
+//    private func stopRecording() {
+//        self.engine.inputNode.removeTap(onBus: 0)
+//        self.
+//    }
 }
 
+// MARK: Extensions
 extension PostTableViewCell: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         1

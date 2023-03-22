@@ -27,7 +27,7 @@ final class AudioViewController: UIViewController {
                                backgroundImage: UIImage(systemName: "pause.fill"),
                                onBtnTap: playBtnDidTap)
         btn.tintColor = .black
-        btn.transform = CGAffineTransform(scaleX: 2, y: 2)
+        btn.scale(by: 2)
         
         return btn
     }()
@@ -38,7 +38,7 @@ final class AudioViewController: UIViewController {
                                backgroundImage: UIImage(systemName: "stop.fill"),
                                onBtnTap: stopBtnDidTap)
         btn.tintColor = .black
-        btn.transform = CGAffineTransform(scaleX: 2, y: 2)
+        btn.scale(by: 2)
         btn.isEnabled = true
         
         return btn
@@ -50,7 +50,7 @@ final class AudioViewController: UIViewController {
                                backgroundImage: UIImage(systemName: "backward.end.fill"),
                                onBtnTap: backBtnDidTap)
         btn.tintColor = .black
-        btn.transform = CGAffineTransform(scaleX: 2, y: 2)
+        btn.scale(by: 2)
         
         return btn
     }()
@@ -61,7 +61,7 @@ final class AudioViewController: UIViewController {
                                backgroundImage: UIImage(systemName: "forward.end.fill"),
                                onBtnTap: forwardBtnDidTap)
         btn.tintColor = .black
-        btn.transform = CGAffineTransform(scaleX: 2, y: 2)
+        btn.scale(by: 2)
         
         return btn
     }()

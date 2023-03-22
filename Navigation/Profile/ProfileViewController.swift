@@ -18,7 +18,7 @@ final class ProfileViewController: UIViewController {
         btn.tintColor = .systemRed
         btn.setImage(UIImage(systemName: "xmark"), for: .normal)
         btn.isEnabled = false
-        btn.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+        btn.scale(by: 2)
         
         return btn
     }()
@@ -186,6 +186,7 @@ extension ProfileViewController: UITableViewDataSource {
             }
             let post = self.viewModel.posts[indexPath.row]
             cell.clipsToBounds = true
+            print("🔹\(post)")
             cell.setup(with: post)
             cell.startPlayerDelegate = self
             cell.videoTapDelegate = self
@@ -275,7 +276,6 @@ extension ProfileViewController: StartPlayerDelegate {
 
 extension ProfileViewController: VideoTapDelegate {
     func videoDidTap(_ video: String) {
-        print("🔴\(video)")
         self.viewModel.updateState(viewInput: .videoDidTap(video))
     }
 }
