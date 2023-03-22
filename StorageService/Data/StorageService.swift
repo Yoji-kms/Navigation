@@ -12,6 +12,31 @@ final public class StorageService {
     public static let shared = StorageService()
     
     public let posts: [Post] = [
+        Post(title: "CVRCHES music",
+             audio: [
+                "04. My Enemy (Feat. Matt Berninger)",
+                "06. Never Say Die",
+                "08. Graves"
+             ], video: [
+                ("CHVRCHES - Over", "https://www.youtube.com/embed/8ecVwQIUTHA"),
+                ("CHVRCHES - The Mother We Share", "https://www.youtube.com/embed/_mTRvJ9fugM"),
+                ("CHVRCHES - Good Girls", "https://www.youtube.com/embed/du4kNAyjVCg")
+             ],
+             likes: 20215,
+             views: 125214),
+        Post(title: "Ed Sheeran music",
+             audio: [
+                "02. Castle On The Hill",
+                "06. Galway Girl",
+                "13. Barcelona"
+             ],video: [
+                ("Ed Sheeran - Shivers", "https://www.youtube.com/embed/Il0S8BoucSA"),
+                ("Ed Sheeran - Bad Habits", "https://www.youtube.com/embed/orJSJGHjBLI"),
+                ("Ed Sheeran, Pokémon - Celestial", "https://www.youtube.com/embed/23g5HBOg3Ic")
+             ],
+             likes: 144221,
+             views: 215420),
+        
         Post(title: "Песочный человек",
              description: "\"Сэндмену\" недаром нет равных среди графических романов по числу престижных наград и премий, равно как и по числу похвальных отзывов критиков и читателей. \"Сэндмен\" — это полный тайн и открытий сюжет с глубоким философским подтекстом, прописанный гениальным пером Нила Геймана и иллюстрированный лучшими художниками в жанре комикса, \"Сэндмен\" — это колдовская смесь мифа и темной фэнтези, где сплетаются воедино множество жанров, от исторического романа до детектива. Подобных саг, где одна таинственная, будоражащая душу, история плавно перетекает в другую, не менее таинственную, мир графических романов прежде не видел. Однажды прочитав, \"Сэндмена\" невозможно забыть.",
              image: "Photos/sandman",

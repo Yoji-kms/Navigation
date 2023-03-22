@@ -56,7 +56,7 @@ final class PhotosTableViewCell: UITableViewCell {
     
 // MARK: Setups
     func setup(with viewModel: [UIImage]) {
-       data = viewModel
+        self.data = viewModel
     }
 
     private func setupView() {

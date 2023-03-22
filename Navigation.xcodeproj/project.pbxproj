@@ -8,6 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		F92C30BE29C3457A00515FA4 /* CGImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30BD29C3457A00515FA4 /* CGImageUtils.swift */; };
+		F92C30C629C5AF7E00515FA4 /* 06. Never Say Die.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F92C30C029C5AF7B00515FA4 /* 06. Never Say Die.mp3 */; };
+		F92C30C729C5AF7E00515FA4 /* 13. Barcelona.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F92C30C129C5AF7C00515FA4 /* 13. Barcelona.mp3 */; };
+		F92C30C829C5AF7E00515FA4 /* 08. Graves.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F92C30C229C5AF7C00515FA4 /* 08. Graves.mp3 */; };
+		F92C30C929C5AF7E00515FA4 /* 06. Galway Girl.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F92C30C329C5AF7D00515FA4 /* 06. Galway Girl.mp3 */; };
+		F92C30CA29C5AF7E00515FA4 /* 04. My Enemy (Feat. Matt Berninger).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F92C30C429C5AF7D00515FA4 /* 04. My Enemy (Feat. Matt Berninger).mp3 */; };
+		F92C30CB29C5AF7E00515FA4 /* 02. Castle On The Hill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F92C30C529C5AF7E00515FA4 /* 02. Castle On The Hill.mp3 */; };
+		F92C30CD29C5CB5200515FA4 /* UIVIewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30CC29C5CB5200515FA4 /* UIVIewUtils.swift */; };
+		F92C30CF29C5D8E500515FA4 /* AudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30CE29C5D8E500515FA4 /* AudioTableViewCell.swift */; };
+		F92C30D129C5D8F800515FA4 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30D029C5D8F800515FA4 /* VideoTableViewCell.swift */; };
+		F92C30D329C7176200515FA4 /* AudioTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30D229C7176200515FA4 /* AudioTableView.swift */; };
+		F92C30D529C7179A00515FA4 /* VideoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30D429C7179A00515FA4 /* VideoTableView.swift */; };
+		F92C30D829C756F400515FA4 /* AudioTapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30D729C756F400515FA4 /* AudioTapDelegate.swift */; };
+		F92C30DA29C75DD200515FA4 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30D929C75DD200515FA4 /* AudioViewController.swift */; };
+		F92C30DD29C77B4300515FA4 /* AudioViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30DC29C77B4200515FA4 /* AudioViewModelProtocol.swift */; };
+		F92C30DF29C77B6B00515FA4 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30DE29C77B6B00515FA4 /* AudioViewModel.swift */; };
+		F92C30E129C7856600515FA4 /* StrartPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30E029C7856600515FA4 /* StrartPlayerDelegate.swift */; };
+		F92C30E329C79AF600515FA4 /* VideoTapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30E229C79AF600515FA4 /* VideoTapDelegate.swift */; };
+		F92C30E829C7A6EA00515FA4 /* VideoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30E729C7A6EA00515FA4 /* VideoViewModelProtocol.swift */; };
+		F92C30EA29C7A72000515FA4 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30E929C7A72000515FA4 /* VideoViewModel.swift */; };
+		F92C30EC29C7A7DE00515FA4 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30EB29C7A7DE00515FA4 /* VideoViewController.swift */; };
 		F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C32869D89A0062067F /* AppDelegate.swift */; };
 		F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0C52869D89A0062067F /* SceneDelegate.swift */; };
 		F97CD0CD2869D89B0062067F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F97CD0CC2869D89B0062067F /* Assets.xcassets */; };
@@ -21,6 +41,7 @@
 		F9A81974292786E80033060A /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A81973292786E80033060A /* PhotosViewController.swift */; };
 		F9A819772927A0FF0033060A /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A819762927A0FF0033060A /* PhotosCollectionViewCell.swift */; };
 		F9A8197B2927BEB90033060A /* PhotosCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8197A2927BEB90033060A /* PhotosCollectionViewHeader.swift */; };
+		F9B5B89C29C834B600B7CFA6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B5B89B29C834B600B7CFA6 /* WebKit.framework */; };
 		F9C602BB28E40AEB00DDF334 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9C602BD28E40AEB00DDF334 /* Localizable.strings */; };
 		F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C602C028E40C5200DDF334 /* LogInViewController.swift */; };
 		F9C602C328E40C7800DDF334 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */; };
@@ -104,6 +125,26 @@
 
 /* Begin PBXFileReference section */
 		F92C30BD29C3457A00515FA4 /* CGImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImageUtils.swift; sourceTree = "<group>"; };
+		F92C30C029C5AF7B00515FA4 /* 06. Never Say Die.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "06. Never Say Die.mp3"; sourceTree = "<group>"; };
+		F92C30C129C5AF7C00515FA4 /* 13. Barcelona.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "13. Barcelona.mp3"; sourceTree = "<group>"; };
+		F92C30C229C5AF7C00515FA4 /* 08. Graves.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "08. Graves.mp3"; sourceTree = "<group>"; };
+		F92C30C329C5AF7D00515FA4 /* 06. Galway Girl.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "06. Galway Girl.mp3"; sourceTree = "<group>"; };
+		F92C30C429C5AF7D00515FA4 /* 04. My Enemy (Feat. Matt Berninger).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "04. My Enemy (Feat. Matt Berninger).mp3"; sourceTree = "<group>"; };
+		F92C30C529C5AF7E00515FA4 /* 02. Castle On The Hill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "02. Castle On The Hill.mp3"; sourceTree = "<group>"; };
+		F92C30CC29C5CB5200515FA4 /* UIVIewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewUtils.swift; sourceTree = "<group>"; };
+		F92C30CE29C5D8E500515FA4 /* AudioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTableViewCell.swift; sourceTree = "<group>"; };
+		F92C30D029C5D8F800515FA4 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
+		F92C30D229C7176200515FA4 /* AudioTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTableView.swift; sourceTree = "<group>"; };
+		F92C30D429C7179A00515FA4 /* VideoTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableView.swift; sourceTree = "<group>"; };
+		F92C30D729C756F400515FA4 /* AudioTapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTapDelegate.swift; sourceTree = "<group>"; };
+		F92C30D929C75DD200515FA4 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		F92C30DC29C77B4200515FA4 /* AudioViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModelProtocol.swift; sourceTree = "<group>"; };
+		F92C30DE29C77B6B00515FA4 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
+		F92C30E029C7856600515FA4 /* StrartPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrartPlayerDelegate.swift; sourceTree = "<group>"; };
+		F92C30E229C79AF600515FA4 /* VideoTapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTapDelegate.swift; sourceTree = "<group>"; };
+		F92C30E729C7A6EA00515FA4 /* VideoViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModelProtocol.swift; sourceTree = "<group>"; };
+		F92C30E929C7A72000515FA4 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		F92C30EB29C7A7DE00515FA4 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		F97CD0C02869D89A0062067F /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F97CD0C32869D89A0062067F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F97CD0C52869D89A0062067F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +161,7 @@
 		F9A81973292786E80033060A /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		F9A819762927A0FF0033060A /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9A8197A2927BEB90033060A /* PhotosCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewHeader.swift; sourceTree = "<group>"; };
+		F9B5B89B29C834B600B7CFA6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F9C602BC28E40AEB00DDF334 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9C602BE28E40B0400DDF334 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F9C602BF28E40B0400DDF334 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -181,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9B5B89C29C834B600B7CFA6 /* WebKit.framework in Frameworks */,
 				F9DB131529AFCC1B0067578D /* StorageService.framework in Frameworks */,
 				F9DB134129B3D3730067578D /* iOSIntPackage in Frameworks */,
 			);
@@ -196,12 +239,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F92C30BF29C59E3200515FA4 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				F92C30C529C5AF7E00515FA4 /* 02. Castle On The Hill.mp3 */,
+				F92C30C429C5AF7D00515FA4 /* 04. My Enemy (Feat. Matt Berninger).mp3 */,
+				F92C30C329C5AF7D00515FA4 /* 06. Galway Girl.mp3 */,
+				F92C30C029C5AF7B00515FA4 /* 06. Never Say Die.mp3 */,
+				F92C30C229C5AF7C00515FA4 /* 08. Graves.mp3 */,
+				F92C30C129C5AF7C00515FA4 /* 13. Barcelona.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
+		F92C30D629C7229400515FA4 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				F92C30CE29C5D8E500515FA4 /* AudioTableViewCell.swift */,
+				F92C30D029C5D8F800515FA4 /* VideoTableViewCell.swift */,
+				F92C30D229C7176200515FA4 /* AudioTableView.swift */,
+				F92C30D429C7179A00515FA4 /* VideoTableView.swift */,
+				F92C30D929C75DD200515FA4 /* AudioViewController.swift */,
+				F92C30EB29C7A7DE00515FA4 /* VideoViewController.swift */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		F92C30DB29C77B2D00515FA4 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				F92C30DC29C77B4200515FA4 /* AudioViewModelProtocol.swift */,
+				F92C30DE29C77B6B00515FA4 /* AudioViewModel.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		F92C30E629C7A6D400515FA4 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				F92C30E729C7A6EA00515FA4 /* VideoViewModelProtocol.swift */,
+				F92C30E929C7A72000515FA4 /* VideoViewModel.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
 		F97CD0B72869D89A0062067F = {
 			isa = PBXGroup;
 			children = (
 				F97CD0C22869D89A0062067F /* Navigation */,
 				F9DB130E29AFCC1B0067578D /* StorageService */,
 				F97CD0C12869D89A0062067F /* Products */,
+				F9B5B89A29C834B600B7CFA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -217,6 +305,7 @@
 		F97CD0C22869D89A0062067F /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F92C30BF29C59E3200515FA4 /* Music */,
 				F9CEB58529B733E400EF2CFF /* App */,
 				F9CEB58429B733CB00EF2CFF /* Modules */,
 				F9CEB57F29B731E400EF2CFF /* Coordinators */,
@@ -229,9 +318,9 @@
 				F9A8197029277EC40033060A /* Photos */,
 				F9CF7A88289D80F700839A1F /* Profile */,
 				F97CD0F32869D9C10062067F /* Controllers */,
-				F97CD0CC2869D89B0062067F /* Assets.xcassets */,
 				F97CD0CE2869D89B0062067F /* LaunchScreen.storyboard */,
 				F97CD0D12869D89B0062067F /* Info.plist */,
+				F97CD0CC2869D89B0062067F /* Assets.xcassets */,
 				F9C602BD28E40AEB00DDF334 /* Localizable.strings */,
 			);
 			path = Navigation;
@@ -277,6 +366,14 @@
 			path = Photos;
 			sourceTree = "<group>";
 		};
+		F9B5B89A29C834B600B7CFA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9B5B89B29C834B600B7CFA6 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F9CEB57F29B731E400EF2CFF /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +389,8 @@
 		F9CEB58429B733CB00EF2CFF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F92C30E629C7A6D400515FA4 /* Video */,
+				F92C30DB29C77B2D00515FA4 /* Audio */,
 				F9CEB5B929B794EF00EF2CFF /* Photos */,
 				F9CEB5AA29B7590A00EF2CFF /* Info */,
 				F9CEB5A929B758FC00EF2CFF /* Post */,
@@ -408,6 +507,7 @@
 		F9CF7A88289D80F700839A1F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F92C30D629C7229400515FA4 /* Media */,
 				F97CD0FD2869DE420062067F /* ProfileViewController.swift */,
 				F9CF7A89289D813000839A1F /* ProfileHeaderView.swift */,
 				F9C602C028E40C5200DDF334 /* LogInViewController.swift */,
@@ -447,6 +547,7 @@
 				F9DB134A29B529070067578D /* UIButtonUtils.swift */,
 				F9DB134C29B52C640067578D /* UITextFieldUtils.swift */,
 				F92C30BD29C3457A00515FA4 /* CGImageUtils.swift */,
+				F92C30CC29C5CB5200515FA4 /* UIVIewUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -456,6 +557,9 @@
 			children = (
 				F9DB1300298A9F850067578D /* AvatarTapDelegate.swift */,
 				F9CEB5BE29B79D2C00EF2CFF /* RemoveChildCoordinatorDelegate.swift */,
+				F92C30D729C756F400515FA4 /* AudioTapDelegate.swift */,
+				F92C30E029C7856600515FA4 /* StrartPlayerDelegate.swift */,
+				F92C30E229C79AF600515FA4 /* VideoTapDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -588,7 +692,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97CD0D02869D89B0062067F /* LaunchScreen.storyboard in Resources */,
+				F92C30C729C5AF7E00515FA4 /* 13. Barcelona.mp3 in Resources */,
+				F92C30CB29C5AF7E00515FA4 /* 02. Castle On The Hill.mp3 in Resources */,
 				F9C602BB28E40AEB00DDF334 /* Localizable.strings in Resources */,
+				F92C30C629C5AF7E00515FA4 /* 06. Never Say Die.mp3 in Resources */,
+				F92C30CA29C5AF7E00515FA4 /* 04. My Enemy (Feat. Matt Berninger).mp3 in Resources */,
+				F92C30C929C5AF7E00515FA4 /* 06. Galway Girl.mp3 in Resources */,
+				F92C30C829C5AF7E00515FA4 /* 08. Graves.mp3 in Resources */,
 				F97CD0CD2869D89B0062067F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -609,47 +719,59 @@
 			files = (
 				F9CEB59F29B74D3600EF2CFF /* LoginViewModel.swift in Sources */,
 				F9CEB58F29B7426000EF2CFF /* FeedViewModel.swift in Sources */,
+				F92C30EC29C7A7DE00515FA4 /* VideoViewController.swift in Sources */,
 				F97CD1002869DE640062067F /* PostViewController.swift in Sources */,
 				F9DB134729B51AC00067578D /* FeedModel.swift in Sources */,
 				F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */,
 				F97CD104286B30B50062067F /* TabBarController.swift in Sources */,
 				F9CEB5B429B75A3900EF2CFF /* ProfileTabCoordinator.swift in Sources */,
 				F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */,
+				F92C30CF29C5D8E500515FA4 /* AudioTableViewCell.swift in Sources */,
 				F9CEB5BF29B79D2C00EF2CFF /* RemoveChildCoordinatorDelegate.swift in Sources */,
 				F9DB134429B4FD870067578D /* CustomButton.swift in Sources */,
 				F9A8197B2927BEB90033060A /* PhotosCollectionViewHeader.swift in Sources */,
 				F9DB132E29B284E40067578D /* UserService.swift in Sources */,
 				F9CEB59129B7429700EF2CFF /* FeedViewModelProtocol.swift in Sources */,
 				F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */,
+				F92C30E329C79AF600515FA4 /* VideoTapDelegate.swift in Sources */,
 				F9DB134D29B52C640067578D /* UITextFieldUtils.swift in Sources */,
 				F9CEB59329B7431500EF2CFF /* AppCoordinator.swift in Sources */,
 				F9CEB5B029B7594900EF2CFF /* PostViewModelProtocol.swift in Sources */,
+				F92C30CD29C5CB5200515FA4 /* UIVIewUtils.swift in Sources */,
+				F92C30DF29C77B6B00515FA4 /* AudioViewModel.swift in Sources */,
 				F9CEB59929B7470500EF2CFF /* ProfileViewModelProtocol.swift in Sources */,
 				F97CD0C42869D89A0062067F /* AppDelegate.swift in Sources */,
 				F9CEB58729B734EF00EF2CFF /* ViewModelProtocol.swift in Sources */,
+				F92C30D129C5D8F800515FA4 /* VideoTableViewCell.swift in Sources */,
 				F9CEB5BB29B7950900EF2CFF /* PhotosViewModelProtocol.swift in Sources */,
 				F9DB1303298E8C8D0067578D /* AvatarView.swift in Sources */,
+				F92C30DD29C77B4300515FA4 /* AudioViewModelProtocol.swift in Sources */,
 				F9DB134B29B529070067578D /* UIButtonUtils.swift in Sources */,
 				F9CEB59B29B7472900EF2CFF /* ProfileViewModel.swift in Sources */,
 				F9CEB5A829B758CF00EF2CFF /* InfoCoordinator.swift in Sources */,
 				F97CD0C62869D89A0062067F /* SceneDelegate.swift in Sources */,
 				F9CF7A8A289D813000839A1F /* ProfileHeaderView.swift in Sources */,
 				F9CEB5AC29B7592500EF2CFF /* InfoViewModelProtocol.swift in Sources */,
+				F92C30E129C7856600515FA4 /* StrartPlayerDelegate.swift in Sources */,
 				F9CEB5B629B75A4F00EF2CFF /* FeedTabCoordinator.swift in Sources */,
 				F92C30BE29C3457A00515FA4 /* CGImageUtils.swift in Sources */,
 				F9CEB5B229B7595600EF2CFF /* PostViewModel.swift in Sources */,
 				F9CEB59529B7432900EF2CFF /* FeedCoordinator.swift in Sources */,
+				F92C30D829C756F400515FA4 /* AudioTapDelegate.swift in Sources */,
 				F9A8197229277EFE0033060A /* PhotosTableViewCell.swift in Sources */,
 				F9CEB59729B7433900EF2CFF /* ProfileCoordinator.swift in Sources */,
 				F9CEB5A629B758C200EF2CFF /* PostCoordinator.swift in Sources */,
 				F9CEB58329B7322000EF2CFF /* ModuleCoordinatable.swift in Sources */,
 				F9CEB58129B7320100EF2CFF /* Coordinatable.swift in Sources */,
 				F9DB133C29B3640E0067578D /* LoginFactory.swift in Sources */,
+				F92C30E829C7A6EA00515FA4 /* VideoViewModelProtocol.swift in Sources */,
 				F9DB133429B34D390067578D /* Checker.swift in Sources */,
 				F9DB132C29B27FAE0067578D /* UIImageUtils.swift in Sources */,
 				F9DB132A29B27DE10067578D /* UIColorUtils.swift in Sources */,
 				F9CEB5AE29B7593400EF2CFF /* InfoViewModel.swift in Sources */,
 				F9DB133E29B3649A0067578D /* MyLoginFactory.swift in Sources */,
+				F92C30EA29C7A72000515FA4 /* VideoViewModel.swift in Sources */,
+				F92C30D329C7176200515FA4 /* AudioTableView.swift in Sources */,
 				F9DB134929B51C0B0067578D /* AlertUtils.swift in Sources */,
 				F9CEB59D29B74D2600EF2CFF /* LoginViewModelProtocol.swift in Sources */,
 				F9DB133029B2871A0067578D /* TestUserService.swift in Sources */,
@@ -663,8 +785,10 @@
 				F9CEB58B29B73BCB00EF2CFF /* AppFactory.swift in Sources */,
 				F9DB1301298A9F850067578D /* AvatarTapDelegate.swift in Sources */,
 				F9CEB5BD29B7951800EF2CFF /* PhotosViewModel.swift in Sources */,
+				F92C30D529C7179A00515FA4 /* VideoTableView.swift in Sources */,
 				F9C602C328E40C7800DDF334 /* PostTableViewCell.swift in Sources */,
 				F9DB133929B35C6E0067578D /* LoginInspector.swift in Sources */,
+				F92C30DA29C75DD200515FA4 /* AudioViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
