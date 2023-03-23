@@ -20,6 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let loginInspector = loginFactory.makeLoginInspector()
         let factory = AppFactory(loginInspector: loginInspector)
         let appCoordinator = AppCoordinator(factory: factory)
+        if let appConfig = AppConfiguration.allCases.randomElement() {
+            NetworkService.request(for: appConfig)
+        } else {
+            print("♦️ Wrong app configuration")
+        }
         
         self.window = UIWindow(windowScene: windowScene)
         self.appCoordinator = appCoordinator
