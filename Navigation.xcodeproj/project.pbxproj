@@ -21,6 +21,8 @@
 		F9A81974292786E80033060A /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A81973292786E80033060A /* PhotosViewController.swift */; };
 		F9A819772927A0FF0033060A /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A819762927A0FF0033060A /* PhotosCollectionViewCell.swift */; };
 		F9A8197B2927BEB90033060A /* PhotosCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8197A2927BEB90033060A /* PhotosCollectionViewHeader.swift */; };
+		F9B5B8A329CC4C2D00B7CFA6 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B5B8A229CC4C2D00B7CFA6 /* NetworkService.swift */; };
+		F9B5B8A529CC4CC000B7CFA6 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B5B8A429CC4CC000B7CFA6 /* AppConfiguration.swift */; };
 		F9C602BB28E40AEB00DDF334 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9C602BD28E40AEB00DDF334 /* Localizable.strings */; };
 		F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C602C028E40C5200DDF334 /* LogInViewController.swift */; };
 		F9C602C328E40C7800DDF334 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C602C228E40C7800DDF334 /* PostTableViewCell.swift */; };
@@ -120,6 +122,8 @@
 		F9A81973292786E80033060A /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		F9A819762927A0FF0033060A /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9A8197A2927BEB90033060A /* PhotosCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewHeader.swift; sourceTree = "<group>"; };
+		F9B5B8A229CC4C2D00B7CFA6 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		F9B5B8A429CC4CC000B7CFA6 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		F9C602BC28E40AEB00DDF334 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9C602BE28E40B0400DDF334 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F9C602BF28E40B0400DDF334 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -310,6 +314,7 @@
 				F9DB131C29B0B0F10067578D /* Configuration.swift */,
 				F97CD0C32869D89A0062067F /* AppDelegate.swift */,
 				F97CD0C52869D89A0062067F /* SceneDelegate.swift */,
+				F9B5B8A429CC4CC000B7CFA6 /* AppConfiguration.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -434,6 +439,7 @@
 				F9DB132529B26E630067578D /* CurrentUserService.swift */,
 				F9DB132F29B2871A0067578D /* TestUserService.swift */,
 				F9DB133329B34D390067578D /* Checker.swift */,
+				F9B5B8A229CC4C2D00B7CFA6 /* NetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -613,6 +619,7 @@
 				F9DB134729B51AC00067578D /* FeedModel.swift in Sources */,
 				F9DB132D29B284E00067578D /* CurrentUserService.swift in Sources */,
 				F97CD104286B30B50062067F /* TabBarController.swift in Sources */,
+				F9B5B8A529CC4CC000B7CFA6 /* AppConfiguration.swift in Sources */,
 				F9CEB5B429B75A3900EF2CFF /* ProfileTabCoordinator.swift in Sources */,
 				F9C602C128E40C5200DDF334 /* LogInViewController.swift in Sources */,
 				F9CEB5BF29B79D2C00EF2CFF /* RemoveChildCoordinatorDelegate.swift in Sources */,
@@ -646,6 +653,7 @@
 				F9CEB58129B7320100EF2CFF /* Coordinatable.swift in Sources */,
 				F9DB133C29B3640E0067578D /* LoginFactory.swift in Sources */,
 				F9DB133429B34D390067578D /* Checker.swift in Sources */,
+				F9B5B8A329CC4C2D00B7CFA6 /* NetworkService.swift in Sources */,
 				F9DB132C29B27FAE0067578D /* UIImageUtils.swift in Sources */,
 				F9DB132A29B27DE10067578D /* UIColorUtils.swift in Sources */,
 				F9CEB5AE29B7593400EF2CFF /* InfoViewModel.swift in Sources */,
