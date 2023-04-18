@@ -8,5 +8,8 @@
 import Foundation
 
 protocol InfoViewModelProtocol: ViewModelProtocol {
+    var onStateDidChange: ((InfoViewModel.State) -> Void)? { get set }
+    
     func updateState(viewInput: InfoViewModel.ViewInput)
+    func updateStateNet(task: InfoViewModel.NetworkHandle) async -> Any?
 }

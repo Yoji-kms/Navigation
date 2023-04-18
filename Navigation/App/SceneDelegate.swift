@@ -14,17 +14,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        
+    
         let loginFactory = MyLoginFactory()
         let loginInspector = loginFactory.makeLoginInspector()
         let factory = AppFactory(loginInspector: loginInspector)
         let appCoordinator = AppCoordinator(factory: factory)
-        if let appConfig = AppConfiguration.allCases.randomElement() {
-            NetworkService.request(for: appConfig)
-        } else {
-            print("♦️ Wrong app configuration")
-        }
         
         self.window = UIWindow(windowScene: windowScene)
         self.appCoordinator = appCoordinator
