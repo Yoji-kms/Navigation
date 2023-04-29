@@ -10,7 +10,7 @@
 "Set ststus" = "Set status";
 "Unknown" = "Unknown";
 "Log in" = "Log in";
-"Email or phone" = "Email or phone";
+"Email" = "Email";
 "Password" = "Password";
 "Profile" = "Profile";
 "Some button" = "Some button";
@@ -28,5 +28,11 @@
 "Photos" = "Photos";
 "User does not exist" = "User does not exist";
 "Incorrect password" = "Incorrect password";
+"Email already in use" = "This email is already in use";
+"Invalid email" = "Invalid email";
 "Check guess" = "Check guess";
 "Enter your guess" = "Enter your guess";
+"Register" = "Register";
+"Register text" = "Tap register button if you don't have an account";
+"Enter your creds" = "Enter your email and password:";
+"Weak password" = "Weak password!\nPassword must have at least 6 symbols";

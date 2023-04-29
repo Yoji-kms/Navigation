@@ -7,8 +7,11 @@
 
 import UIKit
 
-public struct User {
-    public init(login: String, fullName: String, avatar: UIImage, status: String) {
+public struct UserModel {
+    public init(login: String,
+                fullName: String,
+                avatar: UIImage = UIImage(named: "avatar") ?? UIImage(),
+                status: String = "") {
         self.login = login
         self.fullName = fullName
         self.avatar = avatar

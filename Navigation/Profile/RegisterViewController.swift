@@ -1,25 +1,27 @@
 //
-//  LogInViewController.swift
+//  RegisterViewController.swift
 //  Navigation
 //
-//  Created by Yoji on 28.09.2022.
+//  Created by Yoji on 29.04.2023.
 //
-
 
 import UIKit
 
-final class LogInViewController: UIViewController{
-    private let viewModel: LoginViewModelProtocol
+final class RegisterViewController: UIViewController {
+    private let viewModel: RegisterViewModel
     
-// MARK: Views
-    private lazy var vkLogo: UIImageView = {
-        let logo = UIImageView()
-        logo.image = UIImage(named: "logo")
-        logo.translatesAutoresizingMaskIntoConstraints = false
-        return logo
+//    MARK: Views
+    private lazy var registerLbl: UILabel = {
+        let lbl = UILabel()
+        lbl.text = NSLocalizedString("Enter your creds", comment: "Enter your creds")
+        lbl.textColor = .black
+        lbl.font = .systemFont(ofSize: 22)
+        lbl.numberOfLines = 0
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
     }()
-
-    private lazy var emailOrPhoneTextField: UITextField = {
+    
+    private lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.leadingPadding(8)
         textField.placeholder = NSLocalizedString("Email", comment: "Email")
@@ -28,7 +30,6 @@ final class LogInViewController: UIViewController{
         textField.autocapitalizationType = .none
         textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.addTarget(self, action: #selector(loginTextChanged), for: .editingChanged)
-        textField.text = self.viewModel.defaultLogin
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -44,9 +45,37 @@ final class LogInViewController: UIViewController{
         textField.autocapitalizationType = .none
         textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.addTarget(self, action: #selector(passwordTextChanged), for: .editingChanged)
-        textField.text = self.viewModel.defaultPassword
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
+    }()
+    
+    private lazy var registerBtn: CustomButton = {
+        let title = NSLocalizedString("Register", comment: "Register")
+        let btn = CustomButton(
+            title: title,
+            titleColor: nil,
+            backgroundColor: UIColor.systemGreen,
+            onBtnTap: didTapRegisterBtn
+        )
+        btn.clipsToBounds = true
+        btn.layer.cornerRadius = 10
+        btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        btn.validateViaTxtFields([self.loginTextField, self.passwordTextField])
+        return btn
+    }()
+    
+    private lazy var cancelBtn: CustomButton = {
+        let title = NSLocalizedString("Cancel", comment: "Cancel")
+        let btn = CustomButton(
+            title: title,
+            titleColor: nil,
+            backgroundColor: UIColor.systemRed,
+            onBtnTap: didTapCancelBtn
+        )
+        btn.clipsToBounds = true
+        btn.layer.cornerRadius = 10
+        btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        return btn
     }()
     
     private lazy var logInStackView: UIStackView = {
@@ -70,51 +99,10 @@ final class LogInViewController: UIViewController{
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
-    private lazy var logInBtn: CustomButton = {
-        let title = NSLocalizedString("Log in", comment: "Log in")
-        let btn = CustomButton(
-            title: title,
-            titleColor: nil,
-            backgroundImage: UIImage(named: "blue_pixel")?.alpha(1),
-            onBtnTap: didTapLoginBtn
-        )
-        btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .disabled)
-        btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .highlighted)
-        btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .selected)
-        btn.clipsToBounds = true
-        btn.layer.cornerRadius = 10
-        btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
-        btn.validateViaTxtFields([emailOrPhoneTextField, passwordTextField])
-        return btn
-    }()
-    
-    private lazy var registerBtn: CustomButton = {
-        let title = NSLocalizedString("Register", comment: "Register")
-        let btn = CustomButton(
-            title: title,
-            titleColor: nil,
-            backgroundColor: UIColor.systemGreen,
-            onBtnTap: didTapRegisterBtn
-        )
-        btn.clipsToBounds = true
-        btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
-        btn.layer.cornerRadius = 10
-        return btn
-    }()
-    
-    private lazy var registerLbl: UILabel = {
-        let lbl = UILabel()
-        lbl.text = NSLocalizedString("Register text", comment: "Register text")
-        lbl.textColor = .systemRed
-        lbl.numberOfLines = 0
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        return lbl
-    }()
-    
-// MARK: Init
-    init(loginViewModel: LoginViewModel) {
-        self.viewModel = loginViewModel
+   
+//    MARK: Inits
+    init(registerViewModel: RegisterViewModel) {
+        self.viewModel = registerViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -123,14 +111,14 @@ final class LogInViewController: UIViewController{
         fatalError("init(coder:) has not been implemented")
     }
     
-// MARK: Lifecycle
+//    MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
         setupGestures()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(
@@ -147,23 +135,22 @@ final class LogInViewController: UIViewController{
         )
     }
     
-// MARK: Setups
+//    MARK: Setups
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
         self.view.addGestureRecognizer(tapGesture)
     }
     
     private func setupViews() {
-        self.view.addSubview(scrollView)
+        self.view.addSubview(self.scrollView)
 
-        self.scrollView.addSubview(vkLogo)
-        self.scrollView.addSubview(logInStackView)
-        self.scrollView.addSubview(logInBtn)
-        self.scrollView.addSubview(registerLbl)
-        self.scrollView.addSubview(registerBtn)
+        self.scrollView.addSubview(self.registerLbl)
+        self.scrollView.addSubview(self.logInStackView)
+        self.scrollView.addSubview(self.registerBtn)
+        self.scrollView.addSubview(self.cancelBtn)
         
-        self.logInStackView.addArrangedSubview(emailOrPhoneTextField)
-        self.logInStackView.addArrangedSubview(passwordTextField)
+        self.logInStackView.addArrangedSubview(self.loginTextField)
+        self.logInStackView.addArrangedSubview(self.passwordTextField)
         
         NSLayoutConstraint.activate([
             self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -171,44 +158,38 @@ final class LogInViewController: UIViewController{
             self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             
-            self.vkLogo.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 120),
-            self.vkLogo.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
-            self.vkLogo.heightAnchor.constraint(equalToConstant: 100),
-            self.vkLogo.widthAnchor.constraint(equalToConstant: 100),
+            self.registerLbl.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 150),
+            self.registerLbl.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            self.registerLbl.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
-            self.logInStackView.topAnchor.constraint(equalTo: self.vkLogo.bottomAnchor, constant: 120),
+            self.logInStackView.topAnchor.constraint(equalTo: self.registerLbl.bottomAnchor, constant: 16),
             self.logInStackView.heightAnchor.constraint(equalToConstant: 100),
             self.logInStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             self.logInStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
-            self.emailOrPhoneTextField.widthAnchor.constraint(equalTo: self.logInStackView.widthAnchor),
+            self.loginTextField.widthAnchor.constraint(equalTo: self.logInStackView.widthAnchor),
             
             self.passwordTextField.widthAnchor.constraint(equalTo: self.logInStackView.widthAnchor),
             
-            self.logInBtn.topAnchor.constraint(equalTo: logInStackView.bottomAnchor, constant: 16),
-            self.logInBtn.heightAnchor.constraint(equalToConstant: 50),
-            self.logInBtn.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            self.logInBtn.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            
-            self.registerLbl.topAnchor.constraint(equalTo: logInBtn.bottomAnchor, constant: 16),
-            self.registerLbl.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            self.registerLbl.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            
-            self.registerBtn.topAnchor.constraint(equalTo: registerLbl.bottomAnchor, constant: 16),
+            self.registerBtn.topAnchor.constraint(equalTo: self.logInStackView.bottomAnchor, constant: 16),
             self.registerBtn.heightAnchor.constraint(equalToConstant: 50),
             self.registerBtn.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             self.registerBtn.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-
+            
+            self.cancelBtn.topAnchor.constraint(equalTo: self.registerBtn.bottomAnchor, constant: 16),
+            self.cancelBtn.heightAnchor.constraint(equalToConstant: 50),
+            self.cancelBtn.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            self.cancelBtn.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
         ])
     }
     
-// MARK: Actions
+//    MARK: Actions
     @objc private func didShowKeyboard(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRect = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRect.height
             
-            let loginBtnBottomPointY = self.logInBtn.frame.origin.y + self.logInBtn.frame.height
+            let loginBtnBottomPointY = self.cancelBtn.frame.origin.y + self.cancelBtn.frame.height
             let keyboardOriginY = self.view.safeAreaLayoutGuide.layoutFrame.height - keyboardHeight
         
             let yOffset = keyboardOriginY < loginBtnBottomPointY
@@ -228,22 +209,48 @@ final class LogInViewController: UIViewController{
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
-    private func didTapLoginBtn() {
-        let login = self.emailOrPhoneTextField.text ?? ""
+    private func didTapRegisterBtn() {
+        let login = self.loginTextField.text ?? ""
         let password = self.passwordTextField.text ?? ""
         
-        self.viewModel.updateState(viewInput: .loginBtnDidTap(login, password))
+        self.viewModel.updateState(
+            viewInput: .registerBtnDidTap(login, password) { result in
+                switch result {
+                case .success():
+                    self.dismiss(animated: true)
+                case .failure(.emailAlreadyInUse):
+                    self.clearTextFields()
+                    let message = NSLocalizedString("Email already in use", comment: "Email already in use")
+                    AlertUtils.showUserMessage(message, context: self)
+                case .failure(.invalidEmail):
+                    self.clearTextFields()
+                    let message = NSLocalizedString("Invalid email", comment: "Invalid email")
+                    AlertUtils.showUserMessage(message, context: self)
+                case .failure(.weakPassword):
+                    self.passwordTextField.text = ""
+                    let message = NSLocalizedString("Weak password", comment: "Weak password")
+                    AlertUtils.showUserMessage(message, context: self)
+                case .failure(let error):
+                    print("🔴\(error)")
+                }
+            }
+        )
     }
     
-    private func didTapRegisterBtn() {
-        self.viewModel.updateState(viewInput: .registerBtnDidTap)
+    private func didTapCancelBtn() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc private func loginTextChanged(){
-        self.logInBtn.validateViaTxtFields([emailOrPhoneTextField, passwordTextField])
+        self.registerBtn.validateViaTxtFields([self.loginTextField, self.passwordTextField])
     }
     
     @objc private func passwordTextChanged(){
-        self.logInBtn.validateViaTxtFields([emailOrPhoneTextField, passwordTextField])
+        self.registerBtn.validateViaTxtFields([self.loginTextField, self.passwordTextField])
+    }
+    
+    private func clearTextFields() {
+        self.loginTextField.text = ""
+        self.passwordTextField.text = ""
     }
 }

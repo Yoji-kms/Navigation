@@ -9,8 +9,8 @@ import UIKit
 import StorageService
 
 class TestUserService: UserService {
-    private lazy var user: User = {
-        let user = User(
+    private lazy var user: UserModel = {
+        let user = UserModel(
             login: "testUser",
             fullName: "testFullName",
             avatar: UIImage(named: "avatar") ?? UIImage(),
@@ -19,7 +19,7 @@ class TestUserService: UserService {
         return user
     }()
     
-    func getUser(login: String) -> User? {
+    func getUser(login: String) -> UserModel? {
         return (user.login == login) ? user : nil
     }
 }

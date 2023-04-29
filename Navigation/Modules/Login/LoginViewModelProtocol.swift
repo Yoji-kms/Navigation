@@ -10,6 +10,6 @@ import Foundation
 protocol LoginViewModelProtocol: ViewModelProtocol {
     var defaultLogin: String { get }
     var defaultPassword: String { get }
-
+    
     func updateState(viewInput: LoginViewModel.ViewInput)
 }
