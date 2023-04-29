@@ -35,24 +35,23 @@ final class CheckerService: CheckerServiceProtocol {
     }
     
     private func handleFirResponse(authData: AuthDataResult?, error: Error?, completion: @escaping (Result <UserModel, FirebaseError>) -> Void) {
-        if error != nil {
-            if let errorCode = AuthErrorCode(rawValue: error?._code ?? 0) {
-                switch errorCode {
-                case .wrongPassword:
-                    completion(.failure(.wrongPassword))
-                case .invalidEmail:
-                    completion(.failure(.invalidEmail))
-                case .emailAlreadyInUse:
-                    completion(.failure(.emailAlreadyInUse))
-                case .userNotFound:
-                    completion(.failure(.userNotFound))
-                case .weakPassword:
-                    completion(.failure(.weakPassword))
-                default:
-                    print("🔴\(errorCode)")
-                }
-                return
+        if let error = error as NSError? {
+            let errorCode = AuthErrorCode(_nsError: error)
+            switch errorCode.code {
+            case .wrongPassword:
+                completion(.failure(.wrongPassword))
+            case .invalidEmail:
+                completion(.failure(.invalidEmail))
+            case .emailAlreadyInUse:
+                completion(.failure(.emailAlreadyInUse))
+            case .userNotFound:
+                completion(.failure(.userNotFound))
+            case .weakPassword:
+                completion(.failure(.weakPassword))
+            default:
+                print("🔴\(errorCode)")
             }
+            return
         }
         let firUser = authData?.user
         let login = firUser?.email ?? ""
