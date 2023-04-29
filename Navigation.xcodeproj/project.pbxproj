@@ -12,6 +12,7 @@
 		F923A22229FDA18B004E453E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F923A22129FDA18B004E453E /* FirebaseAnalytics */; };
 		F923A22429FDA18B004E453E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F923A22329FDA18B004E453E /* FirebaseAuth */; };
 		F923A22629FDA18B004E453E /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = F923A22529FDA18B004E453E /* FirebaseAuthCombine-Community */; };
+		F923A22829FDA9BA004E453E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F923A22729FDA9BA004E453E /* GoogleService-Info.plist */; };
 		F92C30BE29C3457A00515FA4 /* CGImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C30BD29C3457A00515FA4 /* CGImageUtils.swift */; };
 		F9330E0829FBAEEA003E0001 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9330E0729FBAEEA003E0001 /* RegisterViewModel.swift */; };
 		F9330E1229FBB356003E0001 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9330E1129FBB356003E0001 /* FirebaseError.swift */; };
@@ -31,7 +32,6 @@
 		F97CD1002869DE640062067F /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD0FF2869DE640062067F /* PostViewController.swift */; };
 		F97CD1022869DEA20062067F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD1012869DEA20062067F /* InfoViewController.swift */; };
 		F97CD104286B30B50062067F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD103286B30B50062067F /* TabBarController.swift */; };
-		F995FC7E29FBE385007888DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F995FC7D29FBE385007888DE /* GoogleService-Info.plist */; };
 		F9A8197229277EFE0033060A /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8197129277EFE0033060A /* PhotosTableViewCell.swift */; };
 		F9A81974292786E80033060A /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A81973292786E80033060A /* PhotosViewController.swift */; };
 		F9A819772927A0FF0033060A /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A819762927A0FF0033060A /* PhotosCollectionViewCell.swift */; };
@@ -120,6 +120,7 @@
 /* Begin PBXFileReference section */
 		F923A21A29FC7478004E453E /* RegisterViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModelProtocol.swift; sourceTree = "<group>"; };
 		F923A21E29FCE2F5004E453E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		F923A22729FDA9BA004E453E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Navigation/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F92C30BD29C3457A00515FA4 /* CGImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImageUtils.swift; sourceTree = "<group>"; };
 		F9330E0729FBAEEA003E0001 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		F9330E1129FBB356003E0001 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
@@ -142,7 +143,6 @@
 		F97CD1012869DEA20062067F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F97CD103286B30B50062067F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F97CD106286FF2200062067F /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		F995FC7D29FBE385007888DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F9A8197129277EFE0033060A /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		F9A81973292786E80033060A /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		F9A819762927A0FF0033060A /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -265,6 +265,7 @@
 		F97CD0B72869D89A0062067F = {
 			isa = PBXGroup;
 			children = (
+				F923A22729FDA9BA004E453E /* GoogleService-Info.plist */,
 				F97CD0C22869D89A0062067F /* Navigation */,
 				F9DB130E29AFCC1B0067578D /* StorageService */,
 				F97CD0C12869D89A0062067F /* Products */,
@@ -284,7 +285,6 @@
 		F97CD0C22869D89A0062067F /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				F995FC7D29FBE385007888DE /* GoogleService-Info.plist */,
 				F9CEB58529B733E400EF2CFF /* App */,
 				F9CEB58429B733CB00EF2CFF /* Modules */,
 				F9CEB57F29B731E400EF2CFF /* Coordinators */,
@@ -666,7 +666,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97CD0D02869D89B0062067F /* LaunchScreen.storyboard in Resources */,
-				F995FC7E29FBE385007888DE /* GoogleService-Info.plist in Resources */,
+				F923A22829FDA9BA004E453E /* GoogleService-Info.plist in Resources */,
 				F9C602BB28E40AEB00DDF334 /* Localizable.strings in Resources */,
 				F97CD0CD2869D89B0062067F /* Assets.xcassets in Resources */,
 			);
