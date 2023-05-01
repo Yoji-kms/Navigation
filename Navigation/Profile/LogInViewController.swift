@@ -24,6 +24,7 @@ final class LogInViewController: UIViewController{
         textField.leadingPadding(8)
         textField.placeholder = NSLocalizedString("Email", comment: "Email")
         textField.font = .systemFont(ofSize: 16)
+        textField.keyboardType = .emailAddress
         textField.textColor = .black
         textField.autocapitalizationType = .none
         textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)

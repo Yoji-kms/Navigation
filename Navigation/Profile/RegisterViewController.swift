@@ -27,6 +27,7 @@ final class RegisterViewController: UIViewController {
         textField.placeholder = NSLocalizedString("Email", comment: "Email")
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = .black
+        textField.keyboardType = .emailAddress
         textField.autocapitalizationType = .none
         textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.addTarget(self, action: #selector(loginTextChanged), for: .editingChanged)

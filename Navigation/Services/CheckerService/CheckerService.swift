@@ -59,7 +59,6 @@ final class CheckerService: CheckerServiceProtocol {
         let length = login.distance(from: login.startIndex, to: index)
         let fullName = login.padding(toLength: length, withPad: "", startingAt: 0)
         let user = UserModel(login: login, fullName: fullName)
-        print("🟢\(user)")
         completion(.success(user))
     }
 }

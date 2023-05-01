@@ -226,13 +226,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7DCF547B8CF7C27BD9373575 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		F923A21929FC7453004E453E /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,7 +262,6 @@
 				F97CD0C22869D89A0062067F /* Navigation */,
 				F9DB130E29AFCC1B0067578D /* StorageService */,
 				F97CD0C12869D89A0062067F /* Products */,
-				7DCF547B8CF7C27BD9373575 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
