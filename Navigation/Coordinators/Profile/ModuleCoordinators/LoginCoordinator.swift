@@ -29,12 +29,19 @@ final class LoginCoordinator: ModuleCoordinatable {
         return viewController
     }
     
-    func pushProfileViewController(forUser user: User) {
+    func pushProfileViewController(forUser user: UserModel) {
         let profileCoordinator = ProfileCoordinator(moduleType: .profile(user), factory: self.factory)
         self.addChildCoordinator(profileCoordinator)
         
         let viewControllerToPush = profileCoordinator.start()
-        module?.viewController.navigationController?.pushViewController(viewControllerToPush, animated: true)
+        self.module?.viewController.navigationController?.pushViewController(viewControllerToPush, animated: true)
+    }
+    
+    func pushRegisterViewController(delegate: RegisterDelegate?) {
+        let registerModule = self.factory.makeModule(ofType: .register)
+        let viewControllerToPush = registerModule.viewController
+        (registerModule.viewModel as? RegisterViewModel)?.delegate = delegate
+        self.module?.viewController.navigationController?.pushViewController(viewControllerToPush, animated: true)
     }
     
     func addChildCoordinator(_ coordinator: Coordinatable) {

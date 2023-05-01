@@ -18,7 +18,7 @@ final class FeedViewModel: FeedViewModelProtocol {
         case didReturnFromPostViewController(Coordinatable)
     }
     
-    weak var coordinator: FeedCoordinator?
+    var coordinator: FeedCoordinator?
     
     let post: Post
     let feedModel: FeedModel

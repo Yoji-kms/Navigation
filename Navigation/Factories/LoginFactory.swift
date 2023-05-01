@@ -8,5 +8,5 @@
 import Foundation
 
 protocol LoginFactory {
-    func makeLoginInspector() -> LoginInspector
+    func makeCheckerService() -> CheckerServiceProtocol
 }

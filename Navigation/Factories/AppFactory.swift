@@ -8,10 +8,10 @@
 import UIKit
 
 final class AppFactory {
-    private let loginInspector: LoginInspector
+    private let checkerService: CheckerServiceProtocol
     
-    init(loginInspector: LoginInspector) {
-        self.loginInspector = loginInspector
+    init(checkerService: CheckerServiceProtocol) {
+        self.checkerService = checkerService
     }
     
     func makeTab(ofType tabType: Module.TabType, rootViewController rootVC: UIViewController) -> UIViewController {
@@ -45,7 +45,7 @@ final class AppFactory {
             let viewController: UIViewController = FeedViewController(viewModel: viewModel)
             return Module(moduleType: .feed, viewModel: viewModel, viewController: viewController)
         case .login:
-            let viewModel = LoginViewModel(loginInspector: loginInspector)
+            let viewModel = LoginViewModel(checkerService: checkerService)
             let viewController: UIViewController = LogInViewController(loginViewModel: viewModel)
             return Module(moduleType: .login, viewModel: viewModel, viewController: viewController)
         case .post(let post):
@@ -56,6 +56,10 @@ final class AppFactory {
             let viewModel = InfoViewModel()
             let viewController: UIViewController = InfoViewController(viewModel: viewModel)
             return Module(moduleType: .info, viewModel: viewModel, viewController: viewController)
+        case .register:
+            let viewModel = RegisterViewModel()
+            let viewController: UIViewController = RegisterViewController(registerViewModel: viewModel)
+            return Module(moduleType: .register, viewModel: viewModel, viewController: viewController)
         }
     }
 }

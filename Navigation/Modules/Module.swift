@@ -15,11 +15,12 @@ struct Module {
     }
     
     enum ModuleType {
-        case profile(User)
+        case profile(UserModel)
         case feed
         case login
         case post(Post?)
         case info
+        case register
     }
     
     let moduleType: ModuleType

@@ -6,28 +6,34 @@
 //
 
 import UIKit
+import FirebaseCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var appCoordinator: AppCoordinator?
+    lazy var checkerService: CheckerServiceProtocol = {
+        let loginFactory = LoginFactoryImp()
+        let checkerService = loginFactory.makeCheckerService()
+        return checkerService
+    }()
+    
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
     
-        let loginFactory = MyLoginFactory()
-        let loginInspector = loginFactory.makeLoginInspector()
-        let factory = AppFactory(loginInspector: loginInspector)
+        let factory = AppFactory(checkerService: checkerService)
         let appCoordinator = AppCoordinator(factory: factory)
         
+        FirebaseApp.configure()
+        
         self.window = UIWindow(windowScene: windowScene)
-        self.appCoordinator = appCoordinator
         
         self.window?.rootViewController = appCoordinator.start()
         self.window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
+        checkerService.signOut()
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.

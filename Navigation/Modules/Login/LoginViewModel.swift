@@ -10,13 +10,11 @@ import StorageService
 
 final class LoginViewModel: LoginViewModelProtocol {
     
-    let defaultLogin = Configuration.login
-    let defaultPassword = "pswrd"
+    let defaultLogin = "test@mail.ru"
+    let defaultPassword = "qqqqqq"
     
     enum LoginError: Error {
         case noContext
-        case userNotFound
-        case wrongPassword
     }
     
     enum State {
@@ -25,43 +23,29 @@ final class LoginViewModel: LoginViewModelProtocol {
     
     enum ViewInput {
         case loginBtnDidTap(String, String)
+        case registerBtnDidTap
     }
     
-    weak var coordinator: LoginCoordinator?
+    var coordinator: LoginCoordinator?
     
     private(set) var state: State = .initial
     
-    private(set) var loginInspector: LoginInspector
+    private(set) var checkerService: CheckerServiceProtocol
     
-    init(loginInspector: LoginInspector) {
-        self.loginInspector = loginInspector
+    init(checkerService: CheckerServiceProtocol) {
+        self.checkerService = checkerService
     }
     
     func updateState(viewInput: ViewInput) {
+        guard let context = try? self.getContext() else {
+            preconditionFailure("🟡 No context")
+        }
+        
         switch viewInput {
         case let .loginBtnDidTap(login, password):
-            guard let context = try? self.getContext() else {
-                preconditionFailure("🟡 No context")
-            }
-            
-            do {
-                try self.getUser(login) { result in
-                    switch result {
-                    case .success(let user):
-                        try self.checkLogin(login, password: password)
-                        self.coordinator?.pushProfileViewController(forUser: user)
-                    case .failure(_):
-                        AlertUtils.showUserMessage(NSLocalizedString("User does not exist", comment: "User does not exist"), context: context)
-                    }
-                    
-                }
-            }
-            catch LoginError.wrongPassword {
-                AlertUtils.showUserMessage(NSLocalizedString("Incorrect password", comment: "Incorrect password"), context: context)
-            }
-            catch {
-                print("♦️ Unknown error")
-            }
+            self.checkLogin(login, password: password, context: context)
+        case .registerBtnDidTap:
+            self.coordinator?.pushRegisterViewController(delegate: self)
         }
     }
     
@@ -73,21 +57,34 @@ final class LoginViewModel: LoginViewModelProtocol {
         }
     }
     
-    private func getUser(_ login: String, completion: (Result<User, LoginError>) throws -> Void) throws {
-        let currentUserService = Configuration.userService
-             
-        if let user = currentUserService.getUser(login: login) {
-            try completion(.success(user))
-        } else {
-            try completion(.failure(.userNotFound))
+    private func checkLogin(_ login: String, password: String, context: UIViewController) {
+        self.checkerService.checkCredentials(login: login, password: password) { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let user):
+                strongSelf.coordinator?.pushProfileViewController(forUser: user)
+            case .failure(.invalidEmail):
+                AlertUtils.showUserMessage(NSLocalizedString("Invalid email", comment: "Invalid email"), context: context)
+            case .failure(.userNotFound):
+                AlertUtils.showUserMessage(NSLocalizedString("User does not exist", comment: "User does not exist"), context: context)
+            case .failure(.wrongPassword):
+                AlertUtils.showUserMessage(NSLocalizedString("Incorrect password", comment: "Incorrect password"), context: context)
+            case .failure(let error):
+                print("🔴\(error)")
+            }
         }
     }
-    
-    private func checkLogin(_ login: String, password: String) throws {
-        if self.loginInspector.check(login: login, password: password) {
-            return
-        } else {
-            throw LoginError.wrongPassword
+}
+
+extension LoginViewModel: RegisterDelegate {
+    func register(login: String, password: String, completion: @escaping (Result<Void, FirebaseError>) -> Void) {
+        self.checkerService.signUp(login: login, password: password) { result in
+            switch result {
+            case .success(let user):
+                self.coordinator?.pushProfileViewController(forUser: user)
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }

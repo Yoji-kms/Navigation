@@ -21,28 +21,31 @@ final class LogInViewController: UIViewController{
 
     private lazy var emailOrPhoneTextField: UITextField = {
         let textField = UITextField()
-        textField.text = viewModel.defaultLogin
         textField.leadingPadding(8)
-        textField.placeholder = NSLocalizedString("Email or phone", comment: "Email or phone")
+        textField.placeholder = NSLocalizedString("Email", comment: "Email")
         textField.font = .systemFont(ofSize: 16)
+        textField.keyboardType = .emailAddress
         textField.textColor = .black
         textField.autocapitalizationType = .none
         textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
-        textField.addTarget(self, action: #selector(loginTextChanged(_:)), for: .editingChanged)
+        textField.addTarget(self, action: #selector(loginTextChanged), for: .editingChanged)
+        textField.text = self.viewModel.defaultLogin
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.text = viewModel.defaultPassword
         textField.leadingPadding(8)
         textField.placeholder = NSLocalizedString("Password", comment: "Password")
+        textField.textContentType = .oneTimeCode
         textField.isSecureTextEntry = true
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = .black
         textField.autocapitalizationType = .none
         textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
+        textField.addTarget(self, action: #selector(passwordTextChanged), for: .editingChanged)
+        textField.text = self.viewModel.defaultPassword
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -75,7 +78,7 @@ final class LogInViewController: UIViewController{
             title: title,
             titleColor: nil,
             backgroundImage: UIImage(named: "blue_pixel")?.alpha(1),
-            onBtnTap: didTapBtn
+            onBtnTap: didTapLoginBtn
         )
         btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .disabled)
         btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .highlighted)
@@ -83,8 +86,31 @@ final class LogInViewController: UIViewController{
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 10
         btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
-        btn.isEnabled = !(emailOrPhoneTextField.text?.isEmpty ?? true)
+        btn.validateViaTxtFields([emailOrPhoneTextField, passwordTextField])
         return btn
+    }()
+    
+    private lazy var registerBtn: CustomButton = {
+        let title = NSLocalizedString("Register", comment: "Register")
+        let btn = CustomButton(
+            title: title,
+            titleColor: nil,
+            backgroundColor: UIColor.systemGreen,
+            onBtnTap: didTapRegisterBtn
+        )
+        btn.clipsToBounds = true
+        btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        btn.layer.cornerRadius = 10
+        return btn
+    }()
+    
+    private lazy var registerLbl: UILabel = {
+        let lbl = UILabel()
+        lbl.text = NSLocalizedString("Register text", comment: "Register text")
+        lbl.textColor = .systemRed
+        lbl.numberOfLines = 0
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
     }()
     
 // MARK: Init
@@ -134,6 +160,8 @@ final class LogInViewController: UIViewController{
         self.scrollView.addSubview(vkLogo)
         self.scrollView.addSubview(logInStackView)
         self.scrollView.addSubview(logInBtn)
+        self.scrollView.addSubview(registerLbl)
+        self.scrollView.addSubview(registerBtn)
         
         self.logInStackView.addArrangedSubview(emailOrPhoneTextField)
         self.logInStackView.addArrangedSubview(passwordTextField)
@@ -162,6 +190,16 @@ final class LogInViewController: UIViewController{
             self.logInBtn.heightAnchor.constraint(equalToConstant: 50),
             self.logInBtn.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             self.logInBtn.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            self.registerLbl.topAnchor.constraint(equalTo: logInBtn.bottomAnchor, constant: 16),
+            self.registerLbl.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            self.registerLbl.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            self.registerBtn.topAnchor.constraint(equalTo: registerLbl.bottomAnchor, constant: 16),
+            self.registerBtn.heightAnchor.constraint(equalToConstant: 50),
+            self.registerBtn.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            self.registerBtn.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+
         ])
     }
     
@@ -191,14 +229,22 @@ final class LogInViewController: UIViewController{
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
-    private func didTapBtn() {
+    private func didTapLoginBtn() {
         let login = self.emailOrPhoneTextField.text ?? ""
         let password = self.passwordTextField.text ?? ""
         
         self.viewModel.updateState(viewInput: .loginBtnDidTap(login, password))
     }
     
-    @objc private func loginTextChanged(_ textField: UITextField){
-        self.logInBtn.isEnabled = (self.emailOrPhoneTextField.text != "")
+    private func didTapRegisterBtn() {
+        self.viewModel.updateState(viewInput: .registerBtnDidTap)
+    }
+    
+    @objc private func loginTextChanged(){
+        self.logInBtn.validateViaTxtFields([emailOrPhoneTextField, passwordTextField])
+    }
+    
+    @objc private func passwordTextChanged(){
+        self.logInBtn.validateViaTxtFields([emailOrPhoneTextField, passwordTextField])
     }
 }

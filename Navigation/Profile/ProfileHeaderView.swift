@@ -83,7 +83,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
 // MARK: Setups
-    func setup(with user: User) {
+    func setup(with user: UserModel) {
         self.fullNameLabel.text = user.fullName
         self.avatarView.avatarImageView.image = user.avatar
         self.statusLabel.text = user.status

@@ -10,7 +10,7 @@
 "Set status" = "Установить статус";
 "Unknown" = "Неизвестный";
 "Log in" = "Войти";
-"Email or phone" = "Email или телефон";
+"Email" = "Email";
 "Password" = "Пароль";
 "Profile" = "Профиль";
 "Some button" = "Какая-то кнопка";
@@ -28,5 +28,11 @@
 "Photos" = "Фотографии";
 "User does not exist" = "Пользователь не существует";
 "Incorrect password" = "Неверный пароль";
+"Email already in use" = "Этот email уже используется";
+"Invalid email" = "Не корректный email";
 "Check guess" = "Проверить догадку";
 "Enter your guess" = "Введите свою догадку";
+"Register" = "Зарегистрироваться";
+"Register text" = "Если у вас нет аккаунта, нажмите зарегистрироваться";
+"Enter your creds" = "Введите ваш email и пароль:";
+"Weak password" = "Слабый пароль!\В пароле должно быть как минимум 6 символов";

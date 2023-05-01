@@ -17,13 +17,14 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         case photosDidTap([UIImage])
     }
     
-    let user: User
+    let user: UserModel
     let posts: [Post]
     let photos: [UIImage]
     
+    
     weak var coordinator: ProfileCoordinator?
     
-    init(user: User) {
+    init(user: UserModel) {
         self.user = user
         self.photos = StorageService.shared.photos
         self.posts = StorageService.shared.posts

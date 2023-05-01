@@ -9,5 +9,5 @@ import Foundation
 import StorageService
 
 protocol UserService {
-    func getUser(login: String) -> User?
+    func getUser(login: String) -> UserModel?
 }
