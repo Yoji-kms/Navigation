@@ -9,9 +9,11 @@ import UIKit
 
 final class AppFactory {
     private let loginInspector: LoginInspector
+    private let postDataManager: PostDataManager
     
-    init(loginInspector: LoginInspector) {
+    init(loginInspector: LoginInspector, postDataManager: PostDataManager) {
         self.loginInspector = loginInspector
+        self.postDataManager = postDataManager
     }
     
     func makeTab(ofType tabType: Module.TabType, rootViewController rootVC: UIViewController) -> UIViewController {
@@ -31,15 +33,27 @@ final class AppFactory {
                 return navController
             }()
             return viewController
+            
+        case .favorite:
+            let viewController: UINavigationController = {
+                let navController = UINavigationController(rootViewController: rootVC)
+                navController.title = NSLocalizedString("Favorite", comment: "Favorite")
+                return navController
+            }()
+            return viewController
         }
     }
     
     func makeModule(ofType moduleType: Module.ModuleType) -> Module {
         switch moduleType {
         case .profile(let user):
-            let viewModel = ProfileViewModel(user: user)
+            let viewModel = ProfileViewModel(user: user, postDataManager: postDataManager)
             let viewController: UIViewController = ProfileViewController(viewModel: viewModel)
-            return Module(moduleType: .profile(user), viewModel: viewModel, viewController: viewController)
+            return Module(
+                moduleType: .profile(user),
+                viewModel: viewModel,
+                viewController: viewController
+            )
         case .feed:
             let viewModel = FeedViewModel()
             let viewController: UIViewController = FeedViewController(viewModel: viewModel)
@@ -56,6 +70,14 @@ final class AppFactory {
             let viewModel = InfoViewModel()
             let viewController: UIViewController = InfoViewController(viewModel: viewModel)
             return Module(moduleType: .info, viewModel: viewModel, viewController: viewController)
+        case .favorite:
+            let viewModel = FavoriteViewModel(postDataManager: postDataManager)
+            let viewController: UIViewController = FavoriteViewController(viewModel: viewModel)
+            return Module(
+                moduleType: .favorite,
+                viewModel: viewModel,
+                viewController: viewController
+            )
         }
     }
 }
