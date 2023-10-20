@@ -12,6 +12,7 @@ struct Module {
     enum TabType {
         case profile
         case feed
+        case favorite
     }
     
     enum ModuleType {
@@ -20,6 +21,7 @@ struct Module {
         case login
         case post(Post?)
         case info
+        case favorite
     }
     
     let moduleType: ModuleType
@@ -30,14 +32,18 @@ struct Module {
 extension Module.TabType {
     var tabBarItem: UITabBarItem {
         switch self {
-        case .profile:
-            let title = NSLocalizedString("Profile", comment: "Profile")
-            let image: UIImage = UIImage(systemName: "person.fill") ?? UIImage()
-            return UITabBarItem(title: title, image: image, tag: 1)
         case .feed:
             let title = NSLocalizedString("Feed", comment: "Feed")
             let image: UIImage = UIImage(systemName: "lanyardcard.fill") ?? UIImage()
             return UITabBarItem(title: title, image: image, tag: 0)
+        case .profile:
+            let title = NSLocalizedString("Profile", comment: "Profile")
+            let image: UIImage = UIImage(systemName: "person.fill") ?? UIImage()
+            return UITabBarItem(title: title, image: image, tag: 1)
+        case .favorite:
+            let title = NSLocalizedString("Favorite", comment: "Favorite")
+            let image: UIImage = UIImage(systemName: "star.circle.fill") ?? UIImage()
+            return UITabBarItem(title: title, image: image, tag: 2)
         }
     }
 }

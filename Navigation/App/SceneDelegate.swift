@@ -17,7 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
         let loginFactory = MyLoginFactory()
         let loginInspector = loginFactory.makeLoginInspector()
-        let factory = AppFactory(loginInspector: loginInspector)
+        let postDataManager = PostDataManager()
+        let factory = AppFactory(loginInspector: loginInspector, postDataManager: postDataManager)
         let appCoordinator = AppCoordinator(factory: factory)
         
         self.window = UIWindow(windowScene: windowScene)

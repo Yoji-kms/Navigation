@@ -19,14 +19,17 @@ final class AppCoordinator: Coordinatable {
     func start() -> UIViewController {
         let profileTabCoordinator = ProfileTabCoordinator(tabType: .profile, factory: factory)
         let feedTabCoordinator = FeedTabCoordinator(tabType: .feed, factory: factory)
+        let favoriteTabCoordinator = FavoriteTabCoordinator(tabType: .favorite, factory: factory)
         
         let appTabBarController = TabBarController(viewControllers: [
             feedTabCoordinator.start(),
-            profileTabCoordinator.start()
+            profileTabCoordinator.start(),
+            favoriteTabCoordinator.start()
         ])
         
         addChildCoordinator(feedTabCoordinator)
         addChildCoordinator(profileTabCoordinator)
+        addChildCoordinator(favoriteTabCoordinator)
         
         return appTabBarController
     }

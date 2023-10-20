@@ -9,6 +9,7 @@ import UIKit
 import StorageService
 
 final class PostTableViewCell: UITableViewCell {
+    var indexPath: IndexPath?
 // MARK: Views
     private lazy var title: UILabel = {
         let label = UILabel()

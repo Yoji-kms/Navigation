@@ -144,12 +144,6 @@ final class ProfileViewController: UIViewController {
         }
     }
     
-    private lazy var tapRecognizer: UIGestureRecognizer = {
-        let recognizer = UIGestureRecognizer()
-        recognizer.delegate = self
-        return recognizer
-    }()
-    
     private func pushToPhotosVC() {
         self.viewModel.updateState(viewInput: .photosDidTap(viewModel.photos))
     }
@@ -169,13 +163,16 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let recognizer = UIGestureRecognizer()
+        recognizer.delegate = self
+        
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DeafaultCell", for: indexPath)
                 return cell
             }
-            cell.addGestureRecognizer(tapRecognizer)
+            cell.addGestureRecognizer(recognizer)
             cell.setup(with: viewModel.photos)
             
             return cell
@@ -186,6 +183,8 @@ extension ProfileViewController: UITableViewDataSource {
             }
             let post = viewModel.posts[indexPath.row]
             cell.clipsToBounds = true
+            cell.indexPath = indexPath
+            cell.addGestureRecognizer(recognizer)
             cell.setup(with: post)
             
             return cell
@@ -222,9 +221,22 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         gestureRecognizer.allowedTouchTypes = [0]
-        if (touch.type == .direct) {
-            pushToPhotosVC()
-            return true
+        
+        if gestureRecognizer.view is PhotosTableViewCell {
+            if (touch.type == .direct) {
+                pushToPhotosVC()
+                return true
+            }
+        }
+        
+        if let view = gestureRecognizer.view as? PostTableViewCell {
+            if (touch.type == .direct && touch.tapCount == 2) {
+                guard let index = view.indexPath?.row else {
+                    return false
+                }
+                self.viewModel.updateState(viewInput: .postDidDoubleTap(index))
+                return true
+            }
         }
         return false
     }
