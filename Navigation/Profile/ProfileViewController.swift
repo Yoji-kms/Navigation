@@ -235,6 +235,8 @@ extension ProfileViewController: UIGestureRecognizerDelegate {
                     return false
                 }
                 self.viewModel.updateState(viewInput: .postDidDoubleTap(index))
+                let message = NSLocalizedString("Added to favorite", comment: "Added to favorite")
+                AlertUtils.showUserMessage(message, context: self)
                 return true
             }
         }

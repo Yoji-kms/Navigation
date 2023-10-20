@@ -35,9 +35,20 @@ final class PostDataManager {
         case remove(Int)
     }
     
+    func getFilteredPosts(byAuthor author: String) -> [PostData] {
+        if self.favoritePosts.contains(where: { $0.author?.lowercased() == author.lowercased() }) {
+            let fetchRequest = PostData.fetchRequest()
+            let predicate = NSPredicate(format: "author ==[c] %@", author)
+            fetchRequest.predicate = predicate
+            return (try? context.fetch(fetchRequest) as [PostData]) ?? []
+        }
+        
+        return []
+    }
+    
     func fetchFavoritePosts() {
         let fetchRequest = PostData.fetchRequest()
-        self.favoritePosts = (try? context.fetch(fetchRequest)) ?? []
+        self.favoritePosts = (try? context.fetch(fetchRequest) as [PostData]) ?? []
     }
     
     func addFavoritePost(_ post: Post) {
@@ -49,24 +60,32 @@ final class PostDataManager {
     }
     
     private func handleFavoritePost(_ action: Action) {
-        switch action {
-        case .add(let post):
-            if !favoritePosts.contains(where: { $0.postDescription == post.description }) {
-                let dbPost = PostData(context: self.context)
-                dbPost.title = post.title
-                dbPost.postDescription = post.description
-                dbPost.image = post.image
-                dbPost.likes = Int16(post.likes)
-                dbPost.views = Int32(post.views)
+        self.persistentContaner.performBackgroundTask { [weak self] backgroundContext in
+            guard let strongSelf = self else { return }
+            switch action {
+            case .add(let post):
+                if !strongSelf.favoritePosts.contains(where: { $0.postDescription == post.description }) {
+                    let dbPost = PostData(context: backgroundContext)
+                    dbPost.title = post.title
+                    dbPost.postDescription = post.description
+                    dbPost.author = post.author
+                    dbPost.image = post.image
+                    dbPost.likes = Int16(post.likes)
+                    dbPost.views = Int32(post.views)
+                }
+            case .remove(let index):
+                guard let post = 
+                        backgroundContext.object(with: strongSelf.favoritePosts[index].objectID) as? PostData else {
+                    return
+                }
+                backgroundContext.delete(post)
             }
-        case .remove(let index):
-            self.context.delete(favoritePosts[index])
-        }
-        do {
-            try self.context.save()
-            self.fetchFavoritePosts()
-        } catch {
-            print("🔴\(error)")
+            do {
+                try backgroundContext.save()
+                strongSelf.fetchFavoritePosts()
+            } catch {
+                print("🔴\(error)")
+            }
         }
     }
 }
