@@ -18,9 +18,24 @@ final class FavoriteViewController: UIViewController {
         table.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
         table.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         table.dataSource = self
+        table.delegate = self
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
+    
+    private lazy var filterBarButton = UIBarButtonItem(
+        image: UIImage(systemName: "line.3.horizontal.decrease.circle"),
+        style: .plain,
+        target: self,
+        action: #selector(filterBtnDidTap)
+    )
+    
+    private lazy var unfilterBarButton = UIBarButtonItem(
+        image: UIImage(systemName: "line.3.horizontal.circle"),
+        style: .plain,
+        target: self,
+        action: #selector(unfilterBtnDidTap)
+    )
     
     // MARK: Lifecycle
     init(viewModel: FavoriteViewModelProtocol) {
@@ -37,14 +52,14 @@ final class FavoriteViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = Configuration.viewControllerBackgroundColor
         self.setupViews()
+        self.setupNavigation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = false
         
-        self.viewModel.updateState(viewInput: .refreshData)
-        self.tableView.reloadData()
+        self.updateNavigation()
+        self.reloadData()
     }
     
     // MARK: Setups
@@ -57,6 +72,42 @@ final class FavoriteViewController: UIViewController {
             self.tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+    
+    private func setupNavigation() {
+        self.updateNavigation()
+        self.navigationItem.setRightBarButtonItems([unfilterBarButton, filterBarButton], animated: true)
+    }
+    
+    private func updateNavigation() {
+        self.navigationController?.navigationBar.isHidden = false
+        self.unfilterBarButton.isEnabled = false
+        self.navigationItem.title = NSLocalizedString("Favorite", comment: "Favorite")
+    }
+    
+//    MARK: Actions
+    @objc private func filterBtnDidTap() {
+        self.viewModel.updateState(viewInput: .filterBtnDidTap { filterString in
+            if let filter = filterString {
+                self.navigationItem.title = NSLocalizedString("Favorite by", comment: "Favorite by") + filter
+                self.tableView.reloadData()
+                self.unfilterBarButton.isEnabled = true
+            } else {
+                AlertUtils.showUserMessage("Author not exist", context: self)
+            }
+        })
+    }
+    
+    @objc private func unfilterBtnDidTap() {
+        self.reloadData()
+        self.unfilterBarButton.isEnabled = false
+        self.navigationItem.title = NSLocalizedString("Favorite", comment: "Favorite")
+    }
+    
+//    MARK: Methods
+    private func reloadData() {
+        self.viewModel.updateState(viewInput: .refreshData)
+        self.tableView.reloadData()
     }
 }
 
@@ -81,5 +132,17 @@ extension FavoriteViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension FavoriteViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let removeAction = UIContextualAction(style: .destructive, title: "Remove") {_,_,_ in
+            self.viewModel.updateState(viewInput: .removeFromFavorite(indexPath.row))
+            self.tableView.performBatchUpdates {
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        }
+        return UISwipeActionsConfiguration(actions: [removeAction])
     }
 }

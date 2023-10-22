@@ -31,3 +31,10 @@
 "Check guess" = "Check guess";
 "Enter your guess" = "Enter your guess";
 "Favorite" = "Favorite";
+"Author" = "Author: ";
+"Added to favorite" = "Post added to favorite";
+"Filter by author" = "Enter the author to filter";
+"Filter" = "Filter";
+"Author placeholder" = "Author";
+"Author not exist" = "There is no such author in favorites";
+"Favorite by" = "Favorite by ";

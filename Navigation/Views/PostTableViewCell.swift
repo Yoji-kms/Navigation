@@ -20,6 +20,15 @@ final class PostTableViewCell: UITableViewCell {
         return label
     }()
     
+    private lazy var author: UILabel = {
+        let label = UILabel()
+        label.font = .italicSystemFont(ofSize: 16)
+        label.textColor = .black
+        label.numberOfLines = 1
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private lazy var image: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -72,12 +81,14 @@ final class PostTableViewCell: UITableViewCell {
         self.postDescription.text = nil
         self.views.text = nil
         self.likes.text = nil
+        self.author.text = nil
     }
   
 // MARK: Setups
     func setup(with viewModel: Post) {
         self.image.image = UIImage(named: viewModel.image)
         self.title.text = viewModel.title
+        self.author.text = NSLocalizedString("Author", comment: "Author") + viewModel.author
         self.postDescription.text = viewModel.description
         self.likes.text = NSLocalizedString("Likes", comment: "Likes") + String(viewModel.likes)
         self.views.text = NSLocalizedString("Views", comment: "Views") + String(viewModel.views)
@@ -85,13 +96,18 @@ final class PostTableViewCell: UITableViewCell {
     
     func setupViews() {
         self.contentView.addSubview(title)
+        self.contentView.addSubview(author)
         self.contentView.addSubview(image)
         self.contentView.addSubview(postDescription)
         self.contentView.addSubview(views)
         self.contentView.addSubview(likes)
         
         NSLayoutConstraint.activate([
-            self.title.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
+            self.author.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
+            self.author.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            self.author.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
+            
+            self.title.topAnchor.constraint(equalTo: self.author.bottomAnchor, constant: 16),
             self.title.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             self.title.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             

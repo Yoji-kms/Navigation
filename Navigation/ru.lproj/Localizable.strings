@@ -31,3 +31,10 @@
 "Check guess" = "Проверить догадку";
 "Enter your guess" = "Введите свою догадку";
 "Favorite" = "Избранное";
+"Author" = "Автор: ";
+"Added to favorite" = "Пост добавлен в избранное";
+"Filter by author" = "Введите автора для фильтра";
+"Filter" = "Отфильтровать";
+"Author placeholder" = "Автор";
+"Author not exist" = "Такого автора нет в избранном";
+"Favorite by" = "Избранное от ";

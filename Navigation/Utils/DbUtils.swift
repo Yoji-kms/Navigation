@@ -13,6 +13,7 @@ extension PostData {
         let post = Post(
             title: self.title ?? "",
             description: self.postDescription ?? "",
+            author: self.author ?? "",
             image: self.image ?? "",
             likes: Int(self.likes),
             views: Int(self.views)

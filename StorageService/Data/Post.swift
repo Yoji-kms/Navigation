@@ -8,9 +8,10 @@
 import Foundation
 
 public struct Post {
-    public init(title: String, description: String, image: String, likes: Int, views: Int) {
+    public init(title: String, description: String, author: String, image: String, likes: Int, views: Int) {
         self.title = title
         self.description = description
+        self.author = author
         self.image = image
         self.likes = likes
         self.views = views
@@ -18,6 +19,7 @@ public struct Post {
     
     public let title: String
     public let description: String
+    public let author: String
     public let image: String
     public let likes: Int
     public let views: Int
