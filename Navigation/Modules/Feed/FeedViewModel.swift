@@ -24,7 +24,7 @@ final class FeedViewModel: FeedViewModelProtocol {
     let feedModel: FeedModel
     
     init() {
-        self.post = Post(title: "Post title", description: "", image: "", likes: 0, views: 0)
+        self.post = Post(title: "Post title", description: "", author: "", image: "", likes: 0, views: 0)
         self.feedModel = FeedModel()
     }
     

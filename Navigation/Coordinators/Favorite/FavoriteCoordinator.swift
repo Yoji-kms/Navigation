@@ -27,4 +27,35 @@ final class FavoriteCoordinator: ModuleCoordinatable {
         self.module = module
         return viewController
     }
+    
+    func presentFilterAlertController(completion: @escaping (String) -> Void) {
+        let controllerTitle = NSLocalizedString("Filter by author", comment: "Filter by author")
+        let alert = UIAlertController(title: controllerTitle, message: nil, preferredStyle: .alert)
+        
+        let cancelActionTitle = NSLocalizedString("Cancel", comment: "Cancel")
+        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel) { _ in
+            alert.dismiss(animated: true)
+        }
+        
+        let createActionTitle = NSLocalizedString("Filter", comment: "Filter")
+        let createAction = UIAlertAction(title: createActionTitle, style: .default) { _ in
+            completion(alert.textFields?.first?.text ?? "")
+        }
+        createAction.isEnabled = !(alert.textFields?.first?.text?.isEmpty ?? true)
+        
+        let textChangedAction = UIAction { _ in
+            guard let text = alert.textFields?.first?.text else { return }
+            createAction.isEnabled = !text.isEmpty
+        }
+        
+        alert.addTextField { textField in
+            textField.placeholder = NSLocalizedString("Author placeholder", comment: "Author placeholder")
+            textField.addAction(textChangedAction, for: .editingChanged)
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(createAction)
+        
+        self.module?.viewController.present(alert, animated: true)
+    }
 }
