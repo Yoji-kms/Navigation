@@ -5,10 +5,10 @@
 //  Created by Yoji on 17.10.2023.
 //
 
-import Foundation
 import StorageService
+import CoreData
 
 protocol FavoriteViewModelProtocol: ViewModelProtocol {
-    var data: [Post] { get }
+    var fetchController: NSFetchedResultsController<PostData> { get }
     func updateState(viewInput: FavoriteViewModel.ViewInput)
 }

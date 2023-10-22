@@ -7,50 +7,48 @@
 
 import UIKit
 import StorageService
+import CoreData
 
 final class FavoriteViewModel: FavoriteViewModelProtocol {
     enum ViewInput {
         case refreshData
-        case removeFromFavorite(Int)
+        case removeFromFavorite(PostData)
         case filterBtnDidTap((String?)->())
         case unfilterBtnDidTap
     }
     
     let postDataManager: PostDataManager
-    private(set) var data: [Post] = []
+    let fetchController: NSFetchedResultsController<PostData>
     
     weak var coordinator: FavoriteCoordinator?
     
     init(postDataManager: PostDataManager) {
         self.postDataManager = postDataManager
-        
-        postDataManager.fetchFavoritePosts()
-        self.refreshData()
+        self.fetchController = postDataManager.fetchController
+        try? self.postDataManager.fetchController.performFetch()
     }
     
     func updateState(viewInput: FavoriteViewModel.ViewInput) {
         switch viewInput {
         case .refreshData:
-            self.refreshData()
-        case .removeFromFavorite(let index):
-            self.postDataManager.removePostFromFavorite(atIndex: index)
-            self.data.remove(at: index)
+            try? self.postDataManager.fetchController.performFetch()
+        case .removeFromFavorite(let post):
+            self.postDataManager.removePostFromFavorite(post)
         case .filterBtnDidTap(let completion):
             self.coordinator?.presentFilterAlertController { filterString in
-                let filteredPosts = self.postDataManager.getFilteredPosts(byAuthor: filterString)
+                self.postDataManager.filterPosts(byAuthor: filterString)
+                let filteredPosts = self.postDataManager.fetchController.fetchedObjects ?? []
                 if !filteredPosts.isEmpty {
-                    self.data = filteredPosts.map { $0.toPost() }
                     completion(filterString)
                 } else {
+                    self.postDataManager.unfilterData()
+                    try? self.postDataManager.fetchController.performFetch()
                     completion(nil)
                 }
             }
         case .unfilterBtnDidTap:
-            self.refreshData()
+            self.postDataManager.unfilterData()
+            try? self.postDataManager.fetchController.performFetch()
         }
-    }
-    
-    private func refreshData() {
-        self.data = self.postDataManager.favoritePosts.map { $0.toPost() }
     }
 }
