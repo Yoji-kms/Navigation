@@ -6,7 +6,6 @@
 //
 
 import UIKit
-//import iOSIntPackage
 
 final class PhotosViewController: UIViewController {
 // MARK: Variables
