@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 final class FavoriteViewController: UIViewController {
     private let viewModel: FavoriteViewModelProtocol
@@ -57,13 +58,13 @@ final class FavoriteViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.updateNavigation()
-        self.reloadData()
+        self.viewModel.updateState(viewInput: .refreshData)
+        self.tableView.reloadData()
     }
     
     // MARK: Setups
     private func setupViews() {
+        self.viewModel.fetchController.delegate = self
         self.view.addSubview(self.tableView)
         
         NSLayoutConstraint.activate([
@@ -92,6 +93,7 @@ final class FavoriteViewController: UIViewController {
                 self.navigationItem.title = NSLocalizedString("Favorite by", comment: "Favorite by") + filter
                 self.tableView.reloadData()
                 self.unfilterBarButton.isEnabled = true
+                self.filterBarButton.isEnabled = false
             } else {
                 AlertUtils.showUserMessage("Author not exist", context: self)
             }
@@ -99,15 +101,11 @@ final class FavoriteViewController: UIViewController {
     }
     
     @objc private func unfilterBtnDidTap() {
-        self.reloadData()
-        self.unfilterBarButton.isEnabled = false
-        self.navigationItem.title = NSLocalizedString("Favorite", comment: "Favorite")
-    }
-    
-//    MARK: Methods
-    private func reloadData() {
-        self.viewModel.updateState(viewInput: .refreshData)
+        self.viewModel.updateState(viewInput: .unfilterBtnDidTap)
         self.tableView.reloadData()
+        self.unfilterBarButton.isEnabled = false
+        self.filterBarButton.isEnabled = true
+        self.navigationItem.title = NSLocalizedString("Favorite", comment: "Favorite")
     }
 }
 
@@ -115,7 +113,7 @@ final class FavoriteViewController: UIViewController {
 // MARK: Extensions
 extension FavoriteViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.data.count
+        self.viewModel.fetchController.fetchedObjects?.count ?? 0
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -123,7 +121,7 @@ extension FavoriteViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DefaltCell", for: indexPath)
             return cell
         }
-        let post = viewModel.data[indexPath.row]
+        let post = self.viewModel.fetchController.object(at: indexPath).toPost()
         cell.clipsToBounds = true
         cell.setup(with: post)
         
@@ -138,11 +136,32 @@ extension FavoriteViewController: UITableViewDataSource {
 extension FavoriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let removeAction = UIContextualAction(style: .destructive, title: "Remove") {_,_,_ in
-            self.viewModel.updateState(viewInput: .removeFromFavorite(indexPath.row))
-            self.tableView.performBatchUpdates {
-                self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
+            let post = self.viewModel.fetchController.object(at: indexPath)
+            self.viewModel.updateState(viewInput: .removeFromFavorite(post))
         }
         return UISwipeActionsConfiguration(actions: [removeAction])
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+}
+
+extension FavoriteViewController: NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard let index = indexPath else { return }
+        switch type {
+        case .insert:
+            self.tableView.insertRows(at: [index], with: .automatic)
+        case .delete:
+            self.tableView.deleteRows(at: [index], with: .automatic)
+        case .move:
+            guard let newIndex = newIndexPath else { return }
+            self.tableView.moveRow(at: index, to: newIndex)
+        case .update:
+            self.tableView.reloadRows(at: [index], with: .automatic)
+        @unknown default:
+            ()
+        }
     }
 }
