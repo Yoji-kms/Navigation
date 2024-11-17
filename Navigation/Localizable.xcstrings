@@ -224,10 +224,6 @@
         }
       }
     },
-    "Likes" : {
-      "comment" : "Likes",
-      "shouldTranslate" : false
-    },
     "Likes %lld" : {
       "localizations" : {
         "en" : {
@@ -455,10 +451,6 @@
           }
         }
       }
-    },
-    "Views" : {
-      "comment" : "Views",
-      "shouldTranslate" : false
     },
     "Views %lld" : {
       "localizations" : {
