@@ -90,8 +90,8 @@ final class PostTableViewCell: UITableViewCell {
         self.title.text = viewModel.title
         self.author.text = NSLocalizedString("Author", comment: "Author") + viewModel.author
         self.postDescription.text = viewModel.description
-        self.likes.text = NSLocalizedString("Likes", comment: "Likes") + String(viewModel.likes)
-        self.views.text = NSLocalizedString("Views", comment: "Views") + String(viewModel.views)
+        self.likes.text = String(localized: "Likes \(viewModel.likes)")
+        self.views.text = String(localized: "Views \(viewModel.views)")
     }
     
     func setupViews() {
