@@ -24,7 +24,7 @@ final class TabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
-        self.tabBar.tintColor = .init(named: "VkColor")
+        self.tabBar.tintColor = .init(resource: .vk)
         self.tabBar.barTintColor = .systemGray6
         self.tabBar.backgroundColor = .systemGray6
     }

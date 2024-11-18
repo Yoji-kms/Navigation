@@ -28,7 +28,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
         label.text = "Some name".localized
-        label.textColor = .black
+        label.textColor = Colors.dark.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -37,7 +37,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         let title = "Set status".localized
         let button = CustomButton(
             title: title,
-            titleColor: nil,
+            titleColor: Colors.light.color,
             backgroundColor: .systemBlue.notEnabled(),
             onBtnTap: buttonDidTap
         )
@@ -62,10 +62,10 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     private lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.leadingPadding(8)
-        textField.backgroundColor = .white
-        textField.textColor = .black
+        textField.backgroundColor = Colors.light.color
+        textField.textColor = Colors.dark.color
         textField.font = .systemFont(ofSize: 15)
-        textField.setBorder(color: UIColor.black.cgColor, width: 1, cornerRadius: 12)
+        
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
         return textField
@@ -80,6 +80,11 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateCgColors()
     }
     
 // MARK: Setups
@@ -123,6 +128,8 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
             self.statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             self.statusLabel.bottomAnchor.constraint(equalTo: self.statusTextField.topAnchor, constant: -16),
         ])
+        
+        self.updateCgColors()
     }
     
 // MARK: Actions
@@ -142,6 +149,8 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     func buttonDidTap(){
         statusLabel.text = statusText
         self.statusTextField.text = ""
+        self.setStatusButton.isEnabled = false
+        self.setStatusButton.backgroundColor = .systemBlue.notEnabled()
         self.endEditing(true)
     }
     
@@ -149,5 +158,9 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         guard let tapped = tapGestureRecogniser.view as? AvatarView else { return }
 
         delegate?.avatarTap(avatar: tapped)
+    }
+    
+    private func updateCgColors() {
+        self.statusTextField.setBorder(color: Colors.dark.color.cgColor, width: 1, cornerRadius: 12)
     }
 }

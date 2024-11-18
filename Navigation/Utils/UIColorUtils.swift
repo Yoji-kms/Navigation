@@ -22,4 +22,33 @@ extension UIColor {
             return nil
         }
     }
+    
+    static func createColor(lightMode: UIColor, darkMode: UIColor) -> UIColor {
+        guard #available(iOS 13.0, *) else {
+            return lightMode
+        }
+        return .init { traitCollection -> UIColor in
+            traitCollection.userInterfaceStyle == .dark ? darkMode : lightMode
+        }
+    }
+}
+
+enum Colors {
+    case light
+    case dark
+    case background
+    case border
+    
+    var color: UIColor {
+        return switch self {
+        case .light:
+                .createColor(lightMode: .white, darkMode: .black)
+        case .dark:
+                .createColor(lightMode: .black, darkMode: .white)
+        case .background:
+                .createColor(lightMode: .white, darkMode: .black)
+        case .border:
+                .createColor(lightMode: .black, darkMode: .white)
+        }
+    }
 }
