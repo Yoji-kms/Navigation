@@ -11,7 +11,7 @@ final class PhotosCollectionViewHeader: UICollectionReusableView {
 // MARK: Views
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("Photos", comment: "Photos")
+        label.text = "Photos".localized
         label.textColor = .black
         label.font = .boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false

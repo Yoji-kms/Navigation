@@ -88,10 +88,10 @@ final class PostTableViewCell: UITableViewCell {
     func setup(with viewModel: Post) {
         self.image.image = UIImage(named: viewModel.image)
         self.title.text = viewModel.title
-        self.author.text = NSLocalizedString("Author", comment: "Author") + viewModel.author
+        self.author.text = "Author".localized + viewModel.author
         self.postDescription.text = viewModel.description
-        self.likes.text = NSLocalizedString("Likes", comment: "Likes") + String(viewModel.likes)
-        self.views.text = NSLocalizedString("Views", comment: "Views") + String(viewModel.views)
+        self.likes.text = String(localized: "Likes \(viewModel.likes)")
+        self.views.text = String(localized: "Views \(viewModel.views)")
     }
     
     func setupViews() {

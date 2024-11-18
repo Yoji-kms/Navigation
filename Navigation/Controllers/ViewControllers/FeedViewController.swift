@@ -30,7 +30,7 @@ final class FeedViewController: UIViewController {
     }()
     
     private lazy var showPostButton: CustomButton = {
-        let title = NSLocalizedString("Show post", comment: "Show post")
+        let title = "Show post".localized
         let button = CustomButton(
             title: title,
             titleColor: nil,
@@ -46,13 +46,13 @@ final class FeedViewController: UIViewController {
         txtField.font = .systemFont(ofSize: 16)
         txtField.textColor = .black
         txtField.setBorder(color: UIColor.black.cgColor, width: 0.5, cornerRadius: 12)
-        txtField.placeholder = NSLocalizedString("Enter your guess", comment: "Enter your guess")
+        txtField.placeholder = "Enter your guess".localized
         txtField.translatesAutoresizingMaskIntoConstraints = false
         return txtField
     }()
     
     private lazy var checkGuessButton: CustomButton = {
-        let title = NSLocalizedString("Check guess", comment: "Check guess")
+        let title = "Check guess".localized
         let btn = CustomButton(
             title: title,
             titleColor: nil,
@@ -79,8 +79,8 @@ final class FeedViewController: UIViewController {
     private func didTapGuessBtn() {
         guard let guessText = guessTxtField.text else { return }
         let guessed = viewModel.checkGuess(word: guessText)
-        let correct = NSLocalizedString("Correct", comment: "Correct")
-        let incorrect = NSLocalizedString("Incorrect", comment: "Incorrect")
+        let correct = "Correct".localized
+        let incorrect = "Incorrect".localized
         self.checkGuessLabel.text = guessed ? correct : incorrect
         self.checkGuessLabel.backgroundColor = guessed ? .systemGreen : .systemRed
         UIView.animate(withDuration: 0.5) {
@@ -126,7 +126,7 @@ final class FeedViewController: UIViewController {
 // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("Feed", comment: "Feed")
+        self.navigationItem.title = "Feed".localized
         self.view.backgroundColor = .white
 
         self.setupViews()

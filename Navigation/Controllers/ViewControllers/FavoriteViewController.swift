@@ -82,18 +82,18 @@ final class FavoriteViewController: UIViewController {
     private func updateNavigation() {
         self.navigationController?.navigationBar.isHidden = false
         self.unfilterBarButton.isEnabled = false
-        self.navigationItem.title = NSLocalizedString("Favorite", comment: "Favorite")
+        self.navigationItem.title = "Favorite".localized
     }
     
 //    MARK: Actions
     @objc private func filterBtnDidTap() {
         self.viewModel.updateState(viewInput: .filterBtnDidTap { filterString in
             if let filter = filterString {
-                self.navigationItem.title = NSLocalizedString("Favorite by", comment: "Favorite by") + filter
+                self.navigationItem.title = "Favorite by".localized + filter
                 self.tableView.reloadData()
                 self.unfilterBarButton.isEnabled = true
             } else {
-                AlertUtils.showUserMessage("Author not exist", context: self)
+                AlertUtils.showUserMessage("Author not exist".localized, context: self)
             }
         })
     }
@@ -101,7 +101,7 @@ final class FavoriteViewController: UIViewController {
     @objc private func unfilterBtnDidTap() {
         self.reloadData()
         self.unfilterBarButton.isEnabled = false
-        self.navigationItem.title = NSLocalizedString("Favorite", comment: "Favorite")
+        self.navigationItem.title = "Favorite".localized
     }
     
 //    MARK: Methods

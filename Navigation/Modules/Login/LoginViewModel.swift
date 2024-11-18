@@ -51,13 +51,13 @@ final class LoginViewModel: LoginViewModelProtocol {
                         try self.checkLogin(login, password: password)
                         self.coordinator?.pushProfileViewController(forUser: user)
                     case .failure(_):
-                        AlertUtils.showUserMessage(NSLocalizedString("User does not exist", comment: "User does not exist"), context: context)
+                        AlertUtils.showUserMessage("User does not exist".localized, context: context)
                     }
                     
                 }
             }
             catch LoginError.wrongPassword {
-                AlertUtils.showUserMessage(NSLocalizedString("Incorrect password", comment: "Incorrect password"), context: context)
+                AlertUtils.showUserMessage("Incorrect password".localized, context: context)
             }
             catch {
                 print("♦️ Unknown error")
