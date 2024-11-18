@@ -29,15 +29,15 @@ final class FavoriteCoordinator: ModuleCoordinatable {
     }
     
     func presentFilterAlertController(completion: @escaping (String) -> Void) {
-        let controllerTitle = NSLocalizedString("Filter by author", comment: "Filter by author")
+        let controllerTitle = "Filter by author".localized
         let alert = UIAlertController(title: controllerTitle, message: nil, preferredStyle: .alert)
         
-        let cancelActionTitle = NSLocalizedString("Cancel", comment: "Cancel")
+        let cancelActionTitle = "Cancel".localized
         let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel) { _ in
             alert.dismiss(animated: true)
         }
         
-        let createActionTitle = NSLocalizedString("Filter", comment: "Filter")
+        let createActionTitle = "Filter".localized
         let createAction = UIAlertAction(title: createActionTitle, style: .default) { _ in
             completion(alert.textFields?.first?.text ?? "")
         }
@@ -49,7 +49,7 @@ final class FavoriteCoordinator: ModuleCoordinatable {
         }
         
         alert.addTextField { textField in
-            textField.placeholder = NSLocalizedString("Author placeholder", comment: "Author placeholder")
+            textField.placeholder = "Author placeholder".localized
             textField.addAction(textChangedAction, for: .editingChanged)
         }
         

@@ -104,6 +104,7 @@
     },
     "Correct" : {
       "comment" : "Correct",
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -204,6 +205,7 @@
     },
     "Incorrect" : {
       "comment" : "Incorrect",
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

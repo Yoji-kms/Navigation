@@ -15,7 +15,7 @@ final class InfoViewController: UIViewController {
     
 // MARK: Views
     private lazy var button: UIButton = {
-        let title = NSLocalizedString("Print message", comment: "Print message")
+        let title = "Print message".localized
         let button = CustomButton(
             title: title,
             titleColor: nil,

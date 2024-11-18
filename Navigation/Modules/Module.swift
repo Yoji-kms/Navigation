@@ -33,15 +33,15 @@ extension Module.TabType {
     var tabBarItem: UITabBarItem {
         switch self {
         case .feed:
-            let title = NSLocalizedString("Feed", comment: "Feed")
+            let title = "Feed".localized
             let image: UIImage = UIImage(systemName: "lanyardcard.fill") ?? UIImage()
             return UITabBarItem(title: title, image: image, tag: 0)
         case .profile:
-            let title = NSLocalizedString("Profile", comment: "Profile")
+            let title = "Profile".localized
             let image: UIImage = UIImage(systemName: "person.fill") ?? UIImage()
             return UITabBarItem(title: title, image: image, tag: 1)
         case .favorite:
-            let title = NSLocalizedString("Favorite", comment: "Favorite")
+            let title = "Favorite".localized
             let image: UIImage = UIImage(systemName: "star.circle.fill") ?? UIImage()
             return UITabBarItem(title: title, image: image, tag: 2)
         }

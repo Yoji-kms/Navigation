@@ -29,7 +29,7 @@ final class AppFactory {
         case .feed:
             let viewController: UINavigationController = {
                 let navController = UINavigationController(rootViewController: rootVC)
-                navController.title = NSLocalizedString("Feed", comment: "Feed")
+                navController.title = "Feed".localized
                 return navController
             }()
             return viewController
@@ -37,7 +37,7 @@ final class AppFactory {
         case .favorite:
             let viewController: UINavigationController = {
                 let navController = UINavigationController(rootViewController: rootVC)
-                navController.title = NSLocalizedString("Favorite", comment: "Favorite")
+                navController.title = "Favorite".localized
                 return navController
             }()
             return viewController

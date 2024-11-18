@@ -29,11 +29,11 @@ final class InfoCoordinator: ModuleCoordinatable {
     }
     
     func presentAlert() {
-        let alertController = UIAlertController(title: NSLocalizedString("Print message?", comment: "Print message?"), message: nil, preferredStyle: .alert)
-        let printMessage = UIAlertAction(title: NSLocalizedString("Print", comment: "Print"), style: .default, handler: { _ in
-            print(NSLocalizedString("Message", comment: "Message"))
+        let alertController = UIAlertController(title: "Print message?".localized, message: nil, preferredStyle: .alert)
+        let printMessage = UIAlertAction(title: "Print".localized, style: .default, handler: { _ in
+            print("Message".localized)
         })
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
         
         alertController.addAction(printMessage)
         alertController.addAction(cancel)

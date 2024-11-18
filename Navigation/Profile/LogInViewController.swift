@@ -23,7 +23,7 @@ final class LogInViewController: UIViewController{
         let textField = UITextField()
         textField.text = viewModel.defaultLogin
         textField.leadingPadding(8)
-        textField.placeholder = NSLocalizedString("Email or phone", comment: "Email or phone")
+        textField.placeholder = "Email or phone".localized
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = .black
         textField.autocapitalizationType = .none
@@ -37,7 +37,7 @@ final class LogInViewController: UIViewController{
         let textField = UITextField()
         textField.text = viewModel.defaultPassword
         textField.leadingPadding(8)
-        textField.placeholder = NSLocalizedString("Password", comment: "Password")
+        textField.placeholder = "Password".localized
         textField.isSecureTextEntry = true
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = .black
@@ -70,7 +70,7 @@ final class LogInViewController: UIViewController{
     }()
     
     private lazy var logInBtn: CustomButton = {
-        let title = NSLocalizedString("Log in", comment: "Log in")
+        let title = "Log in".localized
         let btn = CustomButton(
             title: title,
             titleColor: nil,

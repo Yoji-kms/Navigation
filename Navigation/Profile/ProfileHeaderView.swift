@@ -27,14 +27,14 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
-        label.text = NSLocalizedString("Some name", comment: "Name")
+        label.text = "Some name".localized
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var setStatusButton: CustomButton = {
-        let title = NSLocalizedString("Set status", comment: "Set status")
+        let title = "Set status".localized
         let button = CustomButton(
             title: title,
             titleColor: nil,
@@ -54,7 +54,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .gray
-        label.text = NSLocalizedString("Some status", comment: "Status")
+        label.text = "Some status".localized
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -127,7 +127,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     
 // MARK: Actions
     @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = textField.text ?? NSLocalizedString("Unknown", comment: "Unknown")
+        statusText = textField.text ?? "Unknown".localized
         if (textField.text == "") {
             setStatusButton.isEnabled = false
             setStatusButton.backgroundColor = .systemBlue.notEnabled()

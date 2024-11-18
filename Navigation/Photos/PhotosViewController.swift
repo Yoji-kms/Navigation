@@ -65,8 +65,8 @@ final class PhotosViewController: UIViewController {
 // MARK: Setups
     private func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationItem.title = NSLocalizedString("Photo Galery", comment: "Photo Galery")
-        self.navigationItem.backButtonTitle = NSLocalizedString("Back", comment: "Back")
+        self.navigationItem.title = "Photo Galery".localized
+        self.navigationItem.backButtonTitle = "Back".localized
     }
     
     private func setupView() {
