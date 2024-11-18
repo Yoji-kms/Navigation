@@ -12,7 +12,7 @@ final class PhotosCollectionViewHeader: UICollectionReusableView {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.text = "Photos".localized
-        label.textColor = .black
+        label.textColor = Colors.dark.color
         label.font = .boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -21,7 +21,7 @@ final class PhotosCollectionViewHeader: UICollectionReusableView {
     private lazy var forward: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "arrow.right")
-        image.tintColor = .black
+        image.tintColor = Colors.dark.color
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()

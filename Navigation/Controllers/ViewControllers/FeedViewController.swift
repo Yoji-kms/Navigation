@@ -33,7 +33,7 @@ final class FeedViewController: UIViewController {
         let title = "Show post".localized
         let button = CustomButton(
             title: title,
-            titleColor: nil,
+            titleColor: Colors.light.color,
             backgroundColor: .systemCyan,
             onBtnTap: didTapShowPostBtn
         )
@@ -44,8 +44,8 @@ final class FeedViewController: UIViewController {
         let txtField = UITextField()
         txtField.leadingPadding(8)
         txtField.font = .systemFont(ofSize: 16)
-        txtField.textColor = .black
-        txtField.setBorder(color: UIColor.black.cgColor, width: 0.5, cornerRadius: 12)
+        txtField.textColor = Colors.dark.color
+        
         txtField.placeholder = "Enter your guess".localized
         txtField.translatesAutoresizingMaskIntoConstraints = false
         return txtField
@@ -55,7 +55,7 @@ final class FeedViewController: UIViewController {
         let title = "Check guess".localized
         let btn = CustomButton(
             title: title,
-            titleColor: nil,
+            titleColor: Colors.light.color,
             backgroundColor: .systemIndigo,
             onBtnTap: didTapGuessBtn
         )
@@ -66,6 +66,7 @@ final class FeedViewController: UIViewController {
         let lbl = UILabel()
         lbl.alpha = 0
         lbl.textAlignment = .center
+        lbl.textColor = Colors.light.color
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -127,7 +128,7 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Feed".localized
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = Colors.background.color
 
         self.setupViews()
         self.setupGestures()
@@ -153,6 +154,11 @@ final class FeedViewController: UIViewController {
         super.viewDidLayoutSubviews()
         self.showPostButton.layer.cornerRadius = self.showPostButton.frame.height/4
         self.checkGuessButton.layer.cornerRadius = self.checkGuessButton.frame.height/4
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateCgColors()
     }
     
 // MARK: Setups
@@ -191,11 +197,17 @@ final class FeedViewController: UIViewController {
             self.checkGuessLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             self.checkGuessLabel.heightAnchor.constraint(equalToConstant: 50),
         ])
+        
+        self.updateCgColors()
     }
     
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
         self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    private func updateCgColors() {
+        self.guessTxtField.setBorder(color: Colors.border.color.cgColor, width: 0.5, cornerRadius: 12)
     }
 }
 

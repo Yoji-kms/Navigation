@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class LogInViewController: UIViewController{
+final class LogInViewController: UIViewController {
     private let viewModel: LoginViewModelProtocol
     
 // MARK: Views
@@ -25,7 +25,7 @@ final class LogInViewController: UIViewController{
         textField.leadingPadding(8)
         textField.placeholder = "Email or phone".localized
         textField.font = .systemFont(ofSize: 16)
-        textField.textColor = .black
+        textField.textColor = Colors.dark.color
         textField.autocapitalizationType = .none
         textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.addTarget(self, action: #selector(loginTextChanged(_:)), for: .editingChanged)
@@ -40,7 +40,7 @@ final class LogInViewController: UIViewController{
         textField.placeholder = "Password".localized
         textField.isSecureTextEntry = true
         textField.font = .systemFont(ofSize: 16)
-        textField.textColor = .black
+        textField.textColor = Colors.dark.color
         textField.autocapitalizationType = .none
         textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -73,13 +73,13 @@ final class LogInViewController: UIViewController{
         let title = "Log in".localized
         let btn = CustomButton(
             title: title,
-            titleColor: nil,
-            backgroundImage: UIImage(named: "blue_pixel")?.alpha(1),
+            titleColor: Colors.light.color,
+            backgroundImage: .init(resource: .bluePixel).alpha(1),
             onBtnTap: didTapBtn
         )
-        btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .disabled)
-        btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .highlighted)
-        btn.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .selected)
+        btn.setBackgroundImage(.init(resource: .bluePixel).alpha(0.8), for: .disabled)
+        btn.setBackgroundImage(.init(resource: .bluePixel).alpha(0.8), for: .highlighted)
+        btn.setBackgroundImage(.init(resource: .bluePixel).alpha(0.8), for: .selected)
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 10
         btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
@@ -101,9 +101,9 @@ final class LogInViewController: UIViewController{
 // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        setupViews()
-        setupGestures()
+        view.backgroundColor = Colors.background.color
+        self.setupViews()
+        self.setupGestures()
     }
 
     override func viewWillAppear(_ animated: Bool) {
