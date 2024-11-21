@@ -21,7 +21,7 @@ final class FeedViewModel: FeedViewModelProtocol {
     weak var coordinator: FeedCoordinator?
     
     let post: Post
-    let feedModel: FeedModel
+    let feedModel: FeedModelProtocol
     
     init() {
         self.post = Post(title: "Post title", description: "", author: "", image: "", likes: 0, views: 0)
