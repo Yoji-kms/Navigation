@@ -27,6 +27,7 @@ final class LogInViewController: UIViewController{
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = .black
         textField.autocapitalizationType = .none
+        textField.accessibilityIdentifier = "LoginTextField"
         textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.addTarget(self, action: #selector(loginTextChanged(_:)), for: .editingChanged)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -42,6 +43,7 @@ final class LogInViewController: UIViewController{
         textField.font = .systemFont(ofSize: 16)
         textField.textColor = .black
         textField.autocapitalizationType = .none
+        textField.accessibilityIdentifier = "PasswordTextField"
         textField.setBorder(color: UIColor.lightGray.cgColor, width: 0.5, cornerRadius: nil)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -83,6 +85,7 @@ final class LogInViewController: UIViewController{
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 10
         btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        btn.accessibilityIdentifier = "LoginButton"
         btn.isEnabled = !(emailOrPhoneTextField.text?.isEmpty ?? true)
         return btn
     }()

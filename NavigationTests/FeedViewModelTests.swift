@@ -6,12 +6,14 @@
 //
 
 import Testing
+@testable import Navigation
 
 struct FeedViewModelTests {
+    let feedViewModel = FeedViewModel()
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-        #expect(<#T##condition: Bool##Bool#>)
+    @Test func checkGuessTest() async throws {
+        #expect(self.feedViewModel.checkGuess(word: "pswrd"))
+        #expect(!self.feedViewModel.checkGuess(word: "some word"))
+        #expect(self.feedViewModel.checkGuess(word: "another word") == false)
     }
-
 }

@@ -1,3 +1,11 @@
+//
+//  FeedViewModelXCTest.swift
+//  Navigation
+//
+//  Created by Yoji on 19.11.2024.
+//
+
+
 import XCTest
 @testable import Navigation
 
@@ -9,8 +17,9 @@ class FeedViewModelXCTest: XCTestCase {
         self.feedViewModel = FeedViewModel()
     }
     
-    func checkGuessTest() {
+    func checkGuessXCTest() {
         XCTAssertTrue(self.feedViewModel.checkGuess(word: "pswrd"))
-        XCTAssertEqual(self.feedViewModel.checkGuess(word: "pswrd"), true)
+        XCTAssertFalse(self.feedViewModel.checkGuess(word: "some word"))
+        XCTAssertEqual(self.feedViewModel.checkGuess(word: "another word"), false)
     }
 }

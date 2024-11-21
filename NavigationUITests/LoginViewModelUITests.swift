@@ -1,5 +1,5 @@
 //
-//  NavigationUITests.swift
+//  LoginViewModelUITests.swift
 //  NavigationUITests
 //
 //  Created by Yoji on 20.11.2024.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class NavigationUITests: XCTestCase {
+final class LoginViewModelUITests: XCTestCase {
     let app = XCUIApplication()
 
     override func setUp() {
