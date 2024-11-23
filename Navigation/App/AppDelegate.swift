@@ -9,8 +9,11 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let localNotificationService = LocalNotificationService()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.localNotificationService.registerForLatestUpdatesIfPossible()
         return true
     }
 

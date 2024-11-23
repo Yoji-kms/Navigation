@@ -1,6 +1,17 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "action" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "действие"
+          }
+        }
+      }
+    },
     "Added to favorite" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -102,18 +113,6 @@
         }
       }
     },
-    "Correct" : {
-      "comment" : "Correct",
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Верно"
-          }
-        }
-      }
-    },
     "Email or phone" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -199,18 +198,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Введите автора для фильтра"
-          }
-        }
-      }
-    },
-    "Incorrect" : {
-      "comment" : "Incorrect",
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Неверно"
           }
         }
       }
@@ -502,6 +489,17 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "Watch last updates" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посмотрите последние обновления"
           }
         }
       }
