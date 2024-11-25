@@ -13,7 +13,7 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
-        image.backgroundColor = .black
+        image.backgroundColor = Colors.dark.color
         image.image?.jpegData(compressionQuality: 0.2)
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
