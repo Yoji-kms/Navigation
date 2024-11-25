@@ -124,6 +124,17 @@
         }
       }
     },
+    "Enter Username/Password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ввести имя пользователя и пароль"
+          }
+        }
+      }
+    },
     "Enter your guess" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -272,6 +283,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Войти"
+          }
+        }
+      }
+    },
+    "Log in to your account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Войти в свой аккунт"
           }
         }
       }

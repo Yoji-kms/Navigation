@@ -14,7 +14,7 @@ final class LogInViewController: UIViewController {
 // MARK: Views
     private lazy var vkLogo: UIImageView = {
         let logo = UIImageView()
-        logo.image = UIImage(named: "logo")
+        logo.image = UIImage(resource: .logo)
         logo.translatesAutoresizingMaskIntoConstraints = false
         return logo
     }()
@@ -73,18 +73,30 @@ final class LogInViewController: UIViewController {
         let title = "Log in".localized
         let btn = CustomButton(
             title: title,
-            titleColor: Colors.light.color,
-            backgroundImage: .init(resource: .bluePixel).alpha(1),
+            titleColor: nil,
+            backgroundImage: UIImage(resource: .bluePixel).alpha(1),
             onBtnTap: didTapBtn
         )
-        btn.setBackgroundImage(.init(resource: .bluePixel).alpha(0.8), for: .disabled)
-        btn.setBackgroundImage(.init(resource: .bluePixel).alpha(0.8), for: .highlighted)
-        btn.setBackgroundImage(.init(resource: .bluePixel).alpha(0.8), for: .selected)
+        btn.setBackgroundImage(UIImage(resource: .bluePixel).alpha(0.8), for: .disabled)
+        btn.setBackgroundImage(UIImage(resource: .bluePixel).alpha(0.8), for: .highlighted)
+        btn.setBackgroundImage(UIImage(resource: .bluePixel).alpha(0.8), for: .selected)
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 10
         btn.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         btn.isEnabled = !(emailOrPhoneTextField.text?.isEmpty ?? true)
         return btn
+    }()
+    
+    private lazy var biometryAuthorizationButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .init(resource: .vk)
+        button.backgroundColor = .clear
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.addTarget(self, action: #selector(biometryAuthorizationButtonDidTap), for: .touchUpInside)
+        button.isHidden = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
 // MARK: Init
@@ -120,6 +132,17 @@ final class LogInViewController: UIViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
+        self.viewModel.updateState(viewInput: .checkBiometryType() { [weak self] biometryType in
+            guard let self else { return }
+            
+            switch biometryType {
+            case .touchID, .faceID, .opticID:
+                self.biometryAuthorizationButton.setImage(biometryType.icon, for: .normal)
+                self.biometryAuthorizationButton.isHidden = false
+            default:
+                self.biometryAuthorizationButton.isHidden = true
+            }
+        })
     }
     
 // MARK: Setups
@@ -134,6 +157,7 @@ final class LogInViewController: UIViewController {
         self.scrollView.addSubview(vkLogo)
         self.scrollView.addSubview(logInStackView)
         self.scrollView.addSubview(logInBtn)
+        self.scrollView.addSubview(biometryAuthorizationButton)
         
         self.logInStackView.addArrangedSubview(emailOrPhoneTextField)
         self.logInStackView.addArrangedSubview(passwordTextField)
@@ -162,6 +186,11 @@ final class LogInViewController: UIViewController {
             self.logInBtn.heightAnchor.constraint(equalToConstant: 50),
             self.logInBtn.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             self.logInBtn.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            self.biometryAuthorizationButton.topAnchor.constraint(equalTo: self.logInBtn.bottomAnchor, constant: 16),
+            self.biometryAuthorizationButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.biometryAuthorizationButton.heightAnchor.constraint(equalToConstant: 80),
+            self.biometryAuthorizationButton.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
     
@@ -200,5 +229,9 @@ final class LogInViewController: UIViewController {
     
     @objc private func loginTextChanged(_ textField: UITextField){
         self.logInBtn.isEnabled = (self.emailOrPhoneTextField.text != "")
+    }
+    
+    @objc private func biometryAuthorizationButtonDidTap() {
+        self.viewModel.updateState(viewInput: .biometryAuthorizationButtonDidTap)
     }
 }

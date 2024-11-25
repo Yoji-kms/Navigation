@@ -7,11 +7,13 @@
 
 import UIKit
 import StorageService
+import LocalAuthentication
 
 final class LoginViewModel: LoginViewModelProtocol {
     
     let defaultLogin = Configuration.login
     let defaultPassword = "pswrd"
+    private let localAuthorizationService = LocalAuthorizationService()
     
     enum LoginError: Error {
         case noContext
@@ -25,6 +27,8 @@ final class LoginViewModel: LoginViewModelProtocol {
     
     enum ViewInput {
         case loginBtnDidTap(String, String)
+        case biometryAuthorizationButtonDidTap
+        case checkBiometryType((LABiometryType)->Void)
     }
     
     weak var coordinator: LoginCoordinator?
@@ -62,6 +66,40 @@ final class LoginViewModel: LoginViewModelProtocol {
             catch {
                 print("♦️ Unknown error")
             }
+        case .biometryAuthorizationButtonDidTap:
+            self.localAuthorizationService.authorizeIfPossible() { [weak self] authorized, error in
+                guard let self else { return }
+                guard let context = try? self.getContext() else {
+                    preconditionFailure("🟡 No context")
+                }
+                
+                if let error {
+                    AlertUtils.showUserMessage(error.localizedDescription, context: context)
+                }
+                
+                if authorized {
+                    do {
+                        try self.getUser(self.defaultLogin) { result in
+                            switch result {
+                            case .success(let user):
+                                DispatchQueue.main.async {
+                                    self.coordinator?.pushProfileViewController(forUser: user)
+                                }
+                            case .failure(_):
+                                AlertUtils.showUserMessage("User does not exist".localized, context: context)
+                            }
+                        }
+                    }
+                    catch {
+                        print("♦️ Unknown error")
+                    }
+                } else {
+                    AlertUtils.showUserMessage("Not authorizaed", context: context)
+                }
+            }
+        case .checkBiometryType(let completion):
+            print(self.localAuthorizationService.authorizationType.rawValue)
+            completion(self.localAuthorizationService.authorizationType)
         }
     }
     
