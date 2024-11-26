@@ -64,8 +64,8 @@
 		F9DB1303298E8C8D0067578D /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB1302298E8C8D0067578D /* AvatarView.swift */; };
 		F9DB131129AFCC1B0067578D /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = F9DB131029AFCC1B0067578D /* StorageService.docc */; };
 		F9DB131229AFCC1B0067578D /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = F9DB130F29AFCC1B0067578D /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F9DB131529AFCC1B0067578D /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DB130D29AFCC1B0067578D /* StorageService.framework */; };
-		F9DB131629AFCC1B0067578D /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9DB130D29AFCC1B0067578D /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9DB131529AFCC1B0067578D /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DB130D29AFCC1B0067578D /* StorageService.framework */; platformFilter = ios; };
+		F9DB131629AFCC1B0067578D /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9DB130D29AFCC1B0067578D /* StorageService.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9DB131B29AFCE340067578D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD106286FF2200062067F /* Post.swift */; };
 		F9DB131D29B0B0F20067578D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB131C29B0B0F10067578D /* Configuration.swift */; };
 		F9DB132229B26AFE0067578D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DB132129B26AFE0067578D /* User.swift */; };
@@ -783,6 +783,7 @@
 /* Begin PBXTargetDependency section */
 		F9DB131429AFCC1B0067578D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = F9DB130C29AFCC1B0067578D /* StorageService */;
 			targetProxy = F9DB131329AFCC1B0067578D /* PBXContainerItemProxy */;
 		};
@@ -933,8 +934,10 @@
 				DEVELOPMENT_TEAM = ZYCY24J2LU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -944,9 +947,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Yoji-team.Navigation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -960,8 +965,10 @@
 				DEVELOPMENT_TEAM = ZYCY24J2LU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -971,9 +978,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Yoji-team.Navigation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

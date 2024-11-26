@@ -16,10 +16,11 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     enum ViewInput {
         case photosDidTap([UIImage])
         case postDidDoubleTap(Int)
+        case addNewPost(Post)
     }
     
     let user: User
-    let posts: [Post]
+    var posts: [Post]
     let photos: [UIImage]
     private let postDataManager: PostDataManager
     
@@ -38,6 +39,9 @@ final class ProfileViewModel: ProfileViewModelProtocol {
             self.coordinator?.pushPhotosViewController(data: data)
         case .postDidDoubleTap(let index):
             self.postDataManager.addFavoritePost(posts[index])
+        case .addNewPost(let post):
+            StorageService.shared.addPost(post)
+            self.posts = StorageService.shared.posts
         }
     }
 }

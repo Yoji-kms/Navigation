@@ -86,7 +86,7 @@ final class PostTableViewCell: UITableViewCell {
   
 // MARK: Setups
     func setup(with viewModel: Post) {
-        self.image.image = UIImage(named: viewModel.image)
+        self.image.image = viewModel.image
         self.title.text = viewModel.title
         self.author.text = "Author".localized + viewModel.author
         self.postDescription.text = viewModel.description

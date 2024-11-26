@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 final class ProfileViewController: UIViewController {
 // MARK: Variables
@@ -27,6 +28,9 @@ final class ProfileViewController: UIViewController {
         let table = UITableView(frame: .zero, style: .grouped)
         table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         table.estimatedRowHeight = 100
+        table.dragInteractionEnabled = true
+        table.dragDelegate = self
+        table.dropDelegate = self
         table.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         table.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
         table.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
@@ -276,5 +280,65 @@ extension ProfileViewController: AvatarTapDelegate {
         } completion: { _ in
             self.closeAvatarBtn.isEnabled = true
         }
+    }
+}
+
+extension ProfileViewController: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: any UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let post = self.viewModel.posts[indexPath.row]
+        
+        let imageItemProvider = NSItemProvider(object: post.image)
+        let imageDragItem = UIDragItem(itemProvider: imageItemProvider)
+        
+        let descriptionNSString = NSString(string: post.description)
+        let descriptionItemProvider = NSItemProvider(object: descriptionNSString)
+        let descriptionDragItem = UIDragItem(itemProvider: descriptionItemProvider)
+        
+        return [imageDragItem, descriptionDragItem]
+    }
+}
+
+extension ProfileViewController: UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView, canHandle session: any UIDropSession) -> Bool {
+        return session.canLoadObjects(ofClass: NSString.self) || session.canLoadObjects(ofClass: UIImage.self)
+    }
+    
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: any UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        return UITableViewDropProposal(operation: .copy, intent: .automatic)
+    }
+    
+    func tableView(_ tableView: UITableView, performDropWith coordinator: any UITableViewDropCoordinator) {
+        let section = 1
+        let row = tableView.numberOfRows(inSection: section)
+        let destinationIndexPath = IndexPath(row: row, section: section)
+        
+        var description = ""
+        var image = UIImage()
+        
+        coordinator.session.loadObjects(ofClass: NSString.self) { items in
+            let stringItems = items as! [String]
+            if let dropDescription = stringItems.first {
+                description = dropDescription
+            }
+        }
+        
+        coordinator.session.loadObjects(ofClass: UIImage.self) { items in
+            let imageItems = items as! [UIImage]
+            if let dropImage = imageItems.first {
+                image = dropImage
+            }
+        }
+        
+        let post = Post(
+            title: "Title \(destinationIndexPath.row)",
+            description: description,
+            author: "Drag&Drop",
+            image: image,
+            likes: 0,
+            views: 0
+        )
+        
+        self.viewModel.updateState(viewInput: .addNewPost(post))
+        tableView.reloadRows(at: [destinationIndexPath], with: .automatic)
     }
 }

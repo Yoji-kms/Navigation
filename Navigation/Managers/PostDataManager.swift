@@ -69,7 +69,7 @@ final class PostDataManager {
                     dbPost.title = post.title
                     dbPost.postDescription = post.description
                     dbPost.author = post.author
-                    dbPost.image = post.image
+                    dbPost.image = post.image.description
                     dbPost.likes = Int16(post.likes)
                     dbPost.views = Int32(post.views)
                 }
