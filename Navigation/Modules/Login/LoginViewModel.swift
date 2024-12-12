@@ -40,10 +40,6 @@ final class LoginViewModel: LoginViewModelProtocol {
     func updateState(viewInput: ViewInput) {
         switch viewInput {
         case let .loginBtnDidTap(login, password):
-            guard let context = try? self.getContext() else {
-                preconditionFailure("🟡 No context")
-            }
-            
             do {
                 try self.getUser(login) { result in
                     switch result {
@@ -51,12 +47,18 @@ final class LoginViewModel: LoginViewModelProtocol {
                         try self.checkLogin(login, password: password)
                         self.coordinator?.pushProfileViewController(forUser: user)
                     case .failure(_):
+                        guard let context = try? self.getContext() else {
+                            preconditionFailure("🟡 No context")
+                        }
                         AlertUtils.showUserMessage("User does not exist".localized, context: context)
                     }
                     
                 }
             }
             catch LoginError.wrongPassword {
+                guard let context = try? self.getContext() else {
+                    preconditionFailure("🟡 No context")
+                }
                 AlertUtils.showUserMessage("Incorrect password".localized, context: context)
             }
             catch {
